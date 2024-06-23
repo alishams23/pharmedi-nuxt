@@ -65,7 +65,7 @@ export default {
                 this.fd.append("product_id", this.cartItem.product.id);
 
                 await axios.post(
-                    `http://127.0.0.1:8000/api/shop/add-to-cart/`,
+                    `https://pharmedi.ir/api/shop/add-to-cart/`,
                     this.fd,
                     {
                         headers: {
@@ -90,7 +90,7 @@ export default {
                 this.fd = new FormData();
 
                 await axios.post(
-                    "http://127.0.0.1:8000/api/shop/remove-from-cart/" + this.cartItem.id + "/",
+                    "https://pharmedi.ir/api/shop/remove-from-cart/" + this.cartItem.id + "/",
                     this.fd,
                     {
                         headers: {

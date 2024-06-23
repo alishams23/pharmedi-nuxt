@@ -417,7 +417,7 @@ export default {
     async userData() {
       this.loading = true;
       await fetch(
-        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
+        `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -432,7 +432,7 @@ export default {
       }
 
       await fetch(
-        `http://127.0.0.1:8000/api/shift/post/?search=${this.text == null ? "" : this.text
+        `https://pharmedi.ir/api/shift/post/?search=${this.text == null ? "" : this.text
         } ${this.city_text == null ? "" : this.city_text
         }&min_price=&max_price=&pharmacy__city=${this.city_selected == null ? "" : this.city_selected
         }&shift_type=${this.shift_selected}&day=${this.dayApi == null ? "" : this.dayApi
@@ -461,7 +461,7 @@ export default {
     async getJobSeekers() {
       this.loading = true;
 
-      await fetch("http://127.0.0.1:8000/api/account/job_seeker_list/", {
+      await fetch("https://pharmedi.ir/api/account/job_seeker_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -481,7 +481,7 @@ export default {
     async getJobs() {
       this.loading = true;
 
-      await fetch("http://127.0.0.1:8000/api/job/list-jobs/", {
+      await fetch("https://pharmedi.ir/api/job/list-jobs/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -499,7 +499,7 @@ export default {
       this.loading = false;
     },
     getUserSuggestion() {
-      fetch("http://127.0.0.1:8000/api/account/User_suggestion/", {
+      fetch("https://pharmedi.ir/api/account/User_suggestion/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -515,7 +515,7 @@ export default {
         });
     },
     getHeader() {
-      fetch("http://127.0.0.1:8000/api/shift/Header_list/", {
+      fetch("https://pharmedi.ir/api/shift/Header_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -532,7 +532,7 @@ export default {
     },
     getUserPro() {
       this.loadingFollowing = true;
-      fetch("http://127.0.0.1:8000/api/account/User_pro_list/", {
+      fetch("https://pharmedi.ir/api/account/User_pro_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -557,7 +557,7 @@ export default {
       }
     },
     getDataCity() {
-      fetch("http://127.0.0.1:8000/api/account/City_list/", {
+      fetch("https://pharmedi.ir/api/account/City_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

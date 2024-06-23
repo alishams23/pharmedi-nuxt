@@ -58,7 +58,7 @@ export default {
       this.loading = true;
       await axios
         .get(
-          `http://127.0.0.1:8000/api/blog/blog_retrieve/${this.$route.params.id}/`,
+          `https://pharmedi.ir/api/blog/blog_retrieve/${this.$route.params.id}/`,
           {
             headers: {
               "Content-type": "application/json",
@@ -84,7 +84,7 @@ export default {
 
       await axios
         .put(
-          `http://127.0.0.1:8000/api/blog/BlogUpdate/${this.$route.params.id}/`,
+          `https://pharmedi.ir/api/blog/BlogUpdate/${this.$route.params.id}/`,
           this.fd,
           {
             headers: {

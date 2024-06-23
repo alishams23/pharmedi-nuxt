@@ -169,7 +169,7 @@ export default {
   },
   async asyncData({ store, route }) {
     const product = await axios.get(
-      `http://127.0.0.1:8000/api/shop/retrieve-product/${route.params.id}/`,
+      `https://pharmedi.ir/api/shop/retrieve-product/${route.params.id}/`,
       {
         headers: {
           "Content-type": "application/json",
@@ -249,7 +249,7 @@ export default {
     async getCartItem() {
       // try {
       await axios.get(
-        `http://127.0.0.1:8000/api/shop/retrieve-cart-item/${await this.product.id}/`,
+        `https://pharmedi.ir/api/shop/retrieve-cart-item/${await this.product.id}/`,
         {
           headers: {
             "Content-type": "application/json",
@@ -267,7 +267,7 @@ export default {
     },
     async getComments() {
       this.loadingComments = true;
-      await fetch(`http://127.0.0.1:8000/api/shop/${this.$route.params.id}/list-comments/`, {
+      await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.id}/list-comments/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -288,7 +288,7 @@ export default {
       this.fd.append("content", this.comment);
 
       await axios.post(
-        `http://127.0.0.1:8000/api/shop/${this.$route.params.id}/create-comment/`,
+        `https://pharmedi.ir/api/shop/${this.$route.params.id}/create-comment/`,
         this.fd,
         {
           headers: {
@@ -312,7 +312,7 @@ export default {
       return this.$store.state.isAuthenticated == true;
     },
     shareLink() {
-      this.copyToClipboard(`http://127.0.0.1:8000/t/blog/${this.product.id}/`);
+      this.copyToClipboard(`https://pharmedi.ir/t/blog/${this.product.id}/`);
       alert(` کپی شد.`);
     },
     async addToCart() {
@@ -320,7 +320,7 @@ export default {
       this.fd.append("product_id", this.product.id);
 
       await axios.post(
-        `http://127.0.0.1:8000/api/shop/add-to-cart/`,
+        `https://pharmedi.ir/api/shop/add-to-cart/`,
         this.fd,
         {
           headers: {

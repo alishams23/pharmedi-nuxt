@@ -61,7 +61,7 @@ export default {
         getData() {
             this.loading = true;
             axios
-                .get(`http://127.0.0.1:8000/api/shop/best-product-list-main-page/`, {
+                .get(`https://pharmedi.ir/api/shop/best-product-list-main-page/`, {
                     headers: {
                         "Content-type": "application/json",
                         Accept: "application/json",

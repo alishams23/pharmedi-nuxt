@@ -119,7 +119,7 @@ export default {
       let representative_user_data = null;
       if (this.representative_user != null)
         await fetch(
-          `http://127.0.0.1:8000/api/account/user_retrieve/${this.representative_user}/`,
+          `https://pharmedi.ir/api/account/user_retrieve/${this.representative_user}/`,
           {
             headers: {
               "Content-type": "application/json",
@@ -132,7 +132,7 @@ export default {
             this.representative_user_data = data.id;
           });
       await fetch(
-        `http://127.0.0.1:8000/api/account/user_retrieve/${this.username}/`,
+        `https://pharmedi.ir/api/account/user_retrieve/${this.username}/`,
         {
           headers: {
             "Content-type": "application/json",
@@ -150,7 +150,7 @@ export default {
       });
 
       await axios
-        .post(`http://127.0.0.1:8000/api/account/register/`, {
+        .post(`https://pharmedi.ir/api/account/register/`, {
           username: this.username,
           password: this.Password,
           last_name: this.lastName,
@@ -188,7 +188,7 @@ export default {
       this.loading = false;
     },
     getState() {
-      fetch(`http://127.0.0.1:8000/api/account/State_list/`, {
+      fetch(`https://pharmedi.ir/api/account/State_list/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

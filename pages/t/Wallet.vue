@@ -71,7 +71,7 @@ export default {
     async userData() {
       this.loading = true;
       await fetch(
-        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
+        `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -92,7 +92,7 @@ export default {
       }
 
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/wallet/increase-money/`, {
+      await fetch(`https://pharmedi.ir/api/wallet/increase-money/`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -122,7 +122,7 @@ export default {
     },
     async getTransactions() {
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/wallet/list-transactions/`, {
+      await fetch(`https://pharmedi.ir/api/wallet/list-transactions/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -141,7 +141,7 @@ export default {
     },
     async getOrders() {
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/shop/list-orders/`, {
+      await fetch(`https://pharmedi.ir/api/shop/list-orders/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

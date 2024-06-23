@@ -90,7 +90,7 @@ export default {
       this.loading = true;
       await axios
         .get(
-          `http://127.0.0.1:8000/api/blog/Blog_List/?search=${this.text == null ? "" : this.text
+          `https://pharmedi.ir/api/blog/Blog_List/?search=${this.text == null ? "" : this.text
           }&page=${this.page}`
         )
 
