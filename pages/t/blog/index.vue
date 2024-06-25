@@ -10,7 +10,7 @@
       ">
       <nuxt-link :to="checkLogin() ? '/t/textEditor' : '/t/login'"
         class=" text-white  ">
-      <div class=" bg-treaget   h-[60px] w-[60px] flex justify-center items-center rounded-full">
+      <div class=" bg-treaget   h-[55px] w-[55px] flex justify-center items-center rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentcolor" class="bi bi-plus"
             viewBox="0 0 16 16">
             <path
@@ -22,12 +22,12 @@
     <div class="px-3 py-2 pb-4">
       <div class="d-flex flex-row justify-content-between">
         <div class="d-flex col justify-content-start">
-          <div class="d-flex p-3 text-white bg-treaget rounded-13">
+          <div class="d-flex p-3 text-white bg-treaget rounded-full">
             <i class="fa fa-search" />
           </div>
         </div>
         <div class="row col-10 col-lg-11">
-          <input v-model="text" class="col-12 rounded-13 rtl shadow-3" name="name" type="search" placeholder="جستجو"
+          <input v-model="text" class="col-12 rounded-full rtl shadow-3" name="name" type="search" placeholder="جستجو"
             @keyup.enter="
         getData();
       data = [];

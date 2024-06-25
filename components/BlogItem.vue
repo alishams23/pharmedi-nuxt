@@ -1,11 +1,11 @@
 <template>
-    <div class="shadow-1 bg-white p-3  rounded-10   ">
+    <div class="shadow-3 bg-white p-3  rounded-2xl   ">
       
-        <div v-if="data.imageBlog" class="img-course-height shadow-2 cover rounded-10" :style="`background-image:url('${data.imageBlog.photo}');background-size: cover;`">
+        <div v-if="data.imageBlog" class="img-course-height  cover rounded-10" :style="`background-image:url('${data.imageBlog.photo}');background-size: cover;`">
             <!-- <img class="rounded-10 w-full h-full cover"  src="https://i.gyazo.com/4193ee51b263d4a0dab88720352ca87a.jpg" alt="img"> -->
         </div>
       <div class="d-flex nm-4  rtl ">
-       <div class="d-flex bg-white rounded-pill px-1 py-1 shadow-3">
+       <div class="d-flex bg-gray-100/70 backdrop-blur-md rounded-pill px-1 py-1 ">
         <div class=" rounded-pill bg-white h-10 w-10 p-half shadow-md " v-if="data.author">
             <img class="rounded-pill w-full h-full cover" v-if="data.author.image_profile != null" :src="data.author.image_profile " alt="img">
             <img class="rounded-pill w-full h-full cover" v-else src="@/assets/inside/avatar.jpg" alt="img">
@@ -21,7 +21,7 @@
        </div>
       </div>
         <div class="text-right rtl pt-3 pb-3">
-            <h4 class="fw-bold text-sm irsa  text-lg">{{data.title}}</h4>
+            <h4 class="fw-bold text-sm irsa  text-md leading-7">{{data.title}}</h4>
   
         </div>
     </div>

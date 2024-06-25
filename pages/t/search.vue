@@ -2,7 +2,7 @@
   <div>
     <div class="px-3">
       <div class="d-flex flex-row">
-        <div class="d-flex col justify-content-center">
+        <div class="d-flex  justify-content-center">
           <i @click="searchModel" class="fa fa-search p-3 text-white bg-treaget rounded-pill"></i>
         </div>
         <input class="col-10 col-lg-11 rounded-pill border rtl shadow-none" name="name" type="search" placeholder="search"

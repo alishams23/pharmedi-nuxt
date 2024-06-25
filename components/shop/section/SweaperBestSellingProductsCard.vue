@@ -1,21 +1,18 @@
 <template>
     <div class=" ">
         <div class="flex mt-[60px] mb-10 items-center justify-end">
-            <h2 class=" irsa text-2xl font-black text-right my-3 mr-4  ">پرفروش ترین محصولات</h2>
-            <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-10 rounded-2xl">
-                <ShoppingBagIcon class=" w-8 h-8 text-white" />
+            <h2 class=" irsa text-lg font-bold text-right my-3 mr-4  ">پرفروش ترین محصولات</h2>
+            <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
+                <StarIcon class=" w-8 h-8 text-white" />
             </div>
         </div>
         <swiper :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
             class=" flex justify-center">
-            <div v-if="loading" class='flex space-x-1 justify-center items-center bg-white h-[378.8px]'>
-                <span class='sr-only'>Loading...</span>
-                <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.3s]'></div>
-                <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.15s]'></div>
-                <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce'></div>
+            <div v-if="loading" class='flex space-x-1 justify-center items-center  h-[378.8px]'>
+               <div class="loader"></div>
             </div>
-            <swiper-slide v-else v-for="item in products" class="mb-9 ">
-                <div class=" rounded-3xl flex justify-center items-center  mx-3">
+            <swiper-slide v-else v-for="item in products" class="mb-9 w-auto">
+                <div class=" rounded-3xl flex justify-center items-center  mx-2">
                     <ShopSharedProductCard :data="item" />
                 </div>
             </swiper-slide>
@@ -27,7 +24,7 @@
 <script>
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { ShoppingBagIcon } from '@heroicons/vue/20/solid'
+import { StarIcon } from '@heroicons/vue/20/solid'
 import axios from "axios";
 
 
@@ -45,7 +42,7 @@ export default {
     components: {
         Swiper,
         SwiperSlide,
-        ShoppingBagIcon,
+        StarIcon,
 
 
     },

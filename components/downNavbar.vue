@@ -8,7 +8,7 @@
       <div class="drop drop--up m-3">
         <div class="m-1 p-1 ">
           <a class="  text-white    ">
-           <div class="bg-treaget  h-[60px] w-[60px] rounded-full flex justify-center items-center">
+           <div class="bg-gradient-to-tr  from-[#2741e7] to-[#2aa2f2]  h-[55px] w-[55px] rounded-full flex justify-center items-center">
              <svg
                xmlns="http://www.w3.org/2000/svg"
                width="40"
@@ -53,11 +53,13 @@
               : 'nav-color-inactive'
           "
         >
-          <i
+        <HomeIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 't-Home'"/>
+        <HomeIcon class="text-gray-600 h-6 w-6" v-else/>
+          <!-- <i
             class="fa-home"
             :class="currentRouteName() == 't-Home' ? 'fa' : 'fad'"
             style="font-size: 17px"
-          />
+          /> -->
           <span class="nav-text">خانه</span>
         </nuxt-link>
         <nuxt-link
@@ -69,11 +71,14 @@
               : 'nav-color-inactive'
           "
         >
-          <i
+        
+        <DocumentTextIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 't-blog'"/>
+        <DocumentTextIcon class="text-gray-600 h-6 w-6" v-else/>
+          <!-- <i
             class="fad fa-newspaper"
             :class="currentRouteName() == 't-blog' ? 'fa' : 'fad'"
             style="font-size: 17px"
-          />
+          /> -->
           <span class="nav-text">دارونگار</span>
         </nuxt-link>
         <nuxt-link
@@ -85,12 +90,15 @@
               : 'nav-color-inactive'
           "
         >
-          <i
+        
+        <ShoppingBagIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 't-video'"/>
+        <ShoppingBagIcon class="text-gray-600 h-6 w-6" v-else/>
+          <!-- <i
             class="fad fa-video"
             :class="currentRouteName() == 't-video' ? 'fa' : 'fad'"
             style="font-size: 17px"
-          />
-          <span class="nav-text">فیلم</span>
+          /> -->
+          <span class="nav-text">فروشگاه</span>
         </nuxt-link>
         <nuxt-link
           :to="
@@ -105,11 +113,13 @@
               : 'nav-color-inactive'
           "
         >
-          <i
+        <UserIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 'user'"/>
+        <UserIcon class="text-gray-600 h-6 w-6" v-else/>
+          <!-- <i
             class="fad fa-user"
             :class="currentRouteName() == 'user' ? 'fa' : 'fad'"
             style="font-size: 17px"
-          />
+          /> -->
           <span class="nav-text">پروفایل</span>
         </nuxt-link>
       </div>
@@ -118,7 +128,17 @@
 </template>
 
 <script>
+
+import {  UserIcon,HomeIcon,DocumentTextIcon,ShoppingBagIcon} from '@heroicons/vue/24/outline' 
+import {  UserIcon as UserIconSolid,HomeIcon as HomeIconSolid,DocumentTextIcon as DocumentTextIconSolid,ShoppingBagIcon as ShoppingBagIconSolid} from '@heroicons/vue/24/solid' 
+
 export default {
+  components:{UserIcon,HomeIcon,DocumentTextIcon,ShoppingBagIcon,
+    UserIconSolid,
+    HomeIconSolid,DocumentTextIconSolid,ShoppingBagIconSolid,
+
+
+  },
   methods: {
     currentRouteCheck (data) {
       return this.$route.name.split('-').includes(data)

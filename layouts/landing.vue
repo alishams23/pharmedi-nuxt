@@ -13,7 +13,7 @@
               ورود
             </nuxt-link>
           </div>
-          <nuxt />
+          <slot />
         </div>
       </div>
     </div>

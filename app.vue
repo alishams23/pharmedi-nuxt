@@ -4,15 +4,15 @@
   <NuxtLoadingIndicator />
   <div>
     <Head>
-        <Title>تدلاین</Title>
+        <Title>فارمدی - pharmedi</Title>
      </Head>
 </div>
-  <div v-if="loading == false">
-    <NuxtLayout >
+  
+    <NuxtLayout v-if="loading == false" >
       
       <NuxtPage/>
     </NuxtLayout>
-  </div>
+
 
 
 

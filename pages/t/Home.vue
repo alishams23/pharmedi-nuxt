@@ -2,20 +2,26 @@
   <div id="home" class="lg:flex justify-center lg:space-x-10 lg:space-y-0">
     <!-- left sidebar-->
     <div class="flex-shrink-0 lg:w-8/12">
-      <div style="margin-top: -23px">
-        <div class="pb-5" style="cursor: grab; overflow-x: hidden">
-          <div class="">
-          <client-only>
-            <!-- <VueSlickCarousel v-if="HeaderData.length > 0" v-bind="settings">
-              <a v-for="item in HeaderData" :key="item.id + '-header'" :href="$store.state.isAuthenticated == true ? item.link : '/t/login'
-              " style="overflow: hidden">
-                <img :src="item.image" class="cover rounded-13-lg" />
-              </a>
-            </VueSlickCarousel> -->
-          </client-only>
+      <div class="md:ms-3 mx-2">
+        
+        <transition>
+          <div v-if="HeaderData.length > 0">
+            <swiper class="mt-[-22px] md:mt-5  " :modules="modules" :slides-per-view="1" :space-between="1" :loop="true" :autoplay="{
+          delay: 2000,
+          disableOnInteraction: false,
+        }" :pagination="{
+          clickable: true,
+        }" >
+              <swiper-slide v-for="item in HeaderData" class="">
+                <img :src="item.image" class="  rounded-3xl  w-full object-cover " />
+                <!-- <img :src="item.photo"
+                                   class=" w-[405px] h-full object-cover rounded-3xl md:w-[645.33px] lg:w-[645.33px]"> -->
+              </swiper-slide>
+            </swiper>
           </div>
-        </div>
+        </transition>
       </div>
+
       <!-- <div class="relative mx-lg-3">
         <div class="d-lg-none bg-white rounded-13 mx-3 mb-3 py-3">
           <p class="fs-6 fw-bold rtl px-4 pb-3">جدید ترین کاربران</p>
@@ -40,13 +46,33 @@
       </div> -->
 
 
-      <div class="bg-white rounded-13 ms-3 mb-3 py-3">
-        <p class="fs-6 fw-bold rtl px-4 pb-3">آگهی های کارجویی</p>
-        <ul class="d-flex scrollBarHidden mb-3 mouseDrag" style="overflow-x: scroll; cursor: grab">
+
+
+
+      
+
+      <!-- <div class="mx-3 py-2 pb-3 mt-3">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex  justify-content-start">
+            <div class="d-flex p-3 text-white bg-blue-600 rounded-l-2xl rounded-r-md" @click="modal = true">
+              <i class="fa fa-filter" />
+              <p class="text-xs fw-bold ml-2">فیلتر</p>
+            </div>
+          </div>
+          <div class="  w-full ml-1">
+            <input v-model="text" class="w-full rounded-r-2xl rounded-l-md rtl  shadow-none" name="name" type="search" placeholder="جستجو"
+              @keyup.enter="getDataHome(postPage)" />
+          </div>
+        </div>
+      </div> -->
+
+      <div class="rounded-13 hidden mx-3 mt-2" v-show="jobSeekers.length > 0 || jobs.length > 0 ">
+        <!-- <p class="text-sm fw-bold rtl  ">آگهی های کارجویی</p> -->
+        <ul class="d-flex px-3  scrollBarHidden mb-3 mouseDrag" style="overflow-x: scroll; cursor: grab">
           <li v-for="data in jobSeekers" :key="data.username"
             class="d-flex w-20 flex-column justify-content-center align-items-center">
             <nuxt-link :to="'/' + data.username">
-              <div class="bg-gray-300 transform m-1 w-16 h-16 transition rounded-pill hover:bg-gradient-blue"
+              <div class="bg-gray-300 transform m-1 w-16 h-16 transition rounded-pill bg-gradient-blue"
                 style="padding: 1px 1px 1px 1px">
                 <div class="p-1 w-full h-full bg-white rounded-pill">
                   <img v-if="data.image_profile" :src="data.image_profile" class="w-full h-full cover rounded-pill" />
@@ -62,7 +88,7 @@
             class=" d-flex w-20 flex-column justify-content-center align-items-center">
 
             <nuxt-link :to="'/t/Job?job=' + data.id">
-              <div class="bg-gray-300 transform m-1 w-16 h-16 transition rounded-pill hover:bg-gradient-blue"
+              <div class="bg-gray-300 transform m-1 w-16 h-16 transition rounded-pill bg-gradient-blue"
                 type="button" style="padding: 1px 1px 1px 1px">
                 <div class="p-1 w-full h-full bg-white rounded-pill">
                   <img v-if="data.image_profile" :src="data.image_profile" class="w-full h-full cover rounded-pill" />
@@ -77,51 +103,58 @@
           </li>
         </ul>
 
-        <alert v-if="jobSeekers.length == 0 && jobs.length == 0" class="ms-2 me-2">
+        <div v-if="jobSeekers.length == 0 && jobs.length == 0" class="mx-4 my-4 text-gray-500 rtl">
           چیزی برای نمایش وجود ندارد
-        </alert>
-      </div>
-
-      <div class="px-3 py-2 pb-4">
-        <div class="d-flex flex-row justify-content-between">
-          <div class="d-flex col justify-content-start">
-            <div class="d-flex p-3 text-white bg-treaget rounded-13" @click="modal = true">
-              <i class="fa fa-filter" />
-              <p class="text-xs fw-bold ml-2">فیلتر</p>
-            </div>
-          </div>
-          <div class="row col-9 col-lg-10">
-            <input v-model="text" class="col-12 rounded-13 rtl shadow-3" name="name" type="search" placeholder="جستجو"
-              @keyup.enter="getDataHome(postPage)" />
-          </div>
         </div>
       </div>
-      <div class="d-flex flex-wrap mx-2">
-        <button class="rounded-13 text-center fw-bold py-2 px-4 bg-white shadow-3 mx-1 bd-highlight" @click="
-              category_choices == 'S,T,H'
-                ? (category_choices = '')
-                : (category_choices = 'S,T,H')
-              " :class="category_choices == 'S,T,H' ? 'bg-treaget text-white' : ''">
+      
+      <div class="w-full rtl mt-3 px-3 md:px-4 mb-2">   
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center pe-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-300 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <input   @keyup.enter="getDataHome(postPage)"   class="block w-full p-4 pe-5 text-sm text-gray-900   rounded-full bg-white shadow-none  focus:ring-blue-500 focus:border-blue-500 " placeholder="جستجو بین شیفت ها ..." required />
+        <button  @click="modal = true" class="flex items-center text-white absolute end-2 bottom-2 shadow-2 bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-[7px] ">
+          <i class="fa fa-filter text-xs ml-2" />
+          فیلتر
+        </button>
+    </div>
+</div>
+      <div class="d-flex flex-wrap mx-3 md:mx-4">
+        <button class="rounded-full text-center  py-2 px-3  shadow-3 mx-1 bd-highlight text-xs" @click="
+          category_choices == 'S,T,H'
+            ? (category_choices = '')
+            : (category_choices = 'S,T,H')
+          " :class="category_choices == 'S,T,H' ? 'bg-blue-600 text-white' : ' bg-sky-100 text-sky-700'">
           تکنسین
         </button>
 
-        <button class="rounded-13 text-center fw-bold py-2 px-4 bg-white shadow-3 mx-1 bd-highlight" @click="
-              category_choices == 'P,V'
-                ? (category_choices = '')
-                : (category_choices = 'P,V')
-              " :class="category_choices == 'P,V' ? 'bg-treaget text-white' : ''">
+        <button class="rounded-full text-center  py-2 px-3  shadow-3 mx-1 bd-highlight text-xs" @click="
+          category_choices == 'P,V'
+            ? (category_choices = '')
+            : (category_choices = 'P,V')
+          " :class="category_choices == 'P,V' ? 'bg-blue-600 text-white' : 'bg-sky-100 text-sky-700'">
           داروساز
         </button>
       </div>
 
-      <div class="d-flex justify-content-between rtl align-items-center my-3 px-3">
-        <p class="fs-6 fw-bold">شیفت های داروخانه</p>
+   
+
+      <div class="d-flex justify-content-between rtl align-items-center my-3 mt-1 px-3">
+        <p class="text-sm fw-bold">شیفت های داروخانه</p>
       </div>
 
 
       <div>
         <div id="posts" class="space-y-5 pb-3 px-3">
-          <shift v-for=" result  in  results " :key="result.id + 'post'" :data="result" />
+         <transition>
+         <div v-if="results.length>0">
+            <shift v-for=" result in results " :key="result.id + 'post'" :data="result" />
+         </div>
+         </transition>
           <alert v-if="results.length == 0 && loading == false" class="mt-5">
             چیزی برای نمایش وجود ندارد
           </alert>
@@ -129,7 +162,8 @@
         <!-- post 2-->
         <!-- Load more-->
         <div class="d-flex justify-content-center">
-          <button v-if="nextPage != null" class="border rounded-pill py-2 px-3 mt-2 bg-white" @click="postPage++">
+          <button v-if="nextPage != null && loading == false" class="border rounded-pill py-2 px-3 mt-2 bg-white"
+            @click="postPage++">
             بیشتر
           </button>
         </div>
@@ -142,27 +176,35 @@
     <!-- right sidebar-->
     <div class="lg:w-4/12 d-sm-block d-none mt-3">
       <div class="rounded-2xl pb-4 bg-white">
-        <div class="text-right p-3 px-4 fs-5 fw-bold">افراد پیشنهادی</div>
+        <div class="text-right p-3 px-4 fs-6 fw-bold">افراد پیشنهادی</div>
         <div class="d-flex flex-column rtl">
-          <div v-for=" n  in  6 " :key="n + '_3-home'" class="d-flex justify-content-center">
-            <div v-show="userSuggestion.length == 0" class="UserSuggestionLoader" />
-          </div>
-          <nuxt-link v-for=" data  in  userSuggestion " :key="data.username + '_4-home'" :to="'/' + data.username">
-            <div class="d-flex rtl justify-content-between mx-3 mb-1 hover:bg-gray-100 p-2 rounded-10">
-              <div class="border-2 d-flex justify-content-center align-items-center p-1 w-14 h-14 rounded-pill">
-                <img v-if="data.image_profile" :src="data.image_profile" class="w-full h-full cover rounded-pill" />
-                <img v-else src="@/assets/inside/avatar.jpg" class="w-full h-full cover rounded-pill" />
-              </div>
-              <div class="d-flex flex-column align-items-end my-1">
-                <div class=" font-medium text-sm">
-                  {{ data.get_full_name }}
-                </div>
-                <div class="fw-light">
-                  {{ data.username }}
-                </div>
-              </div>
-            </div>
-          </nuxt-link>
+        
+           <div v-show="userSuggestion.length == 0">
+             <div v-for=" n in 6 " :key="n + '_3-home'"  class="d-flex justify-content-center w-[250px] overflow-hidden px-2">
+               <div  class="UserSuggestionLoader " />
+             </div>
+           </div>
+   
+      <transition>
+           <div v-if="userSuggestion.length>0">
+             <nuxt-link v-for=" data in userSuggestion " :key="data.username + '_4-home'" :to="'/' + data.username">
+               <div class="d-flex rtl justify-content-between mx-3 mb-1 hover:bg-gray-100 p-2 rounded-10">
+                 <div class="border-2 d-flex justify-content-center align-items-center p-1 w-12 h-12 rounded-pill">
+                   <img v-if="data.image_profile" :src="data.image_profile" class="w-full h-full cover rounded-pill" />
+                   <img v-else src="@/assets/inside/avatar.jpg" class="w-full h-full cover rounded-pill" />
+                 </div>
+                 <div class="d-flex flex-column align-items-end my-1">
+                   <div class=" font-medium text-sm line-clamp-1">
+                     {{ data.get_full_name }}
+                   </div>
+                   <div class="fw-light text-xs line-clamp-1">
+                     {{ data.username }}
+                   </div>
+                 </div>
+               </div>
+             </nuxt-link>
+           </div>
+      </transition>
         </div>
       </div>
     </div>
@@ -215,21 +257,21 @@
 
             <div class="d-flex">
               <div v-if="day != null ||
-              shift_selected != '' ||
-              city_text != '' ||
-              time_status != '' ||
-              immediate != '' ||
-              with_card != ''
+                shift_selected != '' ||
+                city_text != '' ||
+                time_status != '' ||
+                immediate != '' ||
+                with_card != ''
               " class="text-xs px-5 h-8 py-0 d-flex align-items-center rounded-pill text-white fw-bold bg-danger shadow-2"
                 @click="
-              day = null;
-            shift_selected = '';
-            city_text = '';
-            dayApi = null;
-            time_status = '';
-            immediate = '';
-            with_card = '';
-            ">
+                  day = null;
+                shift_selected = '';
+                city_text = '';
+                dayApi = null;
+                time_status = '';
+                immediate = '';
+                with_card = '';
+                ">
                 حذف
               </div>
             </div>
@@ -284,10 +326,25 @@
 // import "vue-slick-carousel/dist/vue-slick-carousel.css";
 // optional style for arrows & dots
 // import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
 export default {
   name: "Home",
   components: {
     // VueSlickCarousel,
+    Swiper, SwiperSlide
+  },
+  setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
   },
   data() {
     return {

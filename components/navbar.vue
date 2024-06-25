@@ -24,7 +24,7 @@
       <div class="right-side lg:pr-4 d-flex align-items-center">
         <!-- upload -->
 
-        <nuxt-link to="/t/Chat" class="p-1 ms-3 rounded-full bg-treaget treaget-shadow">
+        <nuxt-link to="/t/Chat" class="p-1 ms-3 rounded-full  bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] ">
           <i class="fa fa-paper-plane text-white p-2"></i>
         </nuxt-link>
         <!-- <nuxt-link

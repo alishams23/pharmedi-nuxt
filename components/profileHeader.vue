@@ -138,7 +138,7 @@
             </div>
           </div>
           <nuxt-link tag="button" to="/t/setting"
-            class="text-xs my-1 btn-material btn-animation bg-treaget rounded-pill btn-animation-shadow"
+            class="text-xs my-1 btn-material btn-animation bg-treaget rounded-pill btn-animation-shadow flex items-center"
             v-if="data.username == this.$store.state.username">تنظیمات</nuxt-link>
           <nuxt-link v-if="data.username != this.$store.state.username" :to="{
           name: 't-Chat',

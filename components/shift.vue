@@ -109,21 +109,23 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center flex-wrap flex-row-reverse mt-3">
-      <div v-if="data.with_card" class="text-sm px-5 border fs-7 px-2 rounded-13 mb-2 py-1 text-center"
-        style="color: green">
+    <div class="d-flex  align-items-center flex-wrap flex-row-reverse mt-2">
+      <div v-if="data.with_card" class=" px-3 bg-green-50 text-green-800 text-xs  rounded-full mb-2 py-2 text-center flex items-center"
+       >
         فقط داروساز دارای کارت نظام
+        <ExclamationTriangleIcon class=" w-5 h-5 ml-3 text-green-800" />
       </div>
-      <div v-if="data.immediate" class="text-sm px-5 border fs-7 px-2 rounded-13 text-danger mb-2 py-1 text-center">
+      <div v-if="data.immediate" class=" px-3 mr-3 bg-red-50 text-danger text-xs  rounded-full text-danger mb-2 py-2 text-center flex items-center">
         فوری
+        <ExclamationTriangleIcon class=" w-5 h-5  ml-3 text-danger" />
       </div>
     </div>
-    <div v-if="showDetail" class="col-12 rtl px-4 py-3 fs-6">
+    <div v-if="showDetail" class="col-12 rtl px-4 py-3 text-sm leading-7 font-light">
       {{ data.detail }}
     </div>
-    <div class="d-flex justify-content-between flex-row-reverse col-12 mt-3">
+    <div class="flex   flex-row-reverse col-12 mt-3">
       <div v-if="data.author.username != $store.state.username" class="drop -color-lighter drop--down">
-        <button class="shadow-2 border mt-3 rounded-13">
+        <button class="bg-gray-100  mt-3 rounded-full">
           <div class="py-2 px-2 d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signal"
               viewBox="0 0 16 16">
@@ -174,16 +176,16 @@
           </div>
         </div>
       </div>
-      <button v-if="data.detail" class="shadow-2 border mt-3 rounded-13" @click="showDetail = !showDetail">
+      <button v-if="data.detail" class="bg-gray-100  mt-3 mr-2 rounded-full" @click="showDetail = !showDetail">
         <div class="py-2 px-2 d-flex align-items-center">
           <i class="fad fa-newspaper pr-2" />
           <p class="text-xs px-2">توضیحات</p>
         </div>
       </button>
     </div>
-    <div class="d-flex flex-wrap justify-content-between col-12 mt-3 rtl">
+    <div class="d-flex flex-wrap justify-content-between col-12 mt-1 rtl">
       <button v-if="data.accepts.length != 0"
-        class="d-flex align-items-center mt-3 mx-2 py-2 bg-treaget shadow-lg rounded-13 px-2 mt-1"
+        class="d-flex align-items-center mt-3 mx-2 py-2 bg-green-600 text-white shadow-lg rounded-full px-2 mt-1"
         @click="suggestion = !suggestion">
         <p class="px-2 text-xs">پیشنهاد ها</p>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
@@ -195,12 +197,12 @@
       <button v-if="acceptAllow == true &&
             loading == false &&
             data.author.username != $store.state.username
-            " class="py-1 px-3 mt-3 text-xs btn-material btn-animation-shadow irsa bg-treaget rounded-13 text-white"
+            " class="py-1 px-3 mt-3 text-xs btn-material btn-animation-shadow irsa bg-gradient-to-tl  from-[#13a847] to-[#02c6b9] rounded-full text-white"
         @click="acceptRequest()">
         قبول درخواست
       </button>
       <button v-if="loading == true"
-        class="py-1 px-3 mt-3 mx-3 mt-1 text-sm btn-material btn-animation-shadow irsa bg-treaget text-white">
+        class="py-1 px-3 mt-3 mx-3 mt-1 text-sm btn-material btn-animation-shadow irsa bg-gradient-to-tl  from-[#13a847] to-[#02c6b9]  text-white">
         <div class="d-flex justify-content-center">
           <span class="loader-light" />
         </div>
@@ -273,8 +275,12 @@
 </template>
 
 <script>
+
+import {  ExclamationTriangleIcon} from '@heroicons/vue/24/outline'
+
 export default {
   props: ["data"],
+  components:{ExclamationTriangleIcon},
   data() {
     return {
       loading: false,

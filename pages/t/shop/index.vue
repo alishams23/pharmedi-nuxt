@@ -5,6 +5,10 @@
   <div>
 
     <ShopSectionSweaperHeader></ShopSectionSweaperHeader>
+    <div class="mb-3">
+      <ShopSectionSearch>
+      </ShopSectionSearch>
+    </div>
     <div>
       <ShopSectionCategories />
     </div>
@@ -143,7 +147,7 @@ export default {
 </script>
 
 <style>
-.swiper-slide {
+.w-auto.swiper-slide {
   width: auto !important;
 }
 </style>
