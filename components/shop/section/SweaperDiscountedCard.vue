@@ -1,14 +1,15 @@
 <template>
-    <div class=" ">
-        <div class="flex mt-[60px] mb-10 items-center justify-end">
-            <h2 class=" irsa text-2xl font-black text-right my-3 mr-4  ">برترین محصولات</h2>
+    <div class="   bg-gradient-to-tl from-[#ebffeb] to-[#dff2ff] rounded-3xl pb-3 pt-1 pl-2 mt-5 ">
+        <div class="flex mt-[40px] mb-10 items-center justify-end">
+            <h2 class="irsa text-2xl font-black text-right my-3 mr-4  ">محصولات دارای تخفیف</h2>
             <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-10 rounded-2xl">
                 <ShoppingBagIcon class=" w-8 h-8 text-white" />
             </div>
         </div>
         <swiper :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
             class=" flex justify-center">
-            <div v-if="loading" class='flex space-x-1 justify-center items-center bg-white h-[378.8px]'>
+            <div v-if="loading"
+                class='flex space-x-1 justify-center items-center bg-gradient-to-r from-blue-300 to-blue-100 h-[378.8px]'>
                 <span class='sr-only'>Loading...</span>
                 <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.3s]'></div>
                 <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.15s]'></div>
