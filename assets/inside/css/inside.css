@@ -62,8 +62,8 @@
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     60deg,
-    #0027b6,
-    #24997c
+    #0434df,
+    #05afaf
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -644,7 +644,7 @@
 
 .UserSuggestionLoader::after {
   content: "";
-  width: calc(100% - 30px);
+  width: calc(100% - 80px);
   height: calc(100% - 30px);
   top: 15px;
   position: absolute;

@@ -55,7 +55,12 @@ export default {
     };
   },
   name: "Login",
-  layout: "landing",
+  setup() {
+    definePageMeta({
+      layout: "landing",
+    });
+  },
+
   data() {
     return {
       generalError: false,

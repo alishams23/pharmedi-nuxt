@@ -4,7 +4,7 @@
       <div class="d-flex flex-column justify-content-between" style="min-height: 100%">
         <div class="sidebar_inner">
           <div v-if="loading == false"
-            class="d-flex flex-wrap flex-row bg-treaget shadow-2 pb-3 justify-content-around align-items-center">
+            class="d-flex flex-wrap flex-row bg-treaget md:bg-white md:rounded-xl md:m-5 pb-4 justify-content-around align-items-center">
             <span class="rtl col-12 hide-close-icon" @click="slideBarDeactivator"><svg
                 xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x"
                 viewBox="0 0 16 16">
@@ -21,11 +21,11 @@
               </div>
             </div>
             <div class="rtl" v-if="user.username">
-              <div class="fw-bold fs-6 border px-3 py-1" style="border-radius: 20px 20px 0px 20px">
+              <div class="fw-bold fs-6 bg-white/20 px-3 py-1" style="border-radius: 20px 15px 0px 20px">
                 {{ user.get_full_name }}
               </div>
               <div class="d-flex">
-                <div class="text-xs bg-white text-black px-2" style="border-radius: 20px 0px 20px 20px">
+                <div class="text-xs bg-white/60 text-black py-[2px] px-2" style="border-radius: 20px 0px 15px 20px">
                   {{ user.username }}
                 </div>
               </div>
@@ -354,16 +354,16 @@
           </ul>
         </div>
         <div>
-          <div class="bg-treaget rounded-10 mx-4">
-            <div class="rounded-10 d-flex flex-column justify-content-between align-items-center mb-3 py-1 px-3">
+          <div class="bg-treaget rounded-2xl mx-4">
+            <div class="rounded-10 d-flex flex-column justify-content-between align-items-center mb-3 py-3 px-3">
               <!-- <div style="margin-top:-55px" class="p-3 bg-glass border-t rounded-pill ">
                 <i class="fad fa-hands-helping  fs-2 " style="color: rgb(2, 135, 33);"></i>
               </div> -->
-              <div class="text-center fs-7 pt-2">
+              <div class="text-center font-light  text-white/70 leading-6 text-xs pt-2">
                 با حمایت مالی خود به پیشرفت این پروژه کمک کنید
               </div>
               <a href="https://idpay.ir/pharmedi" tag="button"
-                class="btn-material d-flex align-items-center justify-content-center text-black bg-white fs-7 shadow-lg mt-3 mb-2 mx-3 col-10">
+                class=" py-2 rounded-full  d-flex align-items-center font-medium justify-content-center text-white bg-white/20   border-gray-300 fs-7 shadow-2 mt-3 mb-2 mx-3 col-10">
                 درگاه حمایت مالی
               </a>
             </div>

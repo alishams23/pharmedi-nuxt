@@ -1,6 +1,6 @@
 <template>
   <div v-show="hide == false">
-    <nuxt />
+    <slot />
   </div>
 </template>
 
@@ -13,11 +13,8 @@ export default {
     }
   },
 
-  layout: 'main',
-  // OR
-  layout(context) {
-    return 'main'
-  }, methods: {
+ 
+   methods: {
 
   }, computed: {
     isAuthenticated: {

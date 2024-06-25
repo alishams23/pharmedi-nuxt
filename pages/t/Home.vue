@@ -148,13 +148,13 @@
             <div v-show="userSuggestion.length == 0" class="UserSuggestionLoader" />
           </div>
           <nuxt-link v-for=" data  in  userSuggestion " :key="data.username + '_4-home'" :to="'/' + data.username">
-            <div class="d-flex justify-content-between mx-3 mb-1 hover:bg-gray-100 p-2 rounded-10">
+            <div class="d-flex rtl justify-content-between mx-3 mb-1 hover:bg-gray-100 p-2 rounded-10">
               <div class="border-2 d-flex justify-content-center align-items-center p-1 w-14 h-14 rounded-pill">
                 <img v-if="data.image_profile" :src="data.image_profile" class="w-full h-full cover rounded-pill" />
                 <img v-else src="@/assets/inside/avatar.jpg" class="w-full h-full cover rounded-pill" />
               </div>
               <div class="d-flex flex-column align-items-end my-1">
-                <div class="fw-bold">
+                <div class=" font-medium text-sm">
                   {{ data.get_full_name }}
                 </div>
                 <div class="fw-light">

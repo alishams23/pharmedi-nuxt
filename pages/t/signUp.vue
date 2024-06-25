@@ -69,7 +69,11 @@ export default {
       title: "ثبت نام",
     };
   },
-  layout: "landing",
+  setup() {
+    definePageMeta({
+      layout: "landing",
+    });
+  },
   data() {
     return {
       errorGeneral: null,

@@ -56,7 +56,7 @@
           <i
             class="fa-home"
             :class="currentRouteName() == 't-Home' ? 'fa' : 'fad'"
-            style="font-size: 20px"
+            style="font-size: 17px"
           />
           <span class="nav-text">خانه</span>
         </nuxt-link>
@@ -72,7 +72,7 @@
           <i
             class="fad fa-newspaper"
             :class="currentRouteName() == 't-blog' ? 'fa' : 'fad'"
-            style="font-size: 20px"
+            style="font-size: 17px"
           />
           <span class="nav-text">دارونگار</span>
         </nuxt-link>
@@ -88,7 +88,7 @@
           <i
             class="fad fa-video"
             :class="currentRouteName() == 't-video' ? 'fa' : 'fad'"
-            style="font-size: 20px"
+            style="font-size: 17px"
           />
           <span class="nav-text">فیلم</span>
         </nuxt-link>
@@ -108,7 +108,7 @@
           <i
             class="fad fa-user"
             :class="currentRouteName() == 'user' ? 'fa' : 'fad'"
-            style="font-size: 20px"
+            style="font-size: 17px"
           />
           <span class="nav-text">پروفایل</span>
         </nuxt-link>
@@ -168,7 +168,7 @@ export default {
 }
 
 .nav-text {
-  font-size: 16px;
+  font-size: 14px;
   margin: auto;
   text-align: center;
   font-weight: 400;

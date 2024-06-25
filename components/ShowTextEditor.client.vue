@@ -20,9 +20,9 @@
 </template>
 <script setup lang="ts">
   import '@vueup/vue-quill/dist/vue-quill.snow.css'
-  import EditIcon from '@/assets/icons/edit.svg'
+  // import EditIcon from '@/assets/icons/edit.svg'
   import { defineProps, reactive } from "vue";
-  import SaveIcon from '@/assets/icons/save.svg'
+  // import SaveIcon from '@/assets/icons/save.svg'
   const props = defineProps<{
     content: string,
 }>();

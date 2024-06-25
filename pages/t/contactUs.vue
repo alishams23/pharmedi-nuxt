@@ -75,7 +75,6 @@ export default {
       title: "ارتباط با ما",
     };
   },
-  layout: "main",
   head() {
     return {
       link: [

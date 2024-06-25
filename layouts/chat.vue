@@ -29,7 +29,7 @@
           ">
           <DownNavbar />
 
-          <nuxt style="
+          <slot style="
               min-height: 100%;
               max-height: 100%;
               height: 100%;
@@ -43,11 +43,7 @@
 
 <script>
 export default {
-  layout: "chat",
-  // OR
-  layout(context) {
-    return "chat";
-  },
+
   data() {
     return {
       alow: false,
