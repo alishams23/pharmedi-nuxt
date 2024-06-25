@@ -1,10 +1,16 @@
 <template>
 
+
+
   <div>
+
+    <ShopSectionSweaperHeader></ShopSectionSweaperHeader>
     <div>
-      <ShopSectionHeader></ShopSectionHeader>
+      <ShopSectionCategories />
     </div>
     <ShopSectionSweaperProducts></ShopSectionSweaperProducts>
+    <ShopSectionSweaperDiscountedCard />
+    <ShopSectionSweaperBestSellingProductsCard />
 
   </div>
 </template>
@@ -23,6 +29,7 @@ export default {
 
       categories: [],
       products: [],
+
     };
   },
   components: {
@@ -135,9 +142,8 @@ export default {
 };
 </script>
 
-<style >
-
+<style>
 .swiper-slide {
-    width: auto !important;
+  width: auto !important;
 }
 </style>
