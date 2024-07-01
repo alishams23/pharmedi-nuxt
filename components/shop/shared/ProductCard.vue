@@ -1,5 +1,5 @@
 <template>
-    <div class=" bg-white rounded-3xl w-[180px]   md:w-[220px]">
+    <nuxt-link  :to="'/t/shop/'+data.id" class=" bg-white rounded-3xl w-[180px]   md:w-[220px]">
 
         <div class=" w-full">
             <img v-if="data.images.length > 0"
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </nuxt-link>
 </template>
 <style>
 .line {

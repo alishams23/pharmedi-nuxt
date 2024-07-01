@@ -1,33 +1,6 @@
 <template>
  
-  <v-dialog width="900" v-model="dialog">
-    <template v-slot:default="{ isActive }">
-        <v-locale-provider rtl>
-<v-card class="pa-5" rounded="lg" >
-  <v-alert class="text-body-2">
-    در سایت آپارات فیلم خود را بارگذاری کرده و در قسمت اشتراک گذاری ٫ کلید کد را انتخاب کرده و سپس کد iframe را در این قسمت پیست کنید .
-  </v-alert>
-  <v-textarea
-  label="کد فیلم شما"
-  rounded="lg"
-  v-model="text"
-  variant="outlined"
-  color="primary"
-  class="mt-5"/>
-  <v-btn    rounded="lg"
-  persistent-hint
-  @click="doPaste"
-  variant="flat"
-  color="primary"
-  :disabled="text == null"
-  class="custom-btn mx-2 px-10 text-body2 font-weight-bold mb-5">
-  ثبت
-  </v-btn>
-</v-card>
-        </v-locale-provider>
-       
-    </template>
-</v-dialog>
+
   <client-only>
     <quill-editor  @ready="onEditorReady($event)" class="rounded-b-lg" :ref="editorContent" content-type="html" v-model:content="content" theme="snow"
       :toolbar="toolbar"  :modules="modules" @textChange="updateContent"   />
@@ -70,16 +43,7 @@ const doPaste  = () => {
 
 const onEditorReady = (data) =>  {
   editor = data
-  const customButton = editor.getModule('toolbar').container.querySelector('.ql-custom');
-  customButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-play-fill" viewBox="0 0 16 16"><path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M6 6.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V6.884z"/></svg>';
-  if (customButton) {
-   
-    customButton.addEventListener('click', () => {
-      // Handle custom button click
-      // You can perform any custom action here
-      console.log('Custom button clicked!');
-      dialog.value = true;
-    });}
+ 
     const rtlButton = editor.getModule('toolbar').container.querySelector('.ql-direction');
   if (rtlButton) {
     rtlButton.click();

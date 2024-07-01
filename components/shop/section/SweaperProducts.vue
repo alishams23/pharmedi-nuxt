@@ -1,7 +1,7 @@
 <template>
     <div class=" ">
         <div class="flex mt-[30px] mb-10 items-center justify-end">
-            <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  ">برترین محصولات</h2>
+            <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  "> پرفروش ترین</h2>
             <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
                 <ShoppingBagIcon class=" w-8 h-8 text-white" />
             </div>

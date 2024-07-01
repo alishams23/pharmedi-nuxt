@@ -167,33 +167,8 @@ export default {
       comment: '',
     };
   },
-  async asyncData({ store, route }) {
-    const product = await axios.get(
-      `https://pharmedi.ir/api/shop/retrieve-product/${route.params.id}/`,
-      {
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization:
-            store.state.token != ""
-              ? `Token ${store.state.token}`
-              : "",
-        },
-      }
-    ).then((response) => { return response.data; });
 
-    return { product, }
-  },
-  head() {
-    return {
-      title: 'فارمدی',
-      meta: [
-        { hid: 'og:title', name: 'og:title', content: this.product.name },
-        { hid: 'og:description', name: 'og:description', content: this.product.description },
-        { hid: 'og:image', name: 'og:image', content: this.firstImage },
-      ],
-    };
-  },
+
   mounted() {
     this.getData();
     this.getCartItem();
@@ -240,7 +215,20 @@ export default {
   methods: {
     async getData() {
       this.loading = true;
-      await this.product;
+       await axios.get(
+      `https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization:
+          this.$store.state.token != ""
+              ? `Token ${this.$store.state.token}`
+              : "",
+        },
+      }
+    ).then((response) => { this.product =  response.data; });
+
       this.selectedImage = this.firstImage;
       this.loading = false;
 
