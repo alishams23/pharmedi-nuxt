@@ -1,9 +1,8 @@
 <template>
-  
-    <div
-        class="mx-auto max-w-2xl h-auto  rounded-3xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8   mb-24">
+    <!-- {{ product }} -->
+    <div class="mx-auto max-w-2xl h-auto  rounded-3xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8   mb-24">
         <div v-if="loading"
-            class='flex space-x-1 justify-center items-center bg-white w-[1216px] h-[487px] rounded-3xl'>
+            class='flex space-x-1 justify-center items-center bg-white w-[976px] h-[639.74px] rounded-3xl'>
             <span class='sr-only'>Loading...</span>
             <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.3s]'></div>
             <div class='h-5 w-5 bg-[#8b4513] rounded-full animate-bounce [animation-delay:-0.15s]'></div>
@@ -17,12 +16,12 @@
                         <!-- Image selector -->
                         <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
                             <TabList class="grid grid-cols-4 gap-6">
-                                <Tab v-for="image in product.image" :key="image.id"
+                                <Tab v-for="image in product.images" :key="image.id"
                                     class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                                     v-slot="{ selected }">
                                     <span class="sr-only">{{ image.name }}</span>
                                     <span class="absolute inset-0 overflow-hidden rounded-md">
-                                        <img :src="image.photo" alt=""
+                                        <img :src="image.image" alt=""
                                             class="h-full w-full object-cover object-center" />
                                     </span>
                                     <span
@@ -33,8 +32,8 @@
                         </div>
 
                         <TabPanels class="aspect-h-1 aspect-w-1 w-full h-full rounded-xl  ">
-                            <TabPanel v-for="image in product.image" :key="image.id">
-                                <img :src="image.photo" :alt="image.alt"
+                            <TabPanel v-for="image in product.images" :key="image.id">
+                                <img :src="image.image" :alt="image.alt"
                                     class="h-full w-full object-cover  rounded-xl " />
                             </TabPanel>
                         </TabPanels>
@@ -43,7 +42,8 @@
                     <!-- Product info -->
                     <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
 
-                        <h1 class="text-3xl font-bold tracking-tight text-black text-right">{{ product.title }}</h1>
+                        <h1 class=" irsa text-2xl font-bold tracking-tight text-black text-right">{{ product.name }}
+                        </h1>
 
                         <div class="mt-3">
                             <h2 class="sr-only text-[#CCA47C]">Product information</h2>
@@ -81,7 +81,7 @@
                             <!-- Colors -->
                             <div class="sm:flex-col1 mt-10 flex">
                                 <button type="submit"
-                                    class="flex max-w-xs flex-1 items-center justify-center rounded-3xl border border-transparent bg-[#8b4513] px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full">افزودن
+                                    class="flex max-w-xs flex-1 items-center justify-center rounded-3xl border border-transparent bg-treaget px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full">افزودن
                                     به سبد خرید</button>
                             </div>
                         </form>
@@ -111,13 +111,13 @@
 
 
                                             <div v-if="!open" class=" w-full grow">
-                                                <div v-for="item in product.Specification" class="w-full flex">
+                                                <div v-for="item in product.specifications" class="w-full flex">
                                                     <p
-                                                        class="w-[59.49px] ml-[70px] mr-[27px] text-base text-neutral-500 py-2 shrink-0">
+                                                        class="w-[59.49px] ml-[70px] mr-[27px] text-sm text-neutral-500 py-2 shrink-0 whitespace-nowrap">
                                                         {{ item.title }}</p>
                                                     <div class=" border-b py-2 grow">
-                                                        <p class="flex items-center w-full text-base text-neutral-900">
-                                                            {{ item.body }}</p>
+                                                        <p class="flex items-center w-full text-sm text-neutral-900">
+                                                            {{ item.value }}</p>
                                                     </div>
                                                 </div>
                                             </div>

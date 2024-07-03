@@ -215,19 +215,19 @@ export default {
   methods: {
     async getData() {
       this.loading = true;
-       await axios.get(
-      `https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`,
-      {
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization:
-          this.$store.state.token != ""
-              ? `Token ${this.$store.state.token}`
-              : "",
-        },
-      }
-    ).then((response) => { this.product =  response.data; });
+      await axios.get(
+        `https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`,
+        {
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+            Authorization:
+              this.$store.state.token != ""
+                ? `Token ${this.$store.state.token}`
+                : "",
+          },
+        }
+      ).then((response) => { this.product = response.data; });
 
       this.selectedImage = this.firstImage;
       this.loading = false;

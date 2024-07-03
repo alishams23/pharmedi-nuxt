@@ -7,12 +7,13 @@ export default defineNuxtConfig({
     "~/assets/inside/css/inside.css",
     "~/assets/inside/css/all.min.css",
     "~/public/css/tailwind.css",
-     "~/public/css/style.css",
-     "~/public/css/main.scss"
-
+    "~/public/css/style.css",
+    "~/public/css/main.scss",
   ],
   modules: [
-    '@nuxtjs/tailwindcss',
-    'nuxt3-vuex-module',
-  'nuxt-swiper']
-})
+    "@nuxtjs/tailwindcss",
+    "nuxt3-vuex-module",
+    "nuxt-swiper",
+    "nuxt-headlessui",
+  ],
+});

@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link  :to="'/t/shop/'+data.id" class=" bg-white rounded-3xl w-[180px]   md:w-[220px]">
+    <nuxt-link :to="'/t/shop/' + data.id" class=" bg-white rounded-3xl w-[180px]   md:w-[220px]">
 
         <div class=" w-full">
             <img v-if="data.images.length > 0"
@@ -25,26 +25,19 @@
 
                                 {{ data.price }}
                             </p>
-                        
+
                         </div>
                     </div>
-                    <span class=" flex justify-center items-center rounded-lg bg-red-100 text-red-600 h-8 w-8  text-sm font-black     mr-3">{{
-                data.discount_value
-            }}%</span>
+                    <span
+                        class=" flex justify-center items-center rounded-lg bg-red-100 text-red-600 h-8 w-8  text-sm font-black     mr-3">{{
+        data.discount_value
+                        }}%</span>
                 </div>
             </div>
         </div>
     </nuxt-link>
 </template>
-<style>
-.line {
-    position: absolute;
-    top: 39%;
-    width: 50%;
-    height: 2px;
-    z-index: 1;
-}
-</style>
+
 <script>
 export default {
     props: ['data']
