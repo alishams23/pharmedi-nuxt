@@ -69,7 +69,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    this.products = response.data.results.slice(0,9);
+                    this.products = response.data.results.slice(0,6);
                     this.loading = false;
                     console.log(this.products)
                 });

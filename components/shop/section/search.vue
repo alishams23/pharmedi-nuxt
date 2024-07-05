@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="max-w-md mx-auto px-2 rtl">
+    <div class="max-w-sm md:max-w-md mx-auto px-2 rtl">
         <label for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">

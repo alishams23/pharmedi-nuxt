@@ -2,17 +2,17 @@
     <div v-if="loading == false" class=" mb-20">
         <div
             class=" grid grid-cols-6  gap-5  ">
-            <div class=" col-span-6 md:col-span-4 ">
+            <div class=" col-span-6 md:col-span-4 -mt-6 md:mt-0">
                 <swiper :modules="modules" :slides-per-view="1" :space-between="6" :loop="false" :autoplay="{
           delay: 2000,
           disableOnInteraction: false,
         }" :pagination="{
           clickable: true,
         }" 
-                    class=" h-[300px] mx-1 md:h-[380px] ">
+                    class=" h-[300px] md:mx-1 px-0 md:h-[380px] ">
                     <swiper-slide v-for="item in data1" class="" >
                         <img :src="item.photo"
-                            class="   h-full object-cover rounded-3xl md:w-full lg:w-full">
+                            class="   h-full object-cover md:rounded-3xl w-full">
                     </swiper-slide>
                 </swiper>
                 <!-- <img :src="data1[0].photo" class=" w-full h-full object-cover rounded-3xl"> -->
