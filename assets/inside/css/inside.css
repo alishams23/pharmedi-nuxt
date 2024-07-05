@@ -946,11 +946,11 @@ input[type="checkbox"] {
   
   box-shadow: none !important;
   /* Double-sized Checkboxes */
-  -ms-transform: scale(0.6); /* IE */
-  -moz-transform: scale(0.6); /* FF */
-  -webkit-transform: scale(0.6); /* Safari and Chrome */
-  -o-transform: scale(0.6); /* Opera */
-  transform: scale(0.6);
+  -ms-transform: scale(0.9); /* IE */
+  -moz-transform: scale(0.9); /* FF */
+  -webkit-transform: scale(0.9); /* Safari and Chrome */
+  -o-transform: scale(0.9); /* Opera */
+  transform: scale(0.9);
 }
 
 

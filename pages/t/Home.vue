@@ -13,7 +13,10 @@
           clickable: true,
         }" >
               <swiper-slide v-for="item in HeaderData" class="">
-                <img :src="item.image" class="  rounded-3xl  w-full object-cover " />
+            
+               <a :href="item.link">
+                 <img :src="item.image" class="  rounded-3xl  w-full object-cover " />
+               </a>
                 <!-- <img :src="item.photo"
                                    class=" w-[405px] h-full object-cover rounded-3xl md:w-[645.33px] lg:w-[645.33px]"> -->
               </swiper-slide>

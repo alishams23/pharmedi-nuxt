@@ -11,21 +11,25 @@
         }" 
                     class=" h-[300px] md:mx-1 px-0 md:h-[380px] ">
                     <swiper-slide v-for="item in data1" class="" >
-                        <img :src="item.photo"
-                            class="   h-full object-cover md:rounded-3xl w-full">
+                       <a :href="item.link">
+                         <img :src="item.photo"
+                             class="   h-full object-cover md:rounded-3xl w-full">
+                       </a>
                     </swiper-slide>
                 </swiper>
                 <!-- <img :src="data1[0].photo" class=" w-full h-full object-cover rounded-3xl"> -->
             </div>
            <div class="col-span-6 md:col-span-2 grid grid-cols-2 gap-2">
-             <div
+             <a
+             :href="data2[0].link"
                  class="h-[110px]  md:h-[180px] ml-1 col-span-1 md:col-span-2  md:ml-0 lg:ml-0">
                  <img :src="data2[0].photo" class=" w-full h-full object-cover rounded-3xl">
-             </div>
-             <div
+           </a>
+             <a
+             :href="data2[1].link"
                  class="h-[110px] md:h-[180px] md:mt-3 mr-1 col-span-1 md:col-span-2  md:mr-0 lg:mr-0">
                  <img :src="data2[1].photo" class=" w-full h-full object-cover rounded-3xl">
-             </div>
+            </a>
            </div>
 
         </div>

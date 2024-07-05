@@ -64,7 +64,7 @@
                                     <div v-if="categories != null">
                                         <button v-for="item in categories" :key="item"
                                             @click=" selected_categories.includes(item.id) ? selected_categories.splice(selected_categories.indexOf(item.id), 1) : selected_categories.push(item.id); getData()"
-                                            :class="[selected_categories.includes(item.id) ? 'bg-blue-600 text-white' : 'bg-gray-200', 'px-4 text-xs py-2 rounded-xl m-1 border']">
+                                            :class="[selected_categories.includes(item.id) ? 'bg-blue-600 text-white' : 'bg-gray-200', 'px-3 text-xs py-2 rounded-xl m-1 border']">
                                             {{ item.name }}
                                         </button>
                                     </div>
