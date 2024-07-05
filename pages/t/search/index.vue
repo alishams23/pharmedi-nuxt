@@ -58,7 +58,7 @@ export default {
     methods: {
 
     },
-    mounted() {
+    beforeMount() {
         if (this.$route.query.text != null) this.text = this.$route.query.text
     }
 }
