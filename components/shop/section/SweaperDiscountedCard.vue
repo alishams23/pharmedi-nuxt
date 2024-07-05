@@ -1,5 +1,5 @@
 <template>
-    <div class="   bg-gradient-to-tl from-[#dffcdf] to-[#dff2ff] rounded-3xl pb-3 pt-1 pl-2 mt-5 ">
+    <div class="   bg-gradient-to-tl from-[#dffcdf] to-[#dff2ff] md:rounded-3xl pb-3 pt-1 pl-2 mt-5 ">
         <div class="flex mt-[40px] mb-10 items-center justify-end">
             <h2 class="irsa  text-lg font-bold text-right my-3 mr-4  ">محصولات دارای تخفیف</h2>
             <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
