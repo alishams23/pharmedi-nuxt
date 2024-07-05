@@ -6,7 +6,10 @@
                 <FireIcon class=" w-8 h-8 text-white" />
             </div>
         </div>
-        <swiper :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
+        <swiper :pagination="{
+        clickable: true,
+
+    }" :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
             class=" flex justify-center">
             <div v-if="loading"
                 class='flex space-x-1 justify-center items-center  h-[378.8px]'>
@@ -67,7 +70,7 @@ export default {
                     },
                 })
                 .then((response) => {
-                    this.products = response.data.results;
+                    this.products = response.data.results.slice(0,9);
                     this.loading = false;
                     console.log(this.products)
                 });

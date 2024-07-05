@@ -3,7 +3,7 @@
         <div class="flex justify-center  flex-wrap ">
             <!-- Category 1 -->
      
-            <div v-for="item in categories" class="flex flex-col mx-2  items-center cursor-pointer">
+            <nuxt-link :to="'/t/search/?category='+item.id" v-for="item in categories" class="flex flex-col mx-2  items-center cursor-pointer">
                 <div class="border-blue-700 border-2 rounded-full">
                     <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center border-white border-4">
                         <!-- Insert discount SVG icon here -->
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <span class="text-xs mt-2">{{ item.name }}</span>
-            </div>
+            </nuxt-link>
         </div>
     </div>
 </template>
