@@ -97,7 +97,8 @@ export default {
 
           {
             headers: {
-              "Content-type": "application/json",
+              'Content-Type': 'multipart/form-data',
+
               Accept: "application/json",
               Authorization:
                 this.$store.state.token != ""

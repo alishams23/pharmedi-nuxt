@@ -6,8 +6,9 @@
     </div>
 
 
-    <vue-editor class="bg-white" v-model="body" :editorOptions="editorOptions"></vue-editor>
-
+    <!-- <vue-editor class="bg-white" v-model="body" :editorOptions="editorOptions"></vue-editor> -->
+    <text-editor :content="body" @update="(newText) => { body = newText}">
+    </text-editor>
     <p class="text-danger rtl pt-3">
       {{ error }}
     </p>
@@ -24,6 +25,8 @@ import axios from "axios";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
+import VuePictureInput from "vue-picture-input";
+
 export default {
   data() {
     return {
