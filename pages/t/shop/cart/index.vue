@@ -1,5 +1,5 @@
 <template>
-    <div dir="rtl" class="bg-white">
+    <div dir="rtl" class="bg-white hidden">
         <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
             <h1 class=" irsa text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">سبد خرید</h1>
             <form class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
