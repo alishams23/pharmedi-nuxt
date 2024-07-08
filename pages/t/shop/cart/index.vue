@@ -1,146 +1,196 @@
 <template>
-    <div class="flex justify-center mt-6" v-if="loading == true">
-        <span class="loader"></span>
-    </div>
+    <div dir="rtl" class="bg-white">
+        <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+            <h1 class=" irsa text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">سبد خرید</h1>
+            <form class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+                <section aria-labelledby="cart-heading" class="lg:col-span-7">
+                    <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
 
-    <div v-else class="mt-2">
-        <div class="p-2 m-2">
+                    <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                        <li v-for="(product, productIdx) in products" :key="product.id" class="flex py-6 sm:py-10">
+                            <div class="flex-shrink-0">
+                                <img :src="product.imageSrc" :alt="product.imageAlt"
+                                    class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
+                            </div>
 
+                            <div class="mr-4 flex flex-1 flex-col justify-between sm:mr-6">
+                                <div class="relative pl-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pl-0">
+                                    <div>
+                                        <div class="flex justify-between">
+                                            <h3 class="text-sm">
+                                                <a :href="product.href"
+                                                    class="font-medium text-gray-700 hover:text-gray-800">{{
+                            product.name }}</a>
+                                            </h3>
+                                        </div>
+                                        <div class="mt-1 flex text-sm">
+                                            <!-- <p class="text-gray-500">{{ product.color }}</p> -->
+                                            <!-- <p v-if="product.size"
+                                                class="mr-4 border-l border-gray-200 pr-4 text-gray-500">{{ product.size
+                                                }}</p> -->
+                                        </div>
+                                        <p class="mt-4 text-sm font-medium text-gray-900">{{ product.price }}</p>
+                                    </div>
 
-            <div class="px-3 py-2 pb-4">
-                <div class="d-flex flex-row"
-                    :class="cartItems.length > 0 ? 'justify-content-between' : 'justify-content-end'">
+                                    <div class="mt-4 sm:mt-0 sm:pl-9">
+                                        <label :for="`quantity-${productIdx}`" class="sr-only">Quantity, {{ product.name
+                                            }}</label>
+                                        <select :id="`quantity-${productIdx}`" :name="`quantity-${productIdx}`"
+                                            class="max-w-[45%] rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-treaget focus:outline-none focus:ring-1 focus:ring-treaget sm:text-sm">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                        </select>
 
-                    <!-- <button v-if="cartItems.length > 0" class="shadow-2 border rounded-13 me-2" @click="buy()">
-                        <div class="d-flex p-3 text-white bg-gradient-blue rounded-13">
-                            <i class="fa fa-check"></i>
-                            <p class="text-xs fw-bold ml-2">نهایی سازی</p>
+                                        <div class="absolute left-0 top-0">
+                                            <button type="button"
+                                                class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
+                                                <span class="sr-only">Remove</span>
+                                                <XMarkIcon class="h-5 w-5" aria-hidden="true" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="mt-4 flex space-x-2 text-sm text-gray-700">
+                                    <CheckIcon v-if="product.inStock" class="h-5 w-5 flex-shrink-0 text-green-500"
+                                        aria-hidden="true" />
+                                    <ClockIcon v-else class="h-5 w-5 flex-shrink-0 text-gray-300" aria-hidden="true" />
+                                    <span>{{ product.inStock ? 'In stock' : `Ships in ${product.leadTime}` }}</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Order summary -->
+                <section aria-labelledby="summary-heading"
+                    class="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+                    <h2 id="summary-heading" class=" irsa text-lg font-medium text-gray-900">خلاصه سفارشات</h2>
+
+                    <dl class="mt-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <dt class="text-sm text-gray-600">زیر مجموعه</dt>
+                            <dd class="text-sm font-medium text-gray-900">$99.00</dd>
                         </div>
-                    </button> -->
-
-                    <nuxt-link :to="'/t/shop/confirm'" v-if="cartItems.length > 0"
-                        class="shadow-2 border rounded-13 me-2">
-                        <div class="d-flex p-3 text-white bg-gradient-blue rounded-13">
-                            <i class="fa fa-check"></i>
-                            <p class="text-xs fw-bold ml-2">نهایی سازی</p>
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <dt class="flex items-center text-sm text-gray-600">
+                                <span>براورد حمل و نقل</span>
+                                <a href="#" class="mr-2 flex-shrink-0 text-gray-400 hover:text-gray-500">
+                                    <span class="sr-only">Learn more about how shipping is calculated</span>
+                                    <QuestionMarkCircleIcon class="h-5 w-5" aria-hidden="true" />
+                                </a>
+                            </dt>
+                            <dd class="text-sm font-medium text-gray-900">$5.00</dd>
                         </div>
-                    </nuxt-link>
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <dt class="flex text-sm text-gray-600">
+                                <span>براورد مالیات</span>
+                                <a href="#" class="mr-2 flex-shrink-0 text-gray-400 hover:text-gray-500">
+                                    <span class="sr-only">Learn more about how tax is calculated</span>
+                                    <QuestionMarkCircleIcon class="h-5 w-5" aria-hidden="true" />
+                                </a>
+                            </dt>
+                            <dd class="text-sm font-medium text-gray-900">$8.32</dd>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <dt class="text-base font-medium text-gray-900">مجموع سفارشها</dt>
+                            <dd class="text-base font-medium text-gray-900">$112.32</dd>
+                        </div>
+                    </dl>
 
-                    <div class="col-8 col-md-10">
-                        <input v-model="searchedValue" class="col-12 rounded-13 rtl shadow-3" name="name" type="search"
-                            placeholder="جستجو" />
+                    <div class="mt-6">
+                        <button type="submit"
+                            class="w-full rounded-md border border-transparent bg-treaget px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-treaget focus:ring-offset-2 focus:ring-offset-gray-50">پرداخت</button>
                     </div>
-                </div>
-            </div>
-
-
-            <div v-if="filteredCartItems.length == 0">
-                <alert class="mx-4 my-2">
-                    سبد خرید خالی است
-                </alert>
-            </div>
-
-            <div v-else class="row justify-content-end">
-                <CartItem class="col-12 col-lg-4 mx-2" v-for="cartItem in filteredCartItems"
-                    :key="cartItem.id + 'cartItem list'" :cartItem="cartItem" :editable="true">
-                </CartItem>
-            </div>
+                </section>
+            </form>
         </div>
-
     </div>
 </template>
-
 <script>
-import CartItem from "~/components/CartItem.vue";
+import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/vue/20/solid'
 
 export default {
     data() {
         return {
-            loading: false,
-            user: {},
-            searchedValue: "",
-            cartItems: [],
-        };
-    },
-    components: {
-        CartItem,
-    },
-    async mounted() {
-        this.userData();
-        this.getCartItems();
-    },
-    computed: {
-        filteredCartItems() {
-            if (this.searchedValue == "") {
-                return this.cartItems;
-            }
-            return this.cartItems.filter(cartItem => {
-                var c1 = cartItem.product.name.includes(this.searchedValue);
-                var c2 = cartItem.product.description.includes(this.searchedValue);
-
-                return c1 || c2;
-            });
-        },
-        totalCost() {
-            var total = 0;
-            this.cartItems.forEach(cartItem => {
-                total += this.getCalculatedPrice(cartItem.product) * cartItem.quantity;
-            });
-
-            return total;
-        },
-    },
-    methods: {
-        async userData() {
-            this.loading = true;
-            await fetch(
-                `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
-            )
-                .then((response) => response.json())
-                .then((data) => {
-                    this.user = data;
-                });
-            this.loading = false;
-            this.$store.commit("getType", this.user.user_type);
-            this.$store.commit("getCity", this.user.city);
-        },
-        async getCartItems() {
-            this.loading = true;
-            await fetch(`https://pharmedi.ir/api/shop/list-cart-items/`, {
-                headers: {
-                    "Content-type": "application/json",
-                    Accept: "application/json",
-                    Authorization:
-                        this.$store.state.token != ""
-                            ? `Token ${this.$store.state.token}`
-                            : "",
+            products: [
+                {
+                    id: 1,
+                    name: 'هودی',
+                    href: '#',
+                    price: '$32.00',
+                    color: 'Sienna',
+                    inStock: true,
+                    size: 'Large',
+                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
+                    imageAlt: "Front of men's هودی in sienna.",
                 },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    this.cartItems = data;
-                });
-
-            this.loading = false;
-        },
-        getCalculatedPrice(product) {
-            var price = product.price;
-
-            if (product.discount_value != null && product.discount_value != 0) {
-                if (product.discount_type == 'percent') {
-                    price = product.price - (product.price * product.discount_value / 100);
-                } else {
-                    price = product.price - product.discount_value;
+                {
+                    id: 2,
+                    name: 'هودی',
+                    href: '#',
+                    price: '$32.00',
+                    color: 'Black',
+                    inStock: false,
+                    leadTime: '3–4 weeks',
+                    size: 'Large',
+                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
+                    imageAlt: "Front of men's هودی in black.",
+                },
+                {
+                    id: 3,
+                    name: 'هودی',
+                    href: '#',
+                    price: '$35.00',
+                    color: 'White',
+                    inStock: true,
+                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
+                    imageAlt: 'Insulated bottle with white base and black snap lid.',
                 }
-            }
+            ]
+        }
+    }
+}
 
-            return price;
-        },
-        reload() {
-            window.location.reload();
-        },
-    },
-};
+// const products = [
+//     {
+//         id: 1,
+//         name: 'Basic Tee',
+//         href: '#',
+//         price: '$32.00',
+//         color: 'Sienna',
+//         inStock: true,
+//         size: 'Large',
+//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg',
+//         imageAlt: "Front of men's Basic Tee in sienna.",
+//     },
+//     {
+//         id: 2,
+//         name: 'Basic Tee',
+//         href: '#',
+//         price: '$32.00',
+//         color: 'Black',
+//         inStock: false,
+//         leadTime: '3–4 weeks',
+//         size: 'Large',
+//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg',
+//         imageAlt: "Front of men's Basic Tee in black.",
+//     },
+//     {
+//         id: 3,
+//         name: 'Nomad Tumbler',
+//         href: '#',
+//         price: '$35.00',
+//         color: 'White',
+//         inStock: true,
+//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
+//         imageAlt: 'Insulated bottle with white base and black snap lid.',
+//     },
+// ]
 </script>
-
-<style scoped></style>

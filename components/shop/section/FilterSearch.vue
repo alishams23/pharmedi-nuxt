@@ -177,7 +177,6 @@ export default {
             }).then((response) => {
                 this.categories = response.data
                 this.loading = false
-
             })
         },
     },
@@ -192,11 +191,11 @@ export default {
             }
         },
         'price_range': {
-      handler: function (val, oldVal) {
-        this.getData()
-      },
-      deep: true
-    },
+            handler: function (val, oldVal) {
+                this.getData()
+            },
+            deep: true
+        },
 
     }
 }
