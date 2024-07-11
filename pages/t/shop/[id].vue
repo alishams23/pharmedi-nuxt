@@ -45,14 +45,13 @@
                         <div class="mt-5">
                             <h2 class="sr-only text-[#CCA47C]">Product information</h2>
                             <p class="text-3xl tracking-tight  text-right flex align-items-end justify-end">
-                                <div
-                                class="text-base  text-gray-500 text-right">تومان</div>
+                            <div class="text-base  text-gray-500 text-right">تومان</div>
                             <div>
                                 {{ product.price -
-                                (product.price *
-                                product.discount / 100) }} 
+            (product.price *
+                product.discount / 100) }}
                             </div>
-                            
+
                             </p>
                             <p dir="rtl" class="text-xs text-gray-500">
                                 قیمت با اعمال <span class="text-red-800  text-sm font-black">{{ product.discount }}
@@ -67,11 +66,10 @@
 
 
                         <div class="mt-2">
-                                        <button v-for="item in product.categories" :key="item"
-                                           
-                                            class="bg-blue-100  text-blue-500 px-4 text-xs py-2 rounded-xl m-1 ">
-                                            {{ item.name }}
-                                        </button>
+                            <button v-for="item in product.categories" :key="item"
+                                class="bg-blue-100  text-blue-500 px-4 text-xs py-2 rounded-xl m-1 ">
+                                {{ item.name }}
+                            </button>
                         </div>
 
                         <div class=" mt-1 bg-white rounded-2xl p-3 px-4">
@@ -81,15 +79,60 @@
                                 v-html="product.description" />
                         </div>
 
-                        <form class="mt-6">
-                            <!-- Colors -->
+                        <form @submit.prevent="console.log('afarin')" class="mt-6">
                             <div class=" mt-10 flex justify-center">
-                                <button type="submit"
-                                    class="  rounded-2xl border border-transparent bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">افزودن
+                                <button v-if="product.warehouse_stock == 0" type="submit"
+                                    class="  rounded-2xl border border-transparent bg-yellow-400 cursor-not-allowed px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">محصول
+                                    موجود نمیباشد</button>
+                                <button v-else type="submit"
+                                    @click="product_id = product.id; sendToCart(); isOpen = true"
+                                    class="  rounded-2xl border border-transparent cursor-pointer bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">افزودن
                                     به سبد خرید</button>
                             </div>
-                        </form>
+                            {{ isOpen }}
+                            <TransitionRoot appear :show="isOpen" as="template" class=" ">
+                                <Dialog as="div" @close="isOpen = false" class="relative z-10">
+                                    <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0"
+                                        enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100"
+                                        leave-to="opacity-0">
+                                        <div class="fixed inset-0 bg-black/25" />
+                                    </TransitionChild>
 
+                                    <div class="fixed inset-0 overflow-y-auto">
+                                        <div class="flex h-full items-center justify-center p-4 text-center">
+                                            <TransitionChild as="template" enter="duration-300 ease-out"
+                                                enter-from="opacity-0 scale-95" enter-to="opacity-100 scale-100"
+                                                leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
+                                                leave-to="opacity-0 scale-95">
+                                                <DialogPanel
+                                                    class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                                    <DialogTitle as="h3"
+                                                        class="text-lg font-medium irsa leading-6 text-gray-900 mb-4 text-center">
+                                                        محصول به سبد خرید اضافه شد
+                                                    </DialogTitle>
+                                                    <div class="mt-2 grid place-items-center">
+                                                        <div class="circle-container">
+                                                            <svg class="circle-svg">
+                                                                <circle cx="50" cy="50" r="47" />
+                                                                <path class="checkmark" d="M34 50 L45 61 L66 40" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class=" grid place-items-center">
+                                                        <button type="button"
+                                                            class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 mt-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                            @click="isOpen = false">
+                                                            متوجه شدم
+                                                        </button>
+                                                    </div>
+                                                </DialogPanel>
+                                            </TransitionChild>
+                                        </div>
+                                    </div>
+                                </Dialog>
+                            </TransitionRoot>
+                        </form>
                         <section aria-labelledby="details-heading" class="mt-12">
                             <h2 id="details-heading" class="sr-only">Additional details</h2>
 
@@ -141,17 +184,21 @@
             </div>
 
             <div class="flex justify-center">
-            <div id="alert-4" v-if="comments.length == 0" class="rtl  flex items-center justify-start p-4 mb-4 text-yellow-800 rounded-3xl  bg-yellow-50 " role="alert">
-                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Warning</span>
-                <div class="ms-3 text-sm font-medium">
-                   نظری ثبت نشده است
+                <div id="alert-4" v-if="comments.length == 0"
+                    class="rtl  flex items-center justify-start p-4 mb-4 text-yellow-800 rounded-3xl  bg-yellow-50 "
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Warning</span>
+                    <div class="ms-3 text-sm font-medium">
+                        نظری ثبت نشده است
+                    </div>
+
                 </div>
-            
             </div>
-        </div>
 
             <figure class="mx-auto rtl  border-t pb-10" v-for="comment in comments">
                 <p class="sr-only">پنچ ستاره</p>
@@ -221,7 +268,11 @@
 <script>
 import axios from 'axios'
 import {
-
+    TransitionRoot,
+    TransitionChild,
+    Dialog,
+    DialogPanel,
+    DialogTitle,
     Tab,
     TabGroup,
     TabList,
@@ -233,6 +284,11 @@ import { IconPlus, IconMinus } from '@tabler/icons-vue'
 
 export default {
     components: {
+        TransitionRoot,
+        TransitionChild,
+        Dialog,
+        DialogPanel,
+        DialogTitle,
         Tab,
         TabGroup,
         TabList,
@@ -247,7 +303,9 @@ export default {
         open: false,
         loadingComments: true,
         comments: [],
-        comment: null
+        comment: null,
+        product_id: null,
+        isOpen: false
     }),
     methods: {
         getData() {
@@ -262,6 +320,29 @@ export default {
                 this.product = response.data
             })
         },
+
+        sendToCart() {
+            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
+                headers: {
+                    "Content-type": "application/json",
+                    Accept: "application/json",
+                    Authorization:
+                        `Token ${this.$store.state.token}`
+                },
+            }
+            ).then((response) => {
+                console.log('condition:', response.data)
+            }).catch((error) => {
+                console.error('Error:', error.response ? error.response.data : error.message);
+                console.error('Config:', error.config);
+                if (error.response) {
+                    console.error('Response data:', error.response.data);
+                    console.error('Response status:', error.response.status);
+                    console.error('Response headers:', error.response.headers);
+                }
+            })
+        },
+
         async getComments() {
             this.loadingComments = true;
             await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.id}/list-comments/`, {
@@ -302,7 +383,6 @@ export default {
             this.comment = '';
             await this.getComments();
         },
-
     },
     mounted() {
         this.getData()
@@ -320,5 +400,50 @@ export default {
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
+}
+
+.circle-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.circle-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.circle-svg circle {
+    stroke: #06d006;
+    stroke-width: 5;
+    fill: none;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    animation: circle-animation .5s ease-out forwards;
+}
+
+.checkmark {
+    stroke: #06d006;
+    stroke-width: 5;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmark-animation 0.25s ease-out .5s forwards;
+}
+
+@keyframes circle-animation {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkmark-animation {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 </style>

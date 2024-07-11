@@ -1,14 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   vite: {
     server: {
-        hmr: {
-            clientPort: 3000
-        }
-    }
-},
+      hmr: {
+        clientPort: 3000,
+      },
+    },
+  },
   css: [
     "~/node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
     "~/assets/inside/WebFonts/css/fontiran.css",
