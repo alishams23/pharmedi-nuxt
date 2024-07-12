@@ -106,7 +106,7 @@ export default {
         try {
           this.loading = true;
           let mydata = await axios
-            .post("https://pharmedi.ir/api/account/login/", {
+            .post("http://127.0.0.1:8000/api/account/login/", {
               username: this.UserName,
               password: this.Password,
             })

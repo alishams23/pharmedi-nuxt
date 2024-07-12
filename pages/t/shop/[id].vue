@@ -48,10 +48,9 @@
                             <div class="text-base  text-gray-500 text-right">تومان</div>
                             <div>
                                 {{ product.price -
-            (product.price *
-                product.discount / 100) }}
+                                    (product.price *
+                                product.discount / 100) }}
                             </div>
-
                             </p>
                             <p dir="rtl" class="text-xs text-gray-500">
                                 قیمت با اعمال <span class="text-red-800  text-sm font-black">{{ product.discount }}
@@ -62,9 +61,6 @@
                                 {{ product.price }}
                             </p>
                         </div>
-
-
-
                         <div class="mt-2">
                             <button v-for="item in product.categories" :key="item"
                                 class="bg-blue-100  text-blue-500 px-4 text-xs py-2 rounded-xl m-1 ">
@@ -85,13 +81,13 @@
                                     class="  rounded-2xl border border-transparent bg-yellow-400 cursor-not-allowed px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">محصول
                                     موجود نمیباشد</button>
                                 <button v-else type="submit"
-                                    @click="product_id = product.id; sendToCart(); isOpen = true"
+                                    @click="product_id = product.id; sendToCart(); isSuccessOpen = true"
                                     class="  rounded-2xl border border-transparent cursor-pointer bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">افزودن
                                     به سبد خرید</button>
                             </div>
-                            {{ isOpen }}
-                            <TransitionRoot appear :show="isOpen" as="template" class=" ">
-                                <Dialog as="div" @close="isOpen = false" class="relative z-10">
+                           
+                            <TransitionRoot appear :show="isSuccessOpen" as="template" class=" ">
+                                <Dialog as="div" @close="isSuccessOpen = false" class="relative z-10">
                                     <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0"
                                         enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100"
                                         leave-to="opacity-0">
@@ -120,11 +116,17 @@
                                                     </div>
 
                                                     <div class=" grid place-items-center">
-                                                        <button type="button"
-                                                            class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 mt-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                                            @click="isOpen = false">
-                                                            متوجه شدم
-                                                        </button>
+                                                        <div class="d-flex justify-center">
+                                                            <button type="button"
+                                                                class="inline-flex justify-center rounded-full bg-white border mx-2 px-4 py-2 mt-4 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                                @click="isSuccessOpen = false">
+                                                                بستن
+                                                            </button>
+                                                            <nuxt-link to="/t/shop/cart"
+                                                                class="inline-flex justify-center rounded-full bg-blue-100 px-4 py-2 mt-4 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                                                                رفتن به سبد خرید
+                                                            </nuxt-link>
+                                                        </div>
                                                     </div>
                                                 </DialogPanel>
                                             </TransitionChild>
@@ -300,17 +302,17 @@ export default {
     data: () => ({
         product: null,
         loading: true,
-        open: false,
+        open: true,
         loadingComments: true,
         comments: [],
         comment: null,
         product_id: null,
-        isOpen: false
+        isSuccessOpen: false
     }),
     methods: {
         getData() {
             this.loading = true
-            axios.get(`https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`, {
+            axios.get(`http://127.0.0.1:8000/api/shop/retrieve-product/${this.$route.params.id}/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -322,7 +324,7 @@ export default {
         },
 
         sendToCart() {
-            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
+            axios.post(`http://127.0.0.1:8000/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -345,7 +347,7 @@ export default {
 
         async getComments() {
             this.loadingComments = true;
-            await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.id}/list-comments/`, {
+            await fetch(`http://127.0.0.1:8000/api/shop/${this.$route.params.id}/list-comments/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -366,7 +368,7 @@ export default {
             this.fd.append("content", this.comment);
 
             await axios.post(
-                `https://pharmedi.ir/api/shop/${this.$route.params.id}/create-comment/`,
+                `http://127.0.0.1:8000/api/shop/${this.$route.params.id}/create-comment/`,
                 this.fd,
                 {
                     headers: {

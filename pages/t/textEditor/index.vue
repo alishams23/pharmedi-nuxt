@@ -92,7 +92,7 @@ export default {
       this.fd.append("title_for_photo", this.title);
       await axios
         .post(
-          `https://pharmedi.ir/api/blog/CreateImage/`,
+          `http://127.0.0.1:8000/api/blog/CreateImage/`,
           this.fd,
 
           {
@@ -118,7 +118,7 @@ export default {
           this.imageId = response.data.id;
           axios
             .post(
-              `https://pharmedi.ir/api/blog/createBlog/`,
+              `http://127.0.0.1:8000/api/blog/createBlog/`,
               {
                 title: this.title,
                 body: this.body,

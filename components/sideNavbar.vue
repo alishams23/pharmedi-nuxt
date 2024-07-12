@@ -140,8 +140,38 @@
                       ">
                       سبد خرید
                     </span>
-                    <span v-if="counterCart != 0 && counterCart" class="nav-tag bg-treaget mx-1">
-                      {{ counterCart }}</span>
+                  
+                  </button>
+                </nuxt-link>
+              </li>
+              <li v-if="$store.state.isAuthenticated">
+                <nuxt-link to="/t/shop/cart/payed" class="rtl hover:text-blue">
+                  <div v-if="currentRouteName() == 't-shop-cart-payed'" class="bg-blue-500 my-1 rounded-full"
+                    style="padding-right: 2px" />
+
+                  <button class="col-12 d-flex align-items-center rounded-pill" :class="currentRouteName() == 't-shop-cart-payed' ? 'btn-material  ' : ''
+                    ">
+                    <div class="child_menu" />
+                    <svg width="24" height="24" style="transform: scale(0.9)" viewBox="0 0 24 24"
+                      :fill="currentRouteName() == 't-shop-cart-payed' ? '#0575e6' : 'currentcolor'"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1.28869 2.76279C1.41968 2.36983 1.84442 2.15746 2.23737 2.28845L2.50229 2.37675C2.51549 2.38115 2.52864 2.38554 2.54176 2.38991C3.16813 2.59867 3.69746 2.7751 4.11369 2.96873C4.55613 3.17456 4.94002 3.42965 5.23112 3.83352C5.52221 4.2374 5.64282 4.68226 5.69817 5.16708C5.75025 5.62318 5.75023 6.18114 5.7502 6.84139L5.7502 9.49996C5.7502 10.9354 5.7518 11.9365 5.85335 12.6918C5.952 13.4256 6.13245 13.8142 6.40921 14.091C6.68598 14.3677 7.07455 14.5482 7.80832 14.6468C8.56367 14.7484 9.56479 14.75 11.0002 14.75H18.0002C18.4144 14.75 18.7502 15.0857 18.7502 15.5C18.7502 15.9142 18.4144 16.25 18.0002 16.25H10.9453C9.57774 16.25 8.47542 16.25 7.60845 16.1334C6.70834 16.0124 5.95047 15.7535 5.34855 15.1516C4.74664 14.5497 4.48774 13.7918 4.36673 12.8917C4.25017 12.0247 4.25018 10.9224 4.2502 9.55484L4.2502 6.883C4.2502 6.17 4.24907 5.69823 4.20785 5.33722C4.16883 4.99538 4.10068 4.83049 4.01426 4.71059C3.92784 4.59069 3.79296 4.47389 3.481 4.32877C3.15155 4.17551 2.70435 4.02524 2.02794 3.79978L1.76303 3.71147C1.37008 3.58049 1.15771 3.15575 1.28869 2.76279Z" />
+                      <path opacity="0.5"
+                        d="M5.74512 6C5.75008 6.25912 5.75008 6.53957 5.75007 6.8414L5.75006 9.5C5.75006 10.9354 5.75166 11.9365 5.85321 12.6919C5.86803 12.8021 5.8847 12.9046 5.90326 13H16.0221C16.9815 13 17.4612 13 17.8369 12.7523C18.2126 12.5045 18.4016 12.0636 18.7795 11.1818L19.2081 10.1818C20.0176 8.29294 20.4223 7.34853 19.9777 6.67426C19.5331 6 18.5056 6 16.4507 6H5.74512Z" />
+                      <path
+                        d="M7.5 18C8.32843 18 9 18.6716 9 19.5C9 20.3284 8.32843 21 7.5 21C6.67157 21 6 20.3284 6 19.5C6 18.6716 6.67157 18 7.5 18Z" />
+                      <path
+                        d="M18 19.5001C18 18.6716 17.3284 18.0001 16.5 18.0001C15.6716 18.0001 15 18.6716 15 19.5001C15 20.3285 15.6716 21.0001 16.5 21.0001C17.3284 21.0001 18 20.3285 18 19.5001Z" />
+                    </svg>
+
+                    <span class="fw-light md:text-sm   me-4" :class="currentRouteName() == 't-shop-cart-payed'
+                      ? 'text-black fw-bold me-5'
+                      : ''
+                      ">
+                        خریداری شده
+                    </span>
+                  
                   </button>
                 </nuxt-link>
               </li>
@@ -337,7 +367,7 @@
            <div class="text-xs text-gray-600 font-light mx-4 cursor-pointer rtl mb-3" @click="showEnamad = true"  v-show="showEnamad == false"> مشاهده  نماد اعتماد</div>
           <div class="flex" v-show="showEnamad == true">
             <div class="p-2 rounded-full border mb-2 mx-3">
-              <a referrerpolicy="origin" target="_blank" href="https://pharmedi.ir/api/wallet/enamad">
+              <a referrerpolicy="origin" target="_blank" href="http://127.0.0.1:8000/api/wallet/enamad">
                 <img referrerpolicy="origin" src="@/assets/inside/images/enamad.png" alt="نماد اعتماد الکترونیکی"
                   title="نماد اعتماد الکترونیکی" style="cursor: pointer; width: 60px; align-items: center" />
               </a>
@@ -374,7 +404,7 @@ const route = useRoute();
 
 const userData = async () => {
   loading.value = true;
-  const response = await fetch(`https://pharmedi.ir/api/account/user_retrieve/${store.state.username}/`);
+  const response = await fetch(`http://127.0.0.1:8000/api/account/user_retrieve/${store.state.username}/`);
   const data = await response.json();
   user.value = data;
   store.commit("getType", user.value.user_type);
@@ -384,7 +414,7 @@ const userData = async () => {
 
 const getCartItems = async () => {
   loading.value = true;
-  const response = await fetch(`https://pharmedi.ir/api/shop/list-cart-items/`, {
+  const response = await fetch(`http://127.0.0.1:8000/api/shop/list-cart-items/`, {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -397,7 +427,7 @@ const getCartItems = async () => {
 };
 
 const CountRead = () => {
-  fetch("https://pharmedi.ir/api/CountReadStatus/", {
+  fetch("http://127.0.0.1:8000/api/CountReadStatus/", {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -416,7 +446,7 @@ const CountRead = () => {
 
 const SendSms = async () => {
   statusSend.value = true;
-  await fetch("https://pharmedi.ir/api/Send_code/", {
+  await fetch("http://127.0.0.1:8000/api/Send_code/", {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -431,7 +461,7 @@ const sendNumber = async () => {
   try {
     if (code.value != null) {
       statusCheck.value = false;
-      const statusCheckApi = await fetch(`https://pharmedi.ir/api/Code_check/?code=${code.value}`, {
+      const statusCheckApi = await fetch(`http://127.0.0.1:8000/api/Code_check/?code=${code.value}`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

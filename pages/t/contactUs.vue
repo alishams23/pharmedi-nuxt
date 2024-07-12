@@ -110,7 +110,7 @@ export default {
       this.loading = true;
       await axios
         .post(
-          `https://pharmedi.ir/api/ContactApi/`,
+          `http://127.0.0.1:8000/api/ContactApi/`,
           {
             body: this.body,
             name: this.name,
