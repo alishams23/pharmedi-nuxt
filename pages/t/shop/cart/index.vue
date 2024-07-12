@@ -1,41 +1,45 @@
 <template>
-    <div dir="rtl" class="bg-white hidden">
+    <div dir="rtl" class="bg-white ">
         <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
             <h1 class=" irsa text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">سبد خرید</h1>
-            <form class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+            <div v-if="loading" class="flex space-x-1 justify-center items-center h-[350px]">
+                <div class=" loader"></div>
+            </div>
+            <form v-else class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
                 <section aria-labelledby="cart-heading" class="lg:col-span-7">
                     <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
-
                     <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-                        <li v-for="(product, productIdx) in products" :key="product.id" class="flex py-6 sm:py-10">
+                        <li v-for="item in productsCart" :key="item.id" class="flex py-6 sm:py-10">
                             <div class="flex-shrink-0">
-                                <img :src="product.imageSrc" :alt="product.imageAlt"
+                                <img :src="item.items[0].product.images[0].image" :alt="item.imageAlt"
                                     class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                             </div>
-
                             <div class="mr-4 flex flex-1 flex-col justify-between sm:mr-6">
                                 <div class="relative pl-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pl-0">
                                     <div>
                                         <div class="flex justify-between">
                                             <h3 class="text-sm">
-                                                <a :href="product.href"
+                                                <a :href="item.href"
                                                     class="font-medium text-gray-700 hover:text-gray-800">{{
-                            product.name }}</a>
+                item.items[0].product.name
+            }}</a>
                                             </h3>
                                         </div>
                                         <div class="mt-1 flex text-sm">
-                                            <!-- <p class="text-gray-500">{{ product.color }}</p> -->
-                                            <!-- <p v-if="product.size"
-                                                class="mr-4 border-l border-gray-200 pr-4 text-gray-500">{{ product.size
+                                            <!-- <p class="text-gray-500">{{ item.color }}</p> -->
+                                            <!-- <p v-if="item.size"
+                                                class="mr-4 border-l border-gray-200 pr-4 text-gray-500">{{ item.size
                                                 }}</p> -->
                                         </div>
-                                        <p class="mt-4 text-sm font-medium text-gray-900">{{ product.price }}</p>
+                                        <p class="mt-4 text-sm font-medium text-gray-900">{{ item.items[0].product.price
+                                            }}</p>
                                     </div>
 
                                     <div class="mt-4 sm:mt-0 sm:pl-9">
-                                        <label :for="`quantity-${productIdx}`" class="sr-only">Quantity, {{ product.name
-                                            }}</label>
-                                        <select :id="`quantity-${productIdx}`" :name="`quantity-${productIdx}`"
+                                        <label :for="`quantity-${itemIdx}`" class="sr-only">Quantity, {{
+                item.items[0].product.name
+            }}</label>
+                                        <select :id="`quantity-${itemIdx}`" :name="`quantity-${itemIdx}`"
                                             class="max-w-[45%] rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-treaget focus:outline-none focus:ring-1 focus:ring-treaget sm:text-sm">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -58,10 +62,10 @@
                                 </div>
 
                                 <p class="mt-4 flex space-x-2 text-sm text-gray-700">
-                                    <CheckIcon v-if="product.inStock" class="h-5 w-5 flex-shrink-0 text-green-500"
+                                    <CheckIcon v-if="item.inStock" class="h-5 w-5 flex-shrink-0 text-green-500"
                                         aria-hidden="true" />
                                     <ClockIcon v-else class="h-5 w-5 flex-shrink-0 text-gray-300" aria-hidden="true" />
-                                    <span>{{ product.inStock ? 'In stock' : `Ships in ${product.leadTime}` }}</span>
+                                    <span>{{ item.inStock ? 'In stock' : `Ships in ${item.leadTime}` }}</span>
                                 </p>
                             </div>
                         </li>
@@ -115,82 +119,35 @@
 </template>
 <script>
 import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/vue/20/solid'
+import axios from 'axios'
 
 export default {
     data() {
         return {
-            products: [
-                {
-                    id: 1,
-                    name: 'هودی',
-                    href: '#',
-                    price: '$32.00',
-                    color: 'Sienna',
-                    inStock: true,
-                    size: 'Large',
-                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
-                    imageAlt: "Front of men's هودی in sienna.",
-                },
-                {
-                    id: 2,
-                    name: 'هودی',
-                    href: '#',
-                    price: '$32.00',
-                    color: 'Black',
-                    inStock: false,
-                    leadTime: '3–4 weeks',
-                    size: 'Large',
-                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
-                    imageAlt: "Front of men's هودی in black.",
-                },
-                {
-                    id: 3,
-                    name: 'هودی',
-                    href: '#',
-                    price: '$35.00',
-                    color: 'White',
-                    inStock: true,
-                    imageSrc: 'https://preflight-cdn.live.gelato.tech/product/preview?&type=scene&product_uid=apparel_product_gca_hoodie_gsc_pullover_gcu_unisex_gqa_organic_gsi_m_gco_black_gpr_4-4&scene=editor/front',
-                    imageAlt: 'Insulated bottle with white base and black snap lid.',
-                }
-            ]
+            loading: true,
+            productsCart: null
         }
+    },
+    methods: {
+        getData() {
+            this.loading = true
+            axios.get(`https://pharmedi.ir/api/shop/list-orders/`, {
+                headers: {
+                    "Content-type": "application/json",
+                    Accept: "application/json",
+                    Authorization:
+                        `Token ${this.$store.state.token}`
+                },
+            }).then((response) => {
+                this.productsCart = response.data
+                this.loading = false
+                console.log(this.productsCart)
+            })
+        }
+    },
+    mounted() {
+        this.getData()
     }
 }
 
-// const products = [
-//     {
-//         id: 1,
-//         name: 'Basic Tee',
-//         href: '#',
-//         price: '$32.00',
-//         color: 'Sienna',
-//         inStock: true,
-//         size: 'Large',
-//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg',
-//         imageAlt: "Front of men's Basic Tee in sienna.",
-//     },
-//     {
-//         id: 2,
-//         name: 'Basic Tee',
-//         href: '#',
-//         price: '$32.00',
-//         color: 'Black',
-//         inStock: false,
-//         leadTime: '3–4 weeks',
-//         size: 'Large',
-//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg',
-//         imageAlt: "Front of men's Basic Tee in black.",
-//     },
-//     {
-//         id: 3,
-//         name: 'Nomad Tumbler',
-//         href: '#',
-//         price: '$35.00',
-//         color: 'White',
-//         inStock: true,
-//         imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
-//         imageAlt: 'Insulated bottle with white base and black snap lid.',
-//     },
-// ]
 </script>
