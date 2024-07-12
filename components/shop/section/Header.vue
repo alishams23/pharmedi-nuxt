@@ -82,9 +82,9 @@ export default {
   methods: {
     async getData() {
       try {
-        const response1 = await axios.get("http://127.0.0.1:8000/api/shop/header-image-list/");
+        const response1 = await axios.get("https://pharmedi.ir/api/shop/header-image-list/");
         this.data1 = response1.data;
-        const response2 = await axios.get("http://127.0.0.1:8000/api/shop/header-corner-image-list/");
+        const response2 = await axios.get("https://pharmedi.ir/api/shop/header-corner-image-list/");
         this.data2 = response2.data;
       } catch (error) {
         console.error("Error fetching data", error);

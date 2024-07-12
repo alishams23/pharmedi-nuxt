@@ -229,7 +229,7 @@ export default {
     async userData() {
       this.loading = true;
       await fetch(
-        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
+        `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -241,7 +241,7 @@ export default {
     },
     async getCategories() {
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/shop/list-categories/`, {
+      await fetch(`https://pharmedi.ir/api/shop/list-categories/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -260,7 +260,7 @@ export default {
     },
     async getCategory() {
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/shop/retrieve-category/${this.$route.params.slug}`, {
+      await fetch(`https://pharmedi.ir/api/shop/retrieve-category/${this.$route.params.slug}`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -279,7 +279,7 @@ export default {
     },
     async getProducts() {
       this.loading = true;
-      await fetch(`http://127.0.0.1:8000/api/shop/${this.$route.params.slug}/list-products/`, {
+      await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.slug}/list-products/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

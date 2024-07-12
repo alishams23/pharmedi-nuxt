@@ -299,7 +299,7 @@ export default {
         async userData() {
             this.loading = true;
             await fetch(
-                `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
+                `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
             )
                 .then((response) => response.json())
                 .then((data) => {
@@ -340,7 +340,7 @@ export default {
 
             await axios
                 .post(
-                    `http://127.0.0.1:8000/api/account/addresses/`,
+                    `https://pharmedi.ir/api/account/addresses/`,
                     this.fd,
                     {
                         headers: {
@@ -376,7 +376,7 @@ export default {
 
             await axios
                 .put(
-                    `http://127.0.0.1:8000/api/account/addresses/${this.selectedAddressForEdit.id}/`,
+                    `https://pharmedi.ir/api/account/addresses/${this.selectedAddressForEdit.id}/`,
                     this.fd,
                     {
                         headers: {
@@ -404,7 +404,7 @@ export default {
         async increaseCredit() {
             this.loading = true;
 
-            await fetch(`http://127.0.0.1:8000/api/wallet/increase-money/`, {
+            await fetch(`https://pharmedi.ir/api/wallet/increase-money/`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -436,7 +436,7 @@ export default {
         },
         async getCartItems() {
             this.loading = true;
-            await fetch(`http://127.0.0.1:8000/api/shop/list-cart-items/`, {
+            await fetch(`https://pharmedi.ir/api/shop/list-cart-items/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -473,7 +473,7 @@ export default {
             this.fd.append("address", this.addresses[this.selectedAddress].id);
 
             await axios.post(
-                `http://127.0.0.1:8000/api/shop/submit-cart/`,
+                `https://pharmedi.ir/api/shop/submit-cart/`,
                 this.fd,
                 {
                     headers: {
@@ -490,7 +490,7 @@ export default {
         },
         async getAddresses() {
             this.loading = true;
-            await fetch(`http://127.0.0.1:8000/api/account/addresses/`, {
+            await fetch(`https://pharmedi.ir/api/account/addresses/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -521,7 +521,7 @@ export default {
 
             await axios
                 .delete(
-                    `http://127.0.0.1:8000/api/account/addresses/${this.selectedAddressForDelete.id}/`,
+                    `https://pharmedi.ir/api/account/addresses/${this.selectedAddressForDelete.id}/`,
                     this.fd,
                     {
                         headers: {

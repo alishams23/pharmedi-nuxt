@@ -188,7 +188,7 @@
       ListUserMessageApi() {
         var result;
         axios
-          .get("http://127.0.0.1:8000/api/chat/ListUserMessageApi/", {
+          .get("https://pharmedi.ir/api/chat/ListUserMessageApi/", {
             headers: {
               "Content-type": "application/json",
               Accept: "application/json",
@@ -205,7 +205,7 @@
           });
       },
       sendMessage() {
-        fetch("http://127.0.0.1:8000/api/chat/MassageApi/", {
+        fetch("https://pharmedi.ir/api/chat/MassageApi/", {
           method: "put",
           credentials: "same-origin",
           headers: this.headers,
@@ -226,7 +226,7 @@
         this.message = [];
         this.loadingGetMessage = true;
         fetch(
-          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -247,7 +247,7 @@
       },
       getMessageRepeat() {
         fetch(
-          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -283,7 +283,7 @@
       getNewMessage() {
         this.counter = 0;
         fetch(
-          `http://127.0.0.1:8000/api/chat/MassageApi/?user=${this.user["username"]}`,
+          `https://pharmedi.ir/api/chat/MassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }

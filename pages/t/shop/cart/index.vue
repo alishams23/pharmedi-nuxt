@@ -292,7 +292,7 @@ export default {
         checkDiscountCode() {
             this.snackbarDiscountError = false 
            this.btn_discount_loading = true
-           const apiUrl = `http://127.0.0.1:8000/api/shop/check-valid-product-discount/${this.discount_code}/`;
+           const apiUrl = `https://pharmedi.ir/api/shop/check-valid-product-discount/${this.discount_code}/`;
            axios.get(apiUrl,{
                headers: {
                    'Content-Type': 'multipart/form-data',
@@ -316,7 +316,7 @@ export default {
         },
         getData() {
             this.loading = true
-            axios.get(`http://127.0.0.1:8000/api/shop/list-orders/?status=processing`, {
+            axios.get(`https://pharmedi.ir/api/shop/list-orders/?status=processing`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -332,7 +332,7 @@ export default {
         sendToCart(product_id) {
             this.loading = false
 
-            axios.post(`http://127.0.0.1:8000/api/shop/add-product-to-cart/`, { product_id: product_id }, {
+            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -354,7 +354,7 @@ export default {
         },
         RemoveFromCart(product_id) {
             this.loading = true
-            axios.post(`http://127.0.0.1:8000/api/shop/remove-product-from-cart/`, { product_id: product_id }, {
+            axios.post(`https://pharmedi.ir/api/shop/remove-product-from-cart/`, { product_id: product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -398,7 +398,7 @@ export default {
 async pay() {
     this.loading = true;
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/shop/payment/', {
+        const response = await axios.post('https://pharmedi.ir/api/shop/payment/', {
             address: this.address,
             city: this.city,
             state: this.state,

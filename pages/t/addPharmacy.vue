@@ -47,7 +47,7 @@ export default {
   methods: {
     getData() {
       this.loading = true;
-      fetch(`http://127.0.0.1:8000/api/account/City_list/`, {
+      fetch(`https://pharmedi.ir/api/account/City_list/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -67,7 +67,7 @@ export default {
       this.loading = true;
       await axios
         .post(
-          `http://127.0.0.1:8000/api/account/Pharmacy_create/`,
+          `https://pharmedi.ir/api/account/Pharmacy_create/`,
           {
             name: this.name,
             location: this.location,
