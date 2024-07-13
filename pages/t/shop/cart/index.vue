@@ -1,16 +1,16 @@
 <template>
     <div dir="rtl" class=" ">
-        <div  class="mx-auto  max-w-2xl px-4 pb-24  sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="mx-auto  max-w-2xl px-4 pb-24  sm:px-6 lg:max-w-7xl lg:px-8">
             <div class="flex  mx-3 items-center justify-end" style="direction: ltr;">
-            <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  ">سبد  خرید </h2>
-            <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
-                <ShoppingBagIcon class=" w-8 h-8 text-white" />
+                <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  ">سبد خرید </h2>
+                <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
+                    <ShoppingBagIcon class=" w-8 h-8 text-white" />
+                </div>
             </div>
-        </div>
             <div v-if="loading" class="flex space-x-1 justify-center items-center h-[350px]">
                 <div class=" loader"></div>
             </div>
-            
+
             <div v-else>
 
                 <ol class="flex items-center w-full text-sm mt-5 font-medium text-center text-gray-500  sm:text-base ">
@@ -25,7 +25,7 @@
                                     d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                             </svg>
                             <span v-else
-                                class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white flex justify-center items-center">1</span>
+                                class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white  text-center cursor-pointer">1</span>
                             برسی <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         </span>
                     </li>
@@ -39,24 +39,24 @@
                                     d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                             </svg>
                             <span v-else
-                                class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white flex justify-center items-center">2</span>
+                                class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white  text-center">2</span>
                             آدرس <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         </span>
                     </li>
                     <li class="flex items-center">
                         <span
-                            class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white flex justify-center items-center">3</span>
+                            class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white  ">3</span>
 
                         پرداخت
                     </li>
                 </ol>
                 <div v-if="page == 0">
-                    <div class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16" >
+                    <div class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16"
+                        v-if="productsCart.length > 0 && productsCart[0].items.length > 0">
                         <section aria-labelledby="cart-heading" class="lg:col-span-7  py-3"
-                            :class="productsCart.length>0 && productsCart[0].items.length > 0 ? 'bg-white rounded-xl' : ''">
+                            :class="productsCart.length > 0 && productsCart[0].items.length > 0 ? 'bg-white rounded-xl' : ''">
                             <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
-                            <ul role="list" class="divide-y divide-gray-200 "
-                                v-if="productsCart.length > 0 && productsCart[0].items.length > 0">
+                            <ul role="list" class="divide-y divide-gray-200 ">
                                 <li v-for="item in productsCart[0].items" :key="item.id"
                                     class="flex py-6 px-4 sm:py-10 ">
                                     <div class="flex-shrink-0">
@@ -64,36 +64,26 @@
                                             class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48" />
                                     </div>
                                     <div class="mr-4 flex flex-1 flex-col justify-between sm:mr-6">
-                                        <div class="relative pl-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pl-0">
-                                            <div>
-                                                <div class="flex justify-between">
-                                                    <h3 class="text-sm">
+                                        <div class="relative  grid grid-cols-6 gap-x-6 pl-0">
+                                      
+                                              
+
+                                             <div class="col-span-4">
+                                                <h3 class="text-sm">
                                                         <a :href="item.href"
-                                                            class="font-medium text-gray-700 hover:text-gray-800">{{
+                                                            class="font-medium line-clamp-1 text-gray-700 text-clip hover:text-gray-800">{{
                                                                 item.product.name
                                                             }}</a>
                                                     </h3>
-                                                </div>
-                                                <div class="mt-1 flex text-sm">
-                                                    <!-- <p class="text-gray-500">{{ item.color }}</p> -->
-                                                    <!-- <p v-if="item.size"
-                                                    class="mr-4 border-l border-gray-200 pr-4 text-gray-500">{{ item.size
-                                                    }}</p> -->
-                                                </div>
-                                                <p class="mt-4 text-sm font-medium text-gray-900">
-                                                    {{ item.product.price - (item.product.price * item.product.discount
-                                                        /
-                                                        100) }}
-
-                                                </p>
-                                            </div>
-
-                                            <div class="mt-4 sm:mt-0 sm:pl-9">
-                                                <label :for="`quantity-${itemIdx}`" class="sr-only">Quantity, {{
-                                                    item.product.name
-                                                }}</label>
-
-                                                <div class="flex items-center">
+                                                   <p class=" mt-5 text-sm font-medium text-gray-900">
+                                                       {{ item.product.price - (item.product.price * item.product.discount
+                                                           /
+                                                           100) }}
+                                                
+                                                   </p>
+                                                  
+                                             </div>
+                                                <div class="col-span-1  flex items-center">
                                                     <div>{{ item.quantity }}</div>
                                                     <div class="mx-3">
                                                         <ChevronUpIcon @click="sendToCart(item.product.id)"
@@ -102,39 +92,16 @@
                                                             class="h-6" />
                                                     </div>
                                                 </div>
+                                         
 
-                                                <div class="absolute left-0 top-0">
-                                                    <button type="button"
-                                                        class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
-                                                        <span class="sr-only">Remove</span>
-                                                        <XMarkIcon class="h-5 w-5" aria-hidden="true" />
-                                                    </button>
-                                                </div>
-                                            </div>
+
                                         </div>
 
 
                                     </div>
                                 </li>
                             </ul>
-                            <div v-else>
-                                <div class="flex justify-center h-[100px]">
-                                    <div id="alert-4"
-                                        class="rtl  flex items-center justify-start p-4 mb-4 text-yellow-800 rounded-3xl shadow-3 bg-yellow-50 "
-                                        role="alert">
-                                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                                        </svg>
-                                        <span class="sr-only">Warning</span>
-                                        <div class="ms-3 text-sm font-medium">
-                                            محصولی وجود ندارد
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
                         </section>
 
                         <!-- Order summary -->
@@ -172,28 +139,37 @@
                                     </dd>
                                 </div>
                             </dl>
-                            <form v-if="btn_discount_loading == false" @submit.prevent="checkDiscountCode()" class="flex items-center pt-3 mt-3 mb-2 border-t">
-                                <input 
-                                placeholder="کد تخفیف"
-                                class="bg-gray-50 border rtl border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
-                                type="tel" id="phone_number" v-model="discount_code" required>
-                                <button type="submit" class=" flex justify-center mr-2 items-center rounded-full bg-green-100 ">
+                            <form v-if="btn_discount_loading == false" @submit.prevent="checkDiscountCode()"
+                                class="flex items-center pt-3 mt-3 mb-2 border-t">
+                                <input placeholder="کد تخفیف"
+                                    class="bg-gray-50 border rtl border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
+                                    type="tel" id="phone_number" v-model="discount_code" required>
+                                <button type="submit"
+                                    class=" flex justify-center mr-2 items-center rounded-full bg-green-100 ">
 
-                                        <CheckIcon class="h-6 w-6 m-[6px] text-green-600 "/>
+                                    <CheckIcon class="h-6 w-6 m-[6px] text-green-600 " />
                                 </button>
                             </form>
                             <div v-else class="flex items-center h-[100px] justify-center">
                                 <div class="loader"></div>
                             </div>
-                            <alert2 type="danger" v-if="snackbarDiscountError == true" text="کد تخفیف معتبر نیست"/>
-                            <alert2 type="success" v-if="discount_amount > 0" text="کد تخفیف  اعمال شد"/>
+                            <alert2 type="danger" v-if="snackbarDiscountError == true" text="کد تخفیف معتبر نیست" />
+                            <alert2 type="success" v-if="discount_amount > 0" text="کد تخفیف  اعمال شد" />
 
                             <div class="mt-6" v-if="getCalculatedPrice() > 0">
-                                <button  @click="page = 1;discount_amount == 0 ? discount_code = '' : ''"
+                                <button @click="page = 1; discount_amount == 0 ? discount_code = '' : ''"
                                     class="w-full rounded-xl border border-transparent bg-treaget px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-treaget focus:ring-offset-2 focus:ring-offset-gray-50">مرحله
                                     ی بعد</button>
                             </div>
                         </section>
+                    </div>
+                    <div v-else>
+
+
+                        <div class="flex justify-center items-center h-[300px]">
+                            <Alert2 text="محصولی برای رفتن به سبد خرید انتخاب نشده است" class_inside="shadow-3" />
+
+                        </div>
                     </div>
                 </div>
                 <div v-if="page == 1">
@@ -261,7 +237,7 @@
     </div>
 </template>
 <script>
-import { QuestionMarkCircleIcon, XMarkIcon, ChevronUpIcon, ChevronDownIcon ,CheckIcon } from '@heroicons/vue/20/solid'
+import { QuestionMarkCircleIcon, XMarkIcon, ChevronUpIcon, ChevronDownIcon, CheckIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
 import { ShoppingBagIcon, } from '@heroicons/vue/20/solid'
 
@@ -282,37 +258,37 @@ export default {
             zip_code: '',
             phone_number: '',
             address: '',
-            discount_amount : 0,
-            discount_code : "",
-            snackbarDiscountError : false,
-            btn_discount_loading:false,
+            discount_amount: 0,
+            discount_code: "",
+            snackbarDiscountError: false,
+            btn_discount_loading: false,
         }
     },
     methods: {
         checkDiscountCode() {
-            this.snackbarDiscountError = false 
-           this.btn_discount_loading = true
-           const apiUrl = `https://pharmedi.ir/api/shop/check-valid-product-discount/${this.discount_code}/`;
-           axios.get(apiUrl,{
-               headers: {
-                   'Content-Type': 'multipart/form-data',
-                   Accept: "application/json",
+            this.snackbarDiscountError = false
+            this.btn_discount_loading = true
+            const apiUrl = `https://pharmedi.ir/api/shop/check-valid-product-discount/${this.discount_code}/`;
+            axios.get(apiUrl, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Accept: "application/json",
                     Authorization: `Token ${this.$store.state.token}`
-               },
-           }).then(response => {
-               console.log('discount', response.data);
-               if (response.data.valid){
-                    this.discount_amount = response.data.amount  
-               }else{
+                },
+            }).then(response => {
+                console.log('discount', response.data);
+                if (response.data.valid) {
+                    this.discount_amount = response.data.amount
+                } else {
                     this.discount_amount = 0
-                   this.snackbarDiscountError = true
-               }
-               this.btn_discount_loading = false
-           }).catch(error => {
-               // Handle error response
-               this.snackbarDiscountError = true
-               this.discount_amount = 0
-           });
+                    this.snackbarDiscountError = true
+                }
+                this.btn_discount_loading = false
+            }).catch(error => {
+                // Handle error response
+                this.snackbarDiscountError = true
+                this.discount_amount = 0
+            });
         },
         getData() {
             this.loading = true
@@ -394,36 +370,37 @@ export default {
             }
             return price;
         },
-  
-async pay() {
-    this.loading = true;
-    try {
-        const response = await axios.post('https://pharmedi.ir/api/shop/payment/', {
-            address: this.address,
-            city: this.city,
-            state: this.state,
-            zip_code: this.zip_code,
-            phone_number: this.phone_number,
-            discount_code: this.discount_code,
-        }, {
-            headers: {
-                'Content-type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Token ${this.$store.state.token}`,
-            }
-        });
 
-        if (response.status === 200) {
-            const data = response.data;
-            window.location.href = data["result"];
-        } else {
-            // Handle non-200 status codes if needed
+        async pay() {
+            this.loading = true;
+            try {
+                const response = await axios.post('https://pharmedi.ir/api/shop/payment/', {
+                    address: this.address,
+                    city: this.city,
+                    state: this.state,
+                    zip_code: this.zip_code,
+                    phone_number: this.phone_number,
+                    discount_code: this.discount_code,
+                }, {
+                    headers: {
+                        'Content-type': 'application/json',
+                        Accept: 'application/json',
+                        Authorization: `Token ${this.$store.state.token}`,
+                    }
+                });
+
+                if (response.status === 200) {
+                    const data = response.data;
+                    window.location.href = data["result"];
+                } else {
+                    // Handle non-200 status codes if needed
+                }
+            } catch (error) {
+                // Handle errors here
+            } finally {
+                this.loading = false;
+            }
         }
-    } catch (error) {
-        // Handle errors here
-    } finally {
-        this.loading = false;
-    }}
     },
     mounted() {
         this.getData()

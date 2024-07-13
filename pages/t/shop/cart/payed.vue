@@ -129,6 +129,9 @@
             </div>
 
         </div>
+        <div v-if="data.length == 0 " class="mt-20">
+            <Alert2 type="info" text="محصولی خریداری نشده است" class_inside="shadow-3" />
+        </div>
     </div>
 </template>
 

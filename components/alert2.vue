@@ -1,6 +1,5 @@
 <template>
     <div class="flex justify-center ">
-        
         <div id="alert-4"
         :class="[class_inside , type == 'success' ? 'text-green-800 bg-green-100' : type == 'danger' ?  'text-red-800 bg-red-50' : 'text-yellow-800 bg-yellow-50']"
             class="rtl  flex items-center  justify-start p-4 my-2 rounded-3xl   "
@@ -14,7 +13,6 @@
             <div class="ms-3 text-sm font-medium">
                {{ text }}
             </div>
-
         </div>
     </div>
 </template>
