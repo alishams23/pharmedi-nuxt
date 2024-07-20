@@ -39,7 +39,7 @@
       <nuxt-link to="/t/home" class="text-center text-treaget">
         <div class="mt-3">ورود به عنوان مهمان</div>
       </nuxt-link>
-      <a href="http://pharmedi.ir/api/password_reset/" class="text-center">
+      <a href="https://pharmedi.ir/api/password_reset/" class="text-center">
         <div class="mt-3">رمز عبور خود را فراموش کرده اید؟</div>
       </a>
     </form>
@@ -106,7 +106,7 @@ export default {
         try {
           this.loading = true;
           let mydata = await axios
-            .post("http://127.0.0.1:8000/api/account/login/", {
+            .post("https://pharmedi.ir/api/account/login/", {
               username: this.UserName,
               password: this.Password,
             })

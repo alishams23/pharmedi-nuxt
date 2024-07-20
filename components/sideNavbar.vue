@@ -367,7 +367,7 @@
            <div class="text-xs text-gray-600 font-light mx-4 cursor-pointer rtl mb-3" @click="showEnamad = true"  v-show="showEnamad == false"> مشاهده  نماد اعتماد</div>
           <div class="flex" v-show="showEnamad == true">
             <div class="p-2 rounded-full border mb-2 mx-3">
-              <a referrerpolicy="origin" target="_blank" href="http://127.0.0.1:8000/api/wallet/enamad">
+              <a referrerpolicy="origin" target="_blank" href="https://pharmedi.ir/api/wallet/enamad">
                 <img referrerpolicy="origin" src="@/assets/inside/images/enamad.png" alt="نماد اعتماد الکترونیکی"
                   title="نماد اعتماد الکترونیکی" style="cursor: pointer; width: 60px; align-items: center" />
               </a>
@@ -404,7 +404,7 @@ const route = useRoute();
 
 const userData = async () => {
   loading.value = true;
-  const response = await fetch(`http://127.0.0.1:8000/api/account/user_retrieve/${store.state.username}/`);
+  const response = await fetch(`https://pharmedi.ir/api/account/user_retrieve/${store.state.username}/`);
   const data = await response.json();
   user.value = data;
   store.commit("getType", user.value.user_type);
@@ -414,7 +414,7 @@ const userData = async () => {
 
 const getCartItems = async () => {
   loading.value = true;
-  const response = await fetch(`http://127.0.0.1:8000/api/shop/list-cart-items/`, {
+  const response = await fetch(`https://pharmedi.ir/api/shop/list-cart-items/`, {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -427,7 +427,7 @@ const getCartItems = async () => {
 };
 
 const CountRead = () => {
-  fetch("http://127.0.0.1:8000/api/CountReadStatus/", {
+  fetch("https://pharmedi.ir/api/CountReadStatus/", {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -446,7 +446,7 @@ const CountRead = () => {
 
 const SendSms = async () => {
   statusSend.value = true;
-  await fetch("http://127.0.0.1:8000/api/Send_code/", {
+  await fetch("https://pharmedi.ir/api/Send_code/", {
     headers: {
       "Content-type": "application/json",
       Accept: "application/json",
@@ -461,7 +461,7 @@ const sendNumber = async () => {
   try {
     if (code.value != null) {
       statusCheck.value = false;
-      const statusCheckApi = await fetch(`http://127.0.0.1:8000/api/Code_check/?code=${code.value}`, {
+      const statusCheckApi = await fetch(`https://pharmedi.ir/api/Code_check/?code=${code.value}`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

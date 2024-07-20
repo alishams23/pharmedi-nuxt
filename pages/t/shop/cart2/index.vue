@@ -94,7 +94,7 @@ export default {
         async userData() {
             this.loading = true;
             await fetch(
-                `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
+                `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
             )
                 .then((response) => response.json())
                 .then((data) => {
@@ -106,7 +106,7 @@ export default {
         },
         async getCartItems() {
             this.loading = true;
-            await fetch(`http://127.0.0.1:8000/api/shop/list-cart-items/`, {
+            await fetch(`https://pharmedi.ir/api/shop/list-cart-items/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",

@@ -331,7 +331,7 @@ export default {
     methods: {
         getData() {
             this.loading = true
-            axios.get(`http://127.0.0.1:8000/api/shop/retrieve-product/${this.$route.params.id}/`, {
+            axios.get(`https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -343,7 +343,7 @@ export default {
         },
 
         sendToCart() {
-            axios.post(`http://127.0.0.1:8000/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
+            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -366,7 +366,7 @@ export default {
 
         async getComments() {
             this.loadingComments = true;
-            await fetch(`http://127.0.0.1:8000/api/shop/${this.$route.params.id}/list-comments/`, {
+            await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.id}/list-comments/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -387,7 +387,7 @@ export default {
             this.fd.append("content", this.comment);
 
             await axios.post(
-                `http://127.0.0.1:8000/api/shop/${this.$route.params.id}/create-comment/`,
+                `https://pharmedi.ir/api/shop/${this.$route.params.id}/create-comment/`,
                 this.fd,
                 {
                     headers: {
