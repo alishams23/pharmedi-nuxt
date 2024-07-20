@@ -1,6 +1,6 @@
 <template>
     <div class="h-full" style="min-height: 100%; max-height: 100%; height: 100%">
-      <div class="d-flex flex-row h-full lg:bg-white border pt-4 p-0 m-0"
+      <div class="d-flex flex-row h-full lg:bg-white border mt-[20px] sm:mt-[60px] md:mt-[60px] lg:mt-0 p-0"
         style="min-height: 100%; max-height: 100%; height: 100%">
         <!-- left message-->
   
@@ -85,12 +85,12 @@
           </div>
   
           <div class="border-top1 h-full" v-bind:class="phoneSize == true ? 'd-none d-lg-block' : ''">
-            <div class="lg:p-8 p-0 h-full" id="messages-list">
+            <div class="lg:p-8 p-0 h-full">
               <!-- my message-->
   
-              <div style="height: 100%; overflow-y: scroll; padding-bottom: 130px"
-                class="d-flex scrollBarStyleSmall flex-column justify-content-between">
-                <div>
+              <div style="height: 100%; overflow-y: scroll; padding-bottom: 130px" 
+                class="d-flex scrollBarStyleSmall flex-column justify-content-between"  id="messages-list">
+                <div >
                   <div v-show="message.length != 0" v-bind:class="data.author.username == userSelf ? 'flex-row-reverse' : ''
             " class="flex m-3 lg:items-center" v-for="data in message" v-bind:key="data.id + 'message-chat'">
                     <div class="w-8 h-8 d-none d-sm-block"></div>
@@ -119,16 +119,17 @@
                     </div>
                   </div>
                 </div>
-                <div ref="inputSendMessage" class="inputSendMessage px-3" v-if="user != '' && loadingGetMessage == false"
+                <div ref="inputSendMessage" class="inputSendMessage px-3 mb-[30px] md:mb-3" v-if="user != '' && loadingGetMessage == false"
                   style="position: sticky; bottom: 0px">
                   <div class="d-flex align-items-center flex-row justify-content-between" v-show="user != ''">
-                    <input placeholder="Your Message.." type="text" v-model="inputData" style="
+                    <input placeholder="Your Message.." type="text" v-model="inputData" 
+                    v-on:keyup.enter="sendMessage()"
+                    style="
                         word-break: break-all;
                         border-radius: 30px !important;
-                        border-top: 1px solid #e2e8f0;
-                      " class="shadow-2 rtl bg-glass" />
+                      " class=" rtl bg-gray-200 placeholder:text-gray-500 shadow-none" />
                     <div class="d-flex align-items-center px-2">
-                      <button id="text-submit" type="submit" @click="sendMessage()"
+                      <button id="text-submit" type="submit" @click="scrollMessage()"
                         class="bg-gradient-blue d-flex align-items-center justify-content-center rounded-full shadow-2 w-10 h-10 text-white">
                         <i class="fa fa-paper-plane text-white"></i>
                       </button>
@@ -152,7 +153,7 @@
   import Empty from "~/components/empty.vue";
   import axios from "axios";
   export default {
-    params: ["usernameParams"],
+   
     data() {
       return {
         loadingListUserMessage: true,
@@ -166,6 +167,7 @@
               : "",
         },
         message: [],
+   
         inputData: "",
         windowHeight: 360,
         // window.innerHeight -
@@ -185,10 +187,10 @@
       };
     },
     methods: {
-      ListUserMessageApi() {
+      async ListUserMessageApi() {
         var result;
-        axios
-          .get("https://pharmedi.ir/api/chat/ListUserMessageApi/", {
+        await axios
+          .get("http://127.0.0.1:8000/api/chat/ListUserMessageApi/", {
             headers: {
               "Content-type": "application/json",
               Accept: "application/json",
@@ -204,8 +206,8 @@
             this.loadingListUserMessage = false;
           });
       },
-      sendMessage() {
-        fetch("https://pharmedi.ir/api/chat/MassageApi/", {
+      async sendMessage() {
+        await fetch("http://127.0.0.1:8000/api/chat/MassageApi/", {
           method: "put",
           credentials: "same-origin",
           headers: this.headers,
@@ -216,17 +218,22 @@
           }),
         });
         this.inputData = "";
-        this.getMessage();
-        this.scrollMessage();
+        await this.getMessage();
+        await this.$nextTick(() => {
+          this.scrollStatus = true
+          this.counter += 1
+          this.scrollMessage();
+
+          })
       },
-      getMessage() {
+      async getMessage() {
         try {
           clearInterval(this.setInterval3);
         } catch (error) { }
         this.message = [];
         this.loadingGetMessage = true;
-        fetch(
-          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+        await fetch(
+          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -242,12 +249,25 @@
           if (this.$route.name != "t-Chat") {
             clearInterval(this.setInterval1);
           }
-          this.scrollMessage();
+           this.$nextTick(() => {
+            this.scrollMessage();
+
+
+          })
         }, 7000);
       },
+      async getUserApi() {
+      
+       let data = await fetch(
+        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$route.query.usernameParams}/`,
+        { headers: this.headers }
+      )
+        
+        return data.json()
+    },
       getMessageRepeat() {
         fetch(
-          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -273,6 +293,7 @@
       scrollMessage() {
         if (this.message.length != 0 && this.scrollStatus == true) {
           if (this.counter > 1) {
+            console.log("dddddd")
             var myDiv = document.getElementById("messages-list");
             myDiv.scrollTop = myDiv.scrollHeight;
             this.scrollStatus = false;
@@ -283,7 +304,7 @@
       getNewMessage() {
         this.counter = 0;
         fetch(
-          `https://pharmedi.ir/api/chat/MassageApi/?user=${this.user["username"]}`,
+          `http://127.0.0.1:8000/api/chat/MassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -314,11 +335,18 @@
         }
       },
     },
-    mounted() {
-      this.ListUserMessageApi();
-      if (this.$route.params.usernameParams != null) {
-        this.checkClick1({ user: this.$route.params.usernameParams });
+    async mounted() {
+
+      if (this.$route.query.usernameParams != null) {
+        this.usernameParams = this.$route.query.usernameParams
+        console.log(`${this.usernameParams["username"]}`)
+    
+
+        this.checkClick1({ user: await this.getUserApi() });
       }
+      
+      await this.ListUserMessageApi();
+
       this.setInterval4 = setInterval(() => {
         if (this.$route.name != "t-Chat") {
           clearInterval(this.setInterval4);

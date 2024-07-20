@@ -1,5 +1,23 @@
 <template>
     <!-- {{ product }} -->
+
+<div class="mb-lg-4 pb-3" style="
+        position: fixed;
+        width: 76px;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        margin-bottom: 72px;
+      ">
+      <nuxt-link to="/t/Chat/?usernameParams=admin24"
+        class=" text-white  ">
+      <div class=" bg-treaget   h-[55px] w-[55px] flex justify-center items-center rounded-full">
+         <IconMessage class="h-6 w-6" />
+      </div>
+      </nuxt-link>
+    </div>
+
+  
     <div class="mx-auto ">
         <div v-if="loading" class='flex justify-center items-center   h-[639.74px] rounded-3xl'>
             <span class='sr-only'>Loading...</span>
@@ -282,7 +300,7 @@ import {
     TabPanels,
 } from '@headlessui/vue'
 
-import { IconPlus, IconMinus } from '@tabler/icons-vue'
+import { IconPlus, IconMinus,IconMessage } from '@tabler/icons-vue'
 
 export default {
     components: {
@@ -294,6 +312,7 @@ export default {
         Tab,
         TabGroup,
         TabList,
+        IconMessage,
         TabPanel,
         TabPanels,
         IconPlus,
@@ -312,7 +331,7 @@ export default {
     methods: {
         getData() {
             this.loading = true
-            axios.get(`https://pharmedi.ir/api/shop/retrieve-product/${this.$route.params.id}/`, {
+            axios.get(`http://127.0.0.1:8000/api/shop/retrieve-product/${this.$route.params.id}/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -324,7 +343,7 @@ export default {
         },
 
         sendToCart() {
-            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
+            axios.post(`http://127.0.0.1:8000/api/shop/add-product-to-cart/`, { product_id: this.product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -347,7 +366,7 @@ export default {
 
         async getComments() {
             this.loadingComments = true;
-            await fetch(`https://pharmedi.ir/api/shop/${this.$route.params.id}/list-comments/`, {
+            await fetch(`http://127.0.0.1:8000/api/shop/${this.$route.params.id}/list-comments/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -368,7 +387,7 @@ export default {
             this.fd.append("content", this.comment);
 
             await axios.post(
-                `https://pharmedi.ir/api/shop/${this.$route.params.id}/create-comment/`,
+                `http://127.0.0.1:8000/api/shop/${this.$route.params.id}/create-comment/`,
                 this.fd,
                 {
                     headers: {

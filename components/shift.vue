@@ -145,7 +145,8 @@
               </a>
             </button>
             <button class="drop-list__btn py-2">
-              <nuxt-link :to="{ name: 't-Chat', params: { usernameParams: data } }"
+              <nuxt-link 
+              :to="'/t/Chat/?usernameParams=' + data.author.username"
                 class="d-flex mx-3 justify-content-between align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-whatsapp" viewBox="0 0 24 24">
@@ -302,7 +303,7 @@ export default {
       this.checkLogin();
 
       this.loading = true;
-      fetch(`https://pharmedi.ir/api/shift/Accept_shift/${this.data.id}/`, {
+      fetch(`http://127.0.0.1:8000/api/shift/Accept_shift/${this.data.id}/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -322,7 +323,7 @@ export default {
     finishRequest(id) {
       this.checkLogin();
       fetch(
-        `https://pharmedi.ir/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
+        `http://127.0.0.1:8000/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
         {
           headers: {
             "Content-type": "application/json",

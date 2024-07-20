@@ -82,16 +82,16 @@
           <span class="nav-text">دارونگار</span>
         </nuxt-link>
         <nuxt-link
-          to="/t/video"
+          to="/t/shop"
           class="nav-item btn-material"
           :class="
-            currentRouteName() == 't-video'
+            currentRouteName() == 't-shop'
               ? 'active bg-treaget '
               : 'nav-color-inactive'
           "
         >
         
-        <ShoppingBagIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 't-video'"/>
+        <ShoppingBagIconSolid class="text-white h-5 w-5" v-if="currentRouteName() == 't-shop'"/>
         <ShoppingBagIcon class="text-gray-600 h-6 w-6" v-else/>
           <!-- <i
             class="fad fa-video"

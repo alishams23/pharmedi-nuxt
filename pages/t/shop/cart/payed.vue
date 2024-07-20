@@ -6,7 +6,7 @@
     <div v-else class="mx-2">
 
         <div class="flex  mx-3 items-center justify-end">
-            <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  ">سبد های خرید </h2>
+            <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  "> تاریخچه ی خرید  </h2>
             <div class="h-12 w-12 bg-treaget flex justify-center items-center  mr-5 rounded-2xl">
                 <ShoppingBagIcon class=" w-8 h-8 text-white" />
             </div>
@@ -26,12 +26,12 @@
                     </li>
                     <li
                         class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b  after:border-4 after:inline-block "
-                        :class="order.status == 'shipped' ? 'text-blue-600  after:border-blue-100'  : 'after:border-grey-100'"
+                        :class="order.status == 'shipped' || order.status == 'delivered'  ? 'text-blue-600  after:border-blue-100'  : 'after:border-grey-100'"
                         >
                     
                         <span
                             class="flex items-center justify-center w-10 h-10 bg-gray-100   rounded-full lg:h-12 lg:w-12  shrink-0"
-                        :class="order.status == 'shipped' ? 'bg-blue-100'  : 'text-gray-500'"
+                        :class="order.status == 'shipped' || order.status == 'delivered'  ? 'bg-blue-100'  : 'text-gray-500'"
                             
                             >
                             <IconPackageExport class="h-6 w-6" />
@@ -121,7 +121,7 @@
                 </div>
                 <div class="px-2 py-2 my-2 text-xs rounded-full mx-2 bg-yellow-50 shadow-lg text-yellow-700 font-bold">
                     وضعیت: {{ order.status == "sending" ? "در حال ارسال" : order.status == "shipped" ? "ارسال شده" :
-                        order.status == "shipped" ? "دریافت شده" : "" }}
+                        order.status == "delivered" ? "دریافت شده" : "" }}
                 </div>
                 <div class="px-2 py-2 my-2 text-xs rounded-full mx-2 bg-yellow-50 shadow-lg text-yellow-700 font-bold">
                     هزینه ی ارسال : {{ order.post_cost }}
@@ -159,7 +159,7 @@ export default {
     }, methods: {
         getData() {
             this.loading = true
-            axios.get(`https://pharmedi.ir/api/shop/list-orders-payed/`, {
+            axios.get(`http://127.0.0.1:8000/api/shop/list-orders-payed/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",

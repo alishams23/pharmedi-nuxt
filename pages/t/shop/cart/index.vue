@@ -26,7 +26,7 @@
                             </svg>
                             <span v-else
                                 class="me-2 h-4 w-4 text-[9px] bg-gray-400 rounded-full text-white  text-center cursor-pointer">1</span>
-                            برسی <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                            بررسی <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                         </span>
                     </li>
                     <li class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 "
@@ -167,7 +167,7 @@
 
 
                         <div class="flex justify-center items-center h-[300px]">
-                            <Alert2 text="محصولی برای رفتن به سبد خرید انتخاب نشده است" class_inside="shadow-3" />
+                            <Alert2 text="محصولی برای انتقال به سبد خرید انتخاب نشده است" class_inside="shadow-3" />
 
                         </div>
                     </div>
@@ -190,19 +190,39 @@
                         </div>
                     </div>
                     <form @submit.prevent="pay" class="rtl">
-                        <div class="">
+                        <div class="row">
+                            <div class="col-6">
+                            <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
+                                for="city">نام:</label>
+                            <input
+                                class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
+                                id="city" v-model="first_name" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
+                                for="city">نام خانوادگی:</label>
+                            <input
+                                class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
+                                id="city" v-model="last_name" required>
+                        </div>
+                        </div>
+                       
+                        
+                        <div class="row">
+                            <div class="col-6">
                             <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
                                 for="city">شهر:</label>
                             <input
                                 class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
                                 id="city" v-model="city" required>
                         </div>
-                        <div class="">
+                        <div class="col-6">
                             <label class="text-right w-auto mr-3 rtl   mt-3 mb-0 mtext-sm font-medium text-gray-900"
                                 for="state">استان:</label>
                             <input
                                 class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
                                 id="state" v-model="state" required>
+                        </div>
                         </div>
                         <div class="">
                             <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
@@ -211,22 +231,30 @@
                                 class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
                                 id="zip_code" v-model="zip_code" required>
                         </div>
-                        <div class="">
-                            <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
-                                for="phone_number">شماره تلفن:</label>
-                            <input
-                                class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
-                                type="tel" id="phone_number" v-model="phone_number" required>
-                        </div>
+                       
                         <div>
                             <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
                                 for="address">آدرس:</label>
                             <textarea v-model="address" id="address" type="text"
                                 class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none" />
                         </div>
+                        <div class="">
+                            <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
+                                for="phone_number">تلفن همراه :</label>
+                            <input
+                                class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
+                                type="tel" id="phone_number" v-model="phone_number" required>
+                        </div>
+                        <div class="">
+                            <label class="text-right w-auto mr-3 rtl   mt-3 mb-0  text-sm font-medium text-gray-900"
+                                for="phone_number"> تلفن منزل:</label>
+                            <input
+                                class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
+                                type="tel" id="phone_number" v-model="phone_number_home" required>
+                        </div>
 
                         <button type="submit"
-                            class=" px-4 py-2  text-white rounded-xl bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] ">
+                            class=" px-4 py-2 mt-5 text-white rounded-xl bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] ">
                             پرداخت نهایی
                         </button>
                     </form>
@@ -257,6 +285,9 @@ export default {
             state: '',
             zip_code: '',
             phone_number: '',
+            phone_number_home: '',
+            first_name: '',
+            last_name: '',
             address: '',
             discount_amount: 0,
             discount_code: "",
@@ -268,7 +299,7 @@ export default {
         checkDiscountCode() {
             this.snackbarDiscountError = false
             this.btn_discount_loading = true
-            const apiUrl = `https://pharmedi.ir/api/shop/check-valid-product-discount/${this.discount_code}/`;
+            const apiUrl = `http://127.0.0.1:8000/api/shop/check-valid-product-discount/${this.discount_code}/`;
             axios.get(apiUrl, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -292,7 +323,7 @@ export default {
         },
         getData() {
             this.loading = true
-            axios.get(`https://pharmedi.ir/api/shop/list-orders/?status=processing`, {
+            axios.get(`http://127.0.0.1:8000/api/shop/list-orders/?status=processing`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -308,7 +339,7 @@ export default {
         sendToCart(product_id) {
             this.loading = false
 
-            axios.post(`https://pharmedi.ir/api/shop/add-product-to-cart/`, { product_id: product_id }, {
+            axios.post(`http://127.0.0.1:8000/api/shop/add-product-to-cart/`, { product_id: product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -330,7 +361,7 @@ export default {
         },
         RemoveFromCart(product_id) {
             this.loading = true
-            axios.post(`https://pharmedi.ir/api/shop/remove-product-from-cart/`, { product_id: product_id }, {
+            axios.post(`http://127.0.0.1:8000/api/shop/remove-product-from-cart/`, { product_id: product_id }, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
@@ -374,13 +405,16 @@ export default {
         async pay() {
             this.loading = true;
             try {
-                const response = await axios.post('https://pharmedi.ir/api/shop/payment/', {
+                const response = await axios.post('http://127.0.0.1:8000/api/shop/payment/', {
                     address: this.address,
                     city: this.city,
                     state: this.state,
                     zip_code: this.zip_code,
                     phone_number: this.phone_number,
                     discount_code: this.discount_code,
+                    phone_number_home: this.phone_number_home,
+                    first_name: this.first_name,
+                    last_name: this.last_name,
                 }, {
                     headers: {
                         'Content-type': 'application/json',

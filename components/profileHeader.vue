@@ -140,11 +140,13 @@
           <nuxt-link tag="button" to="/t/setting"
             class="text-xs my-1 btn-material btn-animation bg-treaget rounded-pill btn-animation-shadow flex items-center"
             v-if="data.username == this.$store.state.username">تنظیمات</nuxt-link>
-          <nuxt-link v-if="data.username != this.$store.state.username" :to="{
-          name: 't-Chat',
-          params: { usernameParams: data.username },
-        }" class=" text-xs d-flex align-items-center my-1 btn-material btn-animation bg-treaget rounded-pill
-              btn-animation-shadow d-flex mx-3 justify-content-between align-items-center" href>
+          <nuxt-link tag="button" to="/t/shop/cart/payed"
+            class="text-xs my-1 btn-material btn-animation bg-treaget rounded-pill btn-animation-shadow flex items-center"
+            v-if="data.username == this.$store.state.username">تاریخچه ی خرید</nuxt-link>
+          <nuxt-link v-if="data.username != this.$store.state.username"
+          :to="'/t/Chat/?usernameParams=' + data.username"
+          class=" text-xs d-flex align-items-center my-1 btn-material btn-animation bg-treaget rounded-pill
+              btn-animation-shadow d-flex mx-3 justify-content-between align-items-center" >
             <i class="fa fa-paper-plane"></i>
 
             <div class="text-sm ms-2">ارسال پیام</div>
@@ -213,14 +215,14 @@ export default {
       }
     },
     shareLink() {
-      this.copyToClipboard(`https://pharmedi.ir/${this.data.username}/`);
+      this.copyToClipboard(`http://127.0.0.1:8000/${this.data.username}/`);
       alert(` کپی شد.`);
     },
     async sendSpam() {
       this.loading = true;
       await axios
         .post(
-          `https://pharmedi.ir/api/account/Spam_create/`,
+          `http://127.0.0.1:8000/api/account/Spam_create/`,
           {
             text: this.text,
             user: this.data.id,

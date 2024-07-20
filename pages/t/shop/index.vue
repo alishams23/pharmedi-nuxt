@@ -1,6 +1,20 @@
 <template>
 
-
+<div class="mb-lg-4 pb-3" style="
+        position: fixed;
+        width: 76px;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        margin-bottom: 72px;
+      ">
+      <nuxt-link to="/t/Chat/?usernameParams=admin24"
+        class=" text-white  ">
+      <div class=" bg-treaget   h-[55px] w-[55px] flex justify-center items-center rounded-full">
+         <IconMessage class="h-6 w-6" />
+      </div>
+      </nuxt-link>
+    </div>
 
   <div>
 
@@ -20,6 +34,8 @@
 </template>
 
 <script>
+import { IconMessage } from '@tabler/icons-vue'
+
 import ProductItem from "~/components/ProductItem.vue";
 
 export default {
@@ -38,6 +54,7 @@ export default {
   },
   components: {
     ProductItem,
+    IconMessage
   },
   async mounted() {
     this.userData();
@@ -91,7 +108,7 @@ export default {
     async userData() {
       this.loading = true;
       await fetch(
-        `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
+        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -103,7 +120,7 @@ export default {
     },
     async getCategories() {
       this.loading = true;
-      await fetch(`https://pharmedi.ir/api/shop/list-categories/`, {
+      await fetch(`http://127.0.0.1:8000/api/shop/list-categories/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -122,7 +139,7 @@ export default {
     },
     async getProducts() {
       this.loading = true;
-      await fetch(`https://pharmedi.ir/api/shop/list-products/`, {
+      await fetch(`http://127.0.0.1:8000/api/shop/list-products/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

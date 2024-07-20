@@ -25,7 +25,7 @@
         <!-- upload -->
 
         <nuxt-link :to="{
-      name: 't-Chat-usernameParams',
+      name: 't-Chat',
       params: { usernameParams: 'null' }
     }" class="p-1 ms-3 rounded-full  bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] ">
           <i class="fa fa-paper-plane text-white p-2"></i>
