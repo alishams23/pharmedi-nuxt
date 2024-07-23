@@ -129,7 +129,7 @@
                         border-radius: 30px !important;
                       " class=" rtl bg-gray-200 placeholder:text-gray-500 shadow-none" />
                     <div class="d-flex align-items-center px-2">
-                      <button id="text-submit" type="submit" @click="scrollMessage()"
+                      <button id="text-submit" type="submit" @click="sendMessage();"
                         class="bg-gradient-blue d-flex align-items-center justify-content-center rounded-full shadow-2 w-10 h-10 text-white">
                         <i class="fa fa-paper-plane text-white"></i>
                       </button>
