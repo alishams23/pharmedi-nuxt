@@ -85,14 +85,14 @@
             class="form-select shadow-none border-bottom rtl py-2" />
           <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row my-2"
             v-if="category_choices == 'V'">
-            <input v-model="immediate" type="checkbox" class="col-1" id="immediate" />
+            <input v-model="immediate" type="checkbox"  id="immediate" />
             <label for="immediate" class="mt-3 text-black fs-6 col-11">
               <div class="rtl col-12 text-right">فوری</div>
             </label>
           </div>
           <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row my-2"
             v-if="category_choices == 'V'">
-            <input v-model="with_card" type="checkbox" class="col-1" id="with_card" />
+            <input v-model="with_card" type="checkbox"  id="with_card" />
             <label for="with_card" class="mt-3 text-black fs-6 col-11">
               <div class="rtl col-12 text-right">
                 فقط داروساز دارای کارت نظام
@@ -100,8 +100,10 @@
             </label>
           </div>
           <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row my-2">
-            <input v-model="is_pharmacy_name" type="checkbox" class="col-1" id="is_pharmacy_name" :true-value="false"
-              :false-value="true" />
+            <div class="w-4 flex items-center">
+              <input v-model="is_pharmacy_name" type="checkbox"   id="is_pharmacy_name" :true-value="false"
+                :false-value="true" />
+            </div>
             <label for="is_pharmacy_name" class="mt-3 text-black fs-6 col-11">
               <div class="rtl col-12 text-right">
                 ثبت شیفت بدون ذکر نام داروخانه

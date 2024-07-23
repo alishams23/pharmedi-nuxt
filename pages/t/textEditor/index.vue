@@ -23,7 +23,12 @@
     </p>
     <div class="d-flex rtl m-3 mt-5">
       <button type="submit" class="px-3 btn bg-treaget py-2 px-5 fw-bold rounded-pill">
-        افزودن
+     <div v-if="loading==false">
+      افزودن
+     </div>
+     <div class="loader" v-else>
+      
+     </div>
       </button>
     </div>
   </form>
@@ -44,6 +49,7 @@ export default {
     return {
       loading: false,
       photo: "",
+
       title: "",
       error: "",
       body: "",
@@ -112,6 +118,7 @@ export default {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+            this.loading = false;
           }
         })
         .then((response) => {

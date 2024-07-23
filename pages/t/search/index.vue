@@ -1,7 +1,7 @@
 <template>
     <div class=" mb-10">
         <div class=" flex items-center w-full mx-auto px-2 rtl"> 
-            <ShopSectionFilterSearch @fetch-data="(data)=>{products = data}" @loading="(data)=>{loading=data}" :text="text" />
+            <ShopSectionFilterSearch :page="page" @fetch-data="(data)=>{products = data.results;next=data.next;previous = data.previous}" @loading="(data)=>{loading=data}" :text="text" />
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only e">Search</label>
             <div class=" flex-grow relative     ">
@@ -32,6 +32,11 @@
             </div>
             
         </div>
+        <div class="flex justify-center items-center mt-10"  v-if="products.length  > 0" >
+      
+            <div v-if="previous != null" @click="page -= 1" class="cursor-pointer relative inline-flex items-center rounded-xl bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">صفحه قبل</div>
+            <div v-if="next != null" @click="page += 1" class="cursor-pointer relative ml-3 inline-flex items-center rounded-xl bg-white px-3 py-2 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">صفحه بعد</div>
+        </div>
         <div class="flex justify-center">
             <div id="alert-4" v-if="products.length == 0" class="rtl  flex items-center justify-start p-4 mb-4 text-yellow-800 rounded-3xl shadow-3 bg-yellow-50 " role="alert">
                 <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -48,12 +53,15 @@
    
 </template>
 <script>
-import axios from "axios";
+
 export default {
     data: () => ({
         products: [],
         loading: true,
         text: '',
+        page :1,
+        next:null,
+previous:null,
     }),
     methods: {
 

@@ -1,5 +1,5 @@
 <template>
-  <form class="px-3" @submit.prevent="sendData" enctype="multipart/form-data">
+  <form class="px-3" @submit.prevent="sendData" enctype="multipart/form-data" v-if="loading==false">
     <div class="mt-3 mb-5">
       <p class="text-right fw-bold my-3 fs-6">تغییر تیتر مقاله</p>
       <input v-model="title" required type="text" class="shadow-none rtl px-3 bg-white border" />
@@ -18,6 +18,13 @@
       </button>
     </div>
   </form>
+
+  <div class="h-[200px] flex justify-center items-center" v-else>
+
+    <div>
+      <div class="loader"></div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -80,7 +87,7 @@ export default {
       this.loading = false;
     },
     async sendData() {
-      this.sendLoading = true;
+      this.loading = true;
       this.fd = new FormData();
       this.fd.append("title", this.title);
       this.fd.append("body", this.body);

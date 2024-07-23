@@ -103,7 +103,7 @@ import axios from 'axios'
 import { ref, watch } from 'vue'
 
 export default {
-    props: ["text"],
+    props: ["text","page"],
     emits: ["fetch-data", "loading"],
     components: {
         IconFilterSearch,
@@ -155,7 +155,7 @@ export default {
             this.$emit("loading", true)
 
             axios
-                .get(`https://pharmedi.ir/api/shop/list-products/?search=${this.text}${this.selected_categories.length > 0 ? '&categories=' + this.selected_categories.join('&category=') : ''}&ordering=${this.selected_sort}&min_price=${this.price_range[0]}&max_price=${this.price_range[1]}`, {
+                .get(`https://pharmedi.ir/api/shop/list-products/?page=${this.page}&search=${this.text}${this.selected_categories.length > 0 ? '&categories=' + this.selected_categories.join('&category=') : ''}&ordering=${this.selected_sort}&min_price=${this.price_range[0]}&max_price=${this.price_range[1]}`, {
                     headers: {
                         "Content-type": "application/json",
                         Accept: "application/json",
@@ -163,7 +163,8 @@ export default {
                 })
                 .then((response) => {
 
-                    this.$emit("fetch-data", response.data.results)
+                    this.$emit("fetch-data", response.data)
+ 
                     this.$emit("loading", false)
                 });
         },
@@ -191,6 +192,12 @@ export default {
             }
         },
         'price_range': {
+            handler: function (val, oldVal) {
+                this.getData()
+            },
+            deep: true
+        },
+        'page': {
             handler: function (val, oldVal) {
                 this.getData()
             },

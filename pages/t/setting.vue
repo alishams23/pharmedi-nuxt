@@ -69,40 +69,40 @@
                 class="shadow-none rtl px-2 bg-white border-bottom" />
 
               <div class="row justify-content-start rtl">
-                <div class="col-8">
+                <div class="col-10">
 
-                  <div v-if="data.user_type != 'P'" class="col-md-6 col-sm-12 col-6 rtl">
+                  <div v-if="data.user_type != 'P'" class="col-md-6 col-12  rtl">
                     <div class="d-flex col-12 d-flex-row">
-                      <div class="text-right mt-3 fs-6 col-11">
+                      <div class="text-right mt-3 fs-6 col-12">
                         تسلط به مشاوره فرآورده های آرایشی
                       </div>
-                      <input v-model="data.attire_advice" type="checkbox" class="col-1" />
+                      <input v-model="data.attire_advice" type="checkbox"  />
                     </div>
                   </div>
-                  <div v-if="data.user_type == 'P'" class="col-md-6 col-sm-12 col-6 rtl">
+                  <div v-if="data.user_type == 'P'" class="col-md-6 col-12  rtl">
                     <div class="d-flex col-12 d-flex-row">
-                      <div class="text-right mt-3 fs-6 col-11">
+                      <div class="text-right mt-3 fs-6 col-12">
                         تجربه کار در داروخانه های شبانه روزی
                       </div>
-                      <input v-model="data.night_shift" type="checkbox" class="col-1" />
+                      <input v-model="data.night_shift" type="checkbox"  />
                     </div>
                   </div>
-                  <div v-if="data.user_type != 'P'" class="col-md-6 col-sm-12 col-6 rtl">
+                  <div v-if="data.user_type != 'P'" class="col-md-6 col-12  rtl">
                     <div class="d-flex col-12 d-flex-row">
-                      <div class="text-right mt-3 fs-6 col-11">
+                      <div class="text-right mt-3 fs-6 col-12">
                         آشنایی با نسخ الکترونیک
                       </div>
-                      <input v-model="data.electronic_prescription" type="checkbox" class="col-1" />
+                      <input v-model="data.electronic_prescription" type="checkbox"  />
                     </div>
                   </div>
 
 
-                  <div class="col-md-6 col-sm-12 col-6 rtl">
+                  <div class="col-md-6 col-12  rtl">
                     <div class="d-flex col-12 d-flex-row">
-                      <div class="text-right mt-3 fs-6 col-11">
+                      <div class="text-right mt-3 fs-6 col-12">
                         جویای کار هستم
                       </div>
-                      <input v-model="data.looking_for_job" type="checkbox" class="col-1" />
+                      <input v-model="data.looking_for_job" type="checkbox" />
                     </div>
                   </div>
 

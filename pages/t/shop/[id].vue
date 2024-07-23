@@ -86,7 +86,7 @@
                             </button>
                         </div>
 
-                        <div class=" mt-1 bg-white rounded-2xl p-3 px-4">
+                        <div class=" mt-1  rounded-2xl p-3 px-4">
                             <h3 class="sr-only">Description</h3>
 
                             <div class="space-y-6 text-xs text-gray-600  leading-7  text-right"

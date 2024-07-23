@@ -119,7 +119,7 @@
                     </div>
                   </div>
                 </div>
-                <div ref="inputSendMessage" class="inputSendMessage px-3 mb-[30px] md:mb-3" v-if="user != '' && loadingGetMessage == false"
+                <div ref="inputSendMessage" class="inputSendMessage px-3 pb-[30px] md:pb-3" v-if="user != '' && loadingGetMessage == false"
                   style="position: sticky; bottom: 0px">
                   <div class="d-flex align-items-center flex-row justify-content-between" v-show="user != ''">
                     <input placeholder="Your Message.." type="text" v-model="inputData" 
@@ -227,9 +227,7 @@
           })
       },
       async getMessage() {
-        try {
-          clearInterval(this.setInterval3);
-        } catch (error) { }
+    
         this.message = [];
         this.loadingGetMessage = true;
         await fetch(
@@ -242,20 +240,13 @@
           .then((data) => {
             this.message = data;
             this.loadingGetMessage = false;
+         
           });
-        this.scrollStatus = true;
-        this.counter = 0;
-        this.setInterval1 = setInterval(() => {
-          if (this.$route.name != "t-Chat") {
-            clearInterval(this.setInterval1);
-          }
-           this.$nextTick(() => {
-            this.scrollMessage();
-
-
-          })
-        }, 7000);
+        
+     
+        
       },
+      
       async getUserApi() {
       
        let data = await fetch(
@@ -265,8 +256,8 @@
         
         return data.json()
     },
-      getMessageRepeat() {
-        fetch(
+      async getMessageRepeat() {
+        await fetch(
           `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
@@ -274,13 +265,20 @@
         )
           .then((response) => response.json())
           .then((data) => {
+
+            let previous_id = this.message.length > 0 ? this.message.slice(-1)[0].id : 0
             this.message = data;
+            if (this.message.slice(-1)[0].id!= previous_id) {
+              this.$nextTick(() => {
+            this.scrollMessage();
+          })
+            }
           });
         this.setInterval2 = setInterval(() => {
           if (this.$route.name != "t-Chat") {
             clearInterval(this.setInterval2);
           }
-          this.scrollMessage();
+        
         }, 5000);
       },
       wait(ms) {
@@ -291,41 +289,27 @@
         }
       },
       scrollMessage() {
-        if (this.message.length != 0 && this.scrollStatus == true) {
-          if (this.counter > 1) {
-            console.log("dddddd")
+       
             var myDiv = document.getElementById("messages-list");
             myDiv.scrollTop = myDiv.scrollHeight;
             this.scrollStatus = false;
-          }
-          this.counter += 1;
-        }
+         
       },
-      getNewMessage() {
-        this.counter = 0;
-        fetch(
-          `https://pharmedi.ir/api/chat/MassageApi/?user=${this.user["username"]}`,
-          {
-            headers: this.headers,
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            data.forEach((element) => {
-              this.message.push(element);
-            });
-          });
-      },
-      userClick(info) {
+     
+      async userClick(info) {
         this.counter = 0;
         this.user = info;
-        this.getMessageRepeat();
+        await this.getMessageRepeat();
+        this.$nextTick(() => {
+            this.scrollMessage();
+          })
         this.setInterval3 = setInterval(() => {
           if (this.$route.name != "t-Chat") {
             clearInterval(this.setInterval3);
           }
           this.getMessageRepeat();
         }, 7000);
+        
       },
   
       checkClick1(person) {
@@ -335,6 +319,13 @@
         }
       },
     },
+    destroyed() {
+      clearInterval(this.setInterval1);
+      clearInterval(this.setInterval2);
+      clearInterval(this.setInterval3);
+      clearInterval(this.setInterval4);
+
+},
     async mounted() {
 
       if (this.$route.query.usernameParams != null) {

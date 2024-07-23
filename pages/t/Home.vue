@@ -244,18 +244,18 @@
               <option class="text-black" value="c">ترکیبی یا چند روزه</option>
             </select>
             <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row">
-              <label for="immediate" class="mt-3 text-black fs-6 col-11">
+              <label for="immediate" class="mt-3 text-black fs-6 col-12">
                 <div class="rtl col-12 fw-normal text-right">فقط فوری</div>
               </label>
-              <input v-model="immediate" type="checkbox" class="col-1" id="immediate" />
+              <input v-model="immediate" type="checkbox"  id="immediate" />
             </div>
             <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row">
-              <label for="with_card" class="mt-3 text-black fs-6 col-11">
+              <label for="with_card" class="mt-3 text-black fs-6 col-12">
                 <div class="rtl col-12 fw-normal text-right">
                   فقط داروساز دارای کارت نظام
                 </div>
               </label>
-              <input v-model="with_card" type="checkbox" class="col-1" id="with_card" />
+              <input v-model="with_card" type="checkbox"  id="with_card" />
             </div>
 
             <div class="d-flex">
