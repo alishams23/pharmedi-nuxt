@@ -244,8 +244,16 @@
 
                 <blockquote class="mt-4 text-lg leading-8 tracking-tight text-gray-700 text-sm  sm:leading-9">
                     <p><span class="text-2xl">”</span>{{ comment.content }}<span class="text-2xl">“</span></p>
-                    <p class="text-xs mt-2 text-gray-400 irsa">{{ comment.jalali_time }}</p>
+                  <div class="flex items-center ">
+                  
+                    <ShopSharedReplyComment :data="comment"></ShopSharedReplyComment>
+                      <p class="text-xs mt-2 text-gray-400 irsa">{{ comment.jalali_time }}</p>
+                  </div>
                 </blockquote>
+                 <div v-for="item in comment.replies">
+                   
+                    <ShopSharedShowComment :comment="item"></ShopSharedShowComment>
+                 </div>
             </figure>
             <div class="flex items-start space-x-4 mt-10">
                 <div class="min-w-0 flex-1">
