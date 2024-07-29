@@ -396,7 +396,7 @@ export default {
             if (this.loading == false && this.productsCart.length > 0 && this.productsCart[0].items.length > 0) {
                 price = 20000
                 for (let index = 0; index < this.productsCart[0].items.length; index++) {
-                    price += 10000 * this.productsCart[0].items[index].quantity
+                    price += 15000 * this.productsCart[0].items[index].quantity
                 }
             }
             return price;

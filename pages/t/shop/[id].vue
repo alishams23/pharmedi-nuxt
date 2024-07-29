@@ -25,23 +25,22 @@
         </div>
         <div v-else>
             <div v-if="product !== null">
-                <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+                <div class="lg:grid lg:grid-cols-5 lg:items-start lg:gap-x-8">
                     <!-- Image gallery -->
-                    <TabGroup as="div" class="flex flex-col-reverse">
+                    <TabGroup as="div" class="flex flex-col-reverse col-span-2">
                         <!-- Image selector -->
-                        <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+                        <div class="mt-3 mx-3">
+                            
                             <TabList class="grid grid-cols-4 gap-6">
-                                <Tab v-for="image in product.images" :key="image.id"
-                                    class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                                <Tab v-for="image in product.images" 
+                                    class="relative flex h-20 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                                     v-slot="{ selected }">
                                     <span class="sr-only">{{ image.name }}</span>
                                     <span class="absolute inset-0 overflow-hidden rounded-md">
-                                        <img :src="image.image" alt=""
+                                        <img :src="image.image"
                                             class="h-full w-full object-cover object-center" />
                                     </span>
-                                    <!-- <span
-                                        :class="[selected ? 'ring-gray-500' : 'ring-transparent', 'pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2']"
-                                        aria-hidden="true" /> -->
+                               
                                 </Tab>
                             </TabList>
                         </div>
@@ -55,7 +54,7 @@
                     </TabGroup>
 
                     <!-- Product info -->
-                    <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+                    <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 col-span-3">
 
                         <h1 class=" irsa text-2xl font-bold  text-black leading-10 text-right">{{ product.name }}
                         </h1>
@@ -63,7 +62,7 @@
                         <div class="mt-5">
                             <h2 class="sr-only text-[#CCA47C]">Product information</h2>
                             <p class="text-3xl tracking-tight  text-right flex align-items-end justify-end">
-                            <div class="text-base  text-gray-500 text-right">تومان</div>
+                            <div class="text-xs mb-1  text-gray-400 px-2 text-right">تومان</div>
                             <div>
                                 {{ product.price -
                                     (product.price *
@@ -71,7 +70,7 @@
                             </div>
                             </p>
                             <p dir="rtl" class="text-xs text-gray-500">
-                                قیمت با اعمال <span class="text-red-800  text-sm font-black">{{ product.discount }}
+                                قیمت با اعمال <span class="text-red-600  text-sm font-black">{{ product.discount }}
                                     %</span>
                                 تخفیف
                             </p>
@@ -94,14 +93,16 @@
                         </div>
 
                         <form @submit.prevent="console.log('afarin')" class="mt-6">
-                            <div class=" mt-10 flex justify-center">
+                            <div class=" mt-10 flex justify-[center]  md:justify-end">
                                 <button v-if="product.warehouse_stock == 0" type="submit"
-                                    class="  rounded-2xl border border-transparent bg-yellow-400 cursor-not-allowed px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">محصول
+                                    class=" px-4 rounded-full border border-transparent bg-yellow-400 cursor-not-allowed  py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">محصول
                                     موجود نمیباشد</button>
                                 <button v-else type="submit"
                                     @click="product_id = product.id; sendToCart(); isSuccessOpen = true"
-                                    class="  rounded-2xl border border-transparent cursor-pointer bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] px-2 py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 w-full md:w-sm">افزودن
-                                    به سبد خرید</button>
+                                    class="sm:w-full md:w-auto justify-center flex px-4 rounded-full border border-transparent cursor-pointer bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2]  py-[10px] text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">افزودن
+                                    به سبد خرید
+                                <IconShoppingCartUp class="h-5 ml-3"/>
+                                </button>
                             </div>
                            
                             <TransitionRoot appear :show="isSuccessOpen" as="template" class=" ">
@@ -308,7 +309,7 @@ import {
     TabPanels,
 } from '@headlessui/vue'
 
-import { IconPlus, IconMinus,IconMessage } from '@tabler/icons-vue'
+import { IconPlus, IconMinus,IconMessage,IconShoppingCartUp } from '@tabler/icons-vue'
 
 export default {
     components: {
@@ -324,7 +325,8 @@ export default {
         TabPanel,
         TabPanels,
         IconPlus,
-        IconMinus
+        IconMinus,
+        IconShoppingCartUp
     },
     data: () => ({
         product: null,
