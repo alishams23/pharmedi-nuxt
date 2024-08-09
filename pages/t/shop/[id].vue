@@ -56,7 +56,7 @@
                     <!-- Product info -->
                     <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 col-span-3">
 
-                        <h1 class=" irsa text-2xl font-bold  text-black leading-10 text-right">{{ product.name }}
+                        <h1 class=" irsa text-2xl font-bold rtl  text-black leading-10 text-right">{{ product.name }}
                         </h1>
 
                         <div class="mt-5">
