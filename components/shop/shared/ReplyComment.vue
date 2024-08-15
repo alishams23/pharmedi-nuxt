@@ -83,7 +83,7 @@ export default {
             this.fd.append("content", this.content);
             this.loading = true
             await axios.post(
-                `https://pharmedi.ir/api/shop/${this.data.id}/reply-comment/`,
+                `http://127.0.0.1:8000/api/shop/${this.data.id}/reply-comment/`,
                 this.fd,
                 {
                     headers: {

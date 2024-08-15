@@ -303,7 +303,7 @@ export default {
       this.checkLogin();
 
       this.loading = true;
-      fetch(`https://pharmedi.ir/api/shift/Accept_shift/${this.data.id}/`, {
+      fetch(`http://127.0.0.1:8000/api/shift/Accept_shift/${this.data.id}/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -323,7 +323,7 @@ export default {
     finishRequest(id) {
       this.checkLogin();
       fetch(
-        `https://pharmedi.ir/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
+        `http://127.0.0.1:8000/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
         {
           headers: {
             "Content-type": "application/json",

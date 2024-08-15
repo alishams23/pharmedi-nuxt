@@ -190,7 +190,7 @@
       async ListUserMessageApi() {
         var result;
         await axios
-          .get("https://pharmedi.ir/api/chat/ListUserMessageApi/", {
+          .get("http://127.0.0.1:8000/api/chat/ListUserMessageApi/", {
             headers: {
               "Content-type": "application/json",
               Accept: "application/json",
@@ -207,7 +207,7 @@
           });
       },
       async sendMessage() {
-        await fetch("https://pharmedi.ir/api/chat/MassageApi/", {
+        await fetch("http://127.0.0.1:8000/api/chat/MassageApi/", {
           method: "put",
           credentials: "same-origin",
           headers: this.headers,
@@ -231,7 +231,7 @@
         this.message = [];
         this.loadingGetMessage = true;
         await fetch(
-          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }
@@ -250,7 +250,7 @@
       async getUserApi() {
       
        let data = await fetch(
-        `https://pharmedi.ir/api/account/user_retrieve/${this.$route.query.usernameParams}/`,
+        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$route.query.usernameParams}/`,
         { headers: this.headers }
       )
         
@@ -258,7 +258,7 @@
     },
       async getMessageRepeat() {
         await fetch(
-          `https://pharmedi.ir/api/chat/AllMassageApi/?user=${this.user["username"]}`,
+          `http://127.0.0.1:8000/api/chat/AllMassageApi/?user=${this.user["username"]}`,
           {
             headers: this.headers,
           }

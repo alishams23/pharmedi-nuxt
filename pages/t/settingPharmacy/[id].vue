@@ -63,7 +63,7 @@ export default {
     async getData() {
       this.loading = true;
       await fetch(
-        `https://pharmedi.ir/api/account/User_settings/${this.$store.state.username}/`,
+        `http://127.0.0.1:8000/api/account/User_settings/${this.$store.state.username}/`,
         {
           method: "put",
           credentials: "same-origin",
@@ -92,7 +92,7 @@ export default {
       if (this.image != null) this.fd.append("image", this.image);
 
       await axios
-        .put(`https://pharmedi.ir/api/account/User_settings/`, this.fd, {
+        .put(`http://127.0.0.1:8000/api/account/User_settings/`, this.fd, {
           headers: {
             "Content-type": "application/json",
             Accept: "application/json",

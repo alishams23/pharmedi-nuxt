@@ -42,7 +42,7 @@ export default {
     getInfo() {
       try {
         fetch(
-          `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`,
+          `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`,
           {
             headers: {
               "Content-type": "application/json",

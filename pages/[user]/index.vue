@@ -60,7 +60,7 @@ export default {
             Accept: "application/json",
           };
       fetch(
-        `https://pharmedi.ir/api/account/user_retrieve/${this.$route.params.user}/`,
+        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$route.params.user}/`,
         { headers: headers }
       )
         .then((response) => response.json())
