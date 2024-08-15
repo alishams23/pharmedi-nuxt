@@ -80,7 +80,7 @@ export default {
       }
     },
     shareLink() {
-      this.copyToClipboard(`http://127.0.0.1:8000/${this.data.username}/`);
+      this.copyToClipboard(`https://pharmedi.ir/${this.data.username}/`);
       alert(" کپی شد.");
     },
   },

@@ -58,7 +58,7 @@ export default {
     getData() {
       this.loading = true;
       fetch(
-        `http://127.0.0.1:8000/api/followersList/?username=${this.$route.params.user}`,
+        `https://pharmedi.ir/api/followersList/?username=${this.$route.params.user}`,
         {
           headers: {
             "Content-type": "application/json",
@@ -81,7 +81,7 @@ export default {
       this.data[index].is_followed = "loading";
       try {
         await fetch(
-          `http://127.0.0.1:8000/api/FollowUnfollowApi/${user.username}`,
+          `https://pharmedi.ir/api/FollowUnfollowApi/${user.username}`,
           {
             headers: {
               "Content-type": "application/json",

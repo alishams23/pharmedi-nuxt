@@ -18,7 +18,7 @@ export default {
     getData() {
       this.loading = true;
       fetch(
-        `http://127.0.0.1:8000/api/shift/Shift_request_Pharmacy/${this.idUser}/`,
+        `https://pharmedi.ir/api/shift/Shift_request_Pharmacy/${this.idUser}/`,
         {
           headers: {
             "Content-type": "application/json",

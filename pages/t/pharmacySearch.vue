@@ -120,7 +120,7 @@ export default {
       this.showEmpty = true;
       this.loadingSearch = true;
       await fetch(
-        `http://127.0.0.1:8000/api/account/Search_Pharmacy/?search=${this.name == null ? "" : this.name
+        `https://pharmedi.ir/api/account/Search_Pharmacy/?search=${this.name == null ? "" : this.name
         } ${this.city_name == null ? "" : this.city_name}`,
         {
           headers: {
@@ -141,7 +141,7 @@ export default {
     },
     getDataCity() {
       this.loading = true;
-      fetch("http://127.0.0.1:8000/api/account/City_list/", {
+      fetch("https://pharmedi.ir/api/account/City_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -158,7 +158,7 @@ export default {
         });
     },
     getData() {
-      fetch("http://127.0.0.1:8000/api/shift/History_pharmacy/", {
+      fetch("https://pharmedi.ir/api/shift/History_pharmacy/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
