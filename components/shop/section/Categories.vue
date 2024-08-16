@@ -2,21 +2,49 @@
     <div>
         <div class="flex justify-center  flex-wrap ">
             <!-- Category 1 -->
-     
-            <nuxt-link :to="'/t/search/?category='+item.id" v-for="item in categories" class="flex flex-col mx-2  items-center cursor-pointer">
-                <div class="border-blue-700 border-2 rounded-full">
-                    <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center border-white border-4">
+            <div>
+              
+            </div>
+            <div v-for="category in categories" class="flex flex-col text-center mx-2  items-center cursor-pointer">
+              
+            </div>
+
+            <swiper :modules="modules" :pagination="{
+        clickable: true,
+
+    }" :slides-per-view="'auto'" :space-between="5" :loop="false"
+            class=" flex justify-center">
+           
+            <swiper-slide  v-for="category in categories" class="mb-9 w-auto text-center">
+                <nuxt-link :to="'/t/search/?category='+category.id" v-for="item in category">
+                <div class="pt-3 px-4  rounded-[20px]">
+                    <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">
                         <!-- Insert discount SVG icon here -->
-                        <img class=" w-full h-full rounded-full object-cover" :src="item.image" alt="">
+                        <img class=" w-full h-full rounded-[25px] object-cover" :src="item.image" alt="">
                     </div>
                 </div>
-                <span class="text-xs mt-2">{{ item.name }}</span>
-            </nuxt-link>
+                <span class="text-xs  mt-2">{{ item.name }}</span>
+               </nuxt-link>
+            </swiper-slide>
+            ...
+        </swiper>
         </div>
     </div>
 </template>
 <script>
+
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
 export default {
+    components: {
+        Swiper,
+        SwiperSlide,
+
+
+    },
     props: ['src', 'title'],
     data() {
         return {
@@ -42,8 +70,21 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          this.categories = data;
           this.loading = false;
+          let index = 0;
+          
+          while (data.length > index) {
+            console.log("1111");
+            
+            this.categories.push(data.slice(index, index + 3)) ;
+            index +=3
+          }
+   
+            
+     
+
+            
+          
         });
     },},
     mounted(){

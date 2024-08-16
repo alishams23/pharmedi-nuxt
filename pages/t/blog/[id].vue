@@ -195,7 +195,7 @@ export default {
       return this.$store.state.isAuthenticated;
     },
     shareLink() {
-      const link = `https://pharmedi.ir/t/blog/${this.data.id}/`;
+      const link = `https://pharmedi.ir/api/blog/blog-preview/${this.data.id}/`;
       this.copyToClipboard(link);
       alert(`کپی شد.`);
     },
