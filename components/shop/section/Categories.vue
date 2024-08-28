@@ -16,7 +16,7 @@
             class=" flex justify-center">
            
             <swiper-slide  v-for="category in categories" class="mb-9 w-auto text-center">
-                <nuxt-link :to="'/t/search/?category='+category.id" v-for="item in category">
+                <nuxt-link :to="'/t/search/?category='+item.id" v-for="item in category">
                 <div class="pt-3 px-4  rounded-[20px]">
                     <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">
                         <!-- Insert discount SVG icon here -->

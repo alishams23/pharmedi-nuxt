@@ -24,8 +24,28 @@
 
                         <!-- Filters -->
 
-                        <div class="space-y-10 py-10 divide-y px-10 divide-gray-200">
-                            <div class="flex flex-wrap justify-end ">
+                        <div class="space-y-10 py-10 pt-4 divide-y px-10 divide-gray-200">
+                            <div class=" relative text-right mx-auto text-gray-600">
+                                <label class=" flex justify-start font-bold rtl" for="">دسته بندی ها</label>
+                                <div class="flex items-center">
+                                    <input @input="getCategories()" v-model="text_search_categories"
+                                        id="search_category"
+                                        class="border-2 border-gray-300 bg-white w-full mt-2 h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
+                                        type="search" name="search" placeholder="جستجو دسته بندی">
+
+                                </div>
+                                <div class="flex flex-wrap mt-3 align-center">
+                                    <div v-if="categories != null">
+                                        <button v-for="item in categories" :key="item"
+                                            @click=" selected_categories = [];selected_categories.push(item.id); getData()"
+                                            :class="[selected_categories.includes(item.id) ? 'bg-blue-600 text-white' : 'bg-gray-200', 'px-3 text-xs py-2 rounded-xl m-1 border']">
+                                            {{ item.name }}
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex pt-3 flex-wrap justify-end ">
                                 <button v-for="item in product_sort" :key="item"
                                     @click="selected_sort = item.value; getData()"
                                     :class="[selected_sort == item.value ? 'bg-blue-600 text-white' : 'bg-gray-200', 'px-3 text-xs py-2 rounded-xl m-1 border']">
@@ -51,26 +71,7 @@
                                 </div>
                             </div>
 
-                            <div class="pt-3 relative text-right mx-auto text-gray-600">
-                                <label class=" flex justify-start font-bold rtl" for="">دسته بندی ها</label>
-                                <div class="flex items-center">
-                                    <input @input="getCategories()" v-model="text_search_categories"
-                                        id="search_category"
-                                        class="border-2 border-gray-300 bg-white w-full mt-2 h-10 px-5 pr-16 rounded-full text-sm focus:outline-none"
-                                        type="search" name="search" placeholder="جستجو دسته بندی">
-
-                                </div>
-                                <div class="flex flex-wrap mt-3 align-center">
-                                    <div v-if="categories != null">
-                                        <button v-for="item in categories" :key="item"
-                                            @click=" selected_categories = [];selected_categories.push(item.id); getData()"
-                                            :class="[selected_categories.includes(item.id) ? 'bg-blue-600 text-white' : 'bg-gray-200', 'px-3 text-xs py-2 rounded-xl m-1 border']">
-                                            {{ item.name }}
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
+                          
                         </div>
                     </DialogPanel>
                 </TransitionChild>
