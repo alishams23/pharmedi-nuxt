@@ -9,11 +9,11 @@
         }" :pagination="{
           clickable: true,
         }" 
-                    class=" h-[270px] md:mx-1 px-0 md:h-[380px] ">
+                    class=" h-[270px] md:mx-1 px-0 md:h-[380px] m-2 md:m-0">
                     <swiper-slide v-for="item in data1" class="" >
                        <a :href="item.link">
                          <img :src="item.photo"
-                             class="   h-full object-cover md:rounded-3xl w-full">
+                             class="   h-full object-cover  rounded-3xl w-full">
                        </a>
                     </swiper-slide>
                 </swiper>
