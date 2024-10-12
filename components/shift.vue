@@ -19,6 +19,7 @@
           </div>
         </div>
 
+       <div>
         <nuxt-link v-if="data.is_pharmacy_name == true && data.pharmacy != null" :to="'/t/pharmacy/' + data.pharmacy.id"
           class="d-flex justify-content-end">
           <div class="text-sm rounded-13 px-4 mb-3 text-treaget fw-bold">
@@ -28,6 +29,30 @@
             </span>
           </div>
         </nuxt-link>
+        <div class="drop -color-lighter drop--down">
+              <button>
+                <a href="#"
+                  class="ms-3 h-10 w-10 rounded-18 shadow-2 bg-white d-flex justify-content-center align-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                    <path
+                      d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                  </svg>
+                </a>
+              </button>
+              <div class="drop__content -transition-slide-in" style="z-index: 9999">
+                <div class="drop-list -size-large -position-right -border-rounded">
+                  <button class="drop-list__btn py-2">
+                    <div @click="shareLink()" class="d-flex mx-3 justify-content-between align-items-center">
+                      <i class="fa fa-share"></i>
+                      <div class="text-sm">اشتراک گذاری</div>
+                    </div>
+                  </button>
+                 
+                </div>
+              </div>
+            </div>
+       </div>
       </div>
       <div class="d-flex">
         <div v-if="data.is_expire" class="text-sm px-5 border fs-7 px-2 rounded-13 text-danger mb-2 py-1 text-center">
@@ -303,7 +328,7 @@ export default {
       this.checkLogin();
 
       this.loading = true;
-      fetch(`https://pharmedi.ir/api/shift/Accept_shift/${this.data.id}/`, {
+      fetch(`http://127.0.0.1:8000/api/shift/Accept_shift/${this.data.id}/`, {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -323,7 +348,7 @@ export default {
     finishRequest(id) {
       this.checkLogin();
       fetch(
-        `https://pharmedi.ir/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
+        `http://127.0.0.1:8000/api/shift/Finish_request_shift/${this.data.id}/${id}/`,
         {
           headers: {
             "Content-type": "application/json",
@@ -340,6 +365,29 @@ export default {
         }
         location.reload();
       });
+    },
+    shareLink() {
+      const link = `http://127.0.0.1:8000/api/shift/shift-preview/${this.data.id}/`;
+      this.copyToClipboard(link);
+      alert(`کپی شد.`);
+    },
+    copyToClipboard(textToCopy) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(textToCopy);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        return new Promise((res, rej) => {
+          document.execCommand("copy") ? res() : rej();
+          textArea.remove();
+        });
+      }
     },
     reload() {
       window.location.reload();

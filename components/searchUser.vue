@@ -26,7 +26,7 @@ export default {
     getData() {
       this.loading = true;
       fetch(
-        `https://pharmedi.ir/api/account/search_user/?search=${this.text}`,
+        `http://127.0.0.1:8000/api/account/search_user/?search=${this.text}`,
         {
           headers: {
             "Content-type": "application/json",

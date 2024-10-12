@@ -243,19 +243,19 @@
               <option class="text-black" value="u">فوریتی</option>
               <option class="text-black" value="c">ترکیبی یا چند روزه</option>
             </select>
-            <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row">
-              <label for="immediate" class="mt-3 text-black fs-6 col-12">
-                <div class="rtl col-12 fw-normal text-right">فقط فوری</div>
+            <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center ">
+              <label for="immediate" class="mt-3 text-black fs-6 col-10">
+                <div class="rtl  fw-normal text-right col-12">فقط فوری</div>
               </label>
-              <input v-model="immediate" type="checkbox"  id="immediate" />
+              <input v-model="immediate" type="checkbox" class="col-1"  id="immediate" />
             </div>
-            <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center d-flex-row">
-              <label for="with_card" class="mt-3 text-black fs-6 col-12">
-                <div class="rtl col-12 fw-normal text-right">
+            <div class="d-flex bg-white rounded-13 px-3 justify-content-between align-items-center ">
+              <label for="with_card" class="mt-3 text-black fs-6 col-10">
+                <div class="rtl  fw-normal text-right col-12">
                   فقط داروساز دارای کارت نظام
                 </div>
               </label>
-              <input v-model="with_card" type="checkbox"  id="with_card" />
+              <input v-model="with_card" type="checkbox" class="col-1"  id="with_card" />
             </div>
 
             <div class="d-flex">
@@ -477,7 +477,7 @@ export default {
     async userData() {
       this.loading = true;
       await fetch(
-        `https://pharmedi.ir/api/account/user_retrieve/${this.$store.state.username}/`
+        `http://127.0.0.1:8000/api/account/user_retrieve/${this.$store.state.username}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -492,7 +492,7 @@ export default {
       }
 
       await fetch(
-        `https://pharmedi.ir/api/shift/post/?search=${this.text == null ? "" : this.text
+        `http://127.0.0.1:8000/api/shift/post/?search=${this.text == null ? "" : this.text
         } ${this.city_text == null ? "" : this.city_text
         }&min_price=&max_price=&pharmacy__city=${this.city_selected == null ? "" : this.city_selected
         }&shift_type=${this.shift_selected}&day=${this.dayApi == null ? "" : this.dayApi
@@ -521,7 +521,7 @@ export default {
     async getJobSeekers() {
       this.loading = true;
 
-      await fetch("https://pharmedi.ir/api/account/job_seeker_list/", {
+      await fetch("http://127.0.0.1:8000/api/account/job_seeker_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -541,7 +541,7 @@ export default {
     async getJobs() {
       this.loading = true;
 
-      await fetch("https://pharmedi.ir/api/job/list-jobs/", {
+      await fetch("http://127.0.0.1:8000/api/job/list-jobs/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -559,7 +559,7 @@ export default {
       this.loading = false;
     },
     getUserSuggestion() {
-      fetch("https://pharmedi.ir/api/account/User_suggestion/", {
+      fetch("http://127.0.0.1:8000/api/account/User_suggestion/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -575,7 +575,7 @@ export default {
         });
     },
     getHeader() {
-      fetch("https://pharmedi.ir/api/shift/Header_list/", {
+      fetch("http://127.0.0.1:8000/api/shift/Header_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -592,7 +592,7 @@ export default {
     },
     getUserPro() {
       this.loadingFollowing = true;
-      fetch("https://pharmedi.ir/api/account/User_pro_list/", {
+      fetch("http://127.0.0.1:8000/api/account/User_pro_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -617,7 +617,7 @@ export default {
       }
     },
     getDataCity() {
-      fetch("https://pharmedi.ir/api/account/City_list/", {
+      fetch("http://127.0.0.1:8000/api/account/City_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

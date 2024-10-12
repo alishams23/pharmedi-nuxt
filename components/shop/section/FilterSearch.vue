@@ -156,7 +156,7 @@ export default {
             this.$emit("loading", true)
 
             axios
-                .get(`https://pharmedi.ir/api/shop/list-products/?page=${this.page}&search=${this.text}${this.selected_categories.length > 0 ? '&categories=' + this.selected_categories.join('&category=') : ''}&ordering=${this.selected_sort}&min_price=${this.price_range[0]}&max_price=${this.price_range[1]}`, {
+                .get(`http://127.0.0.1:8000/api/shop/list-products/?page=${this.page}&search=${this.text}${this.selected_categories.length > 0 ? '&categories=' + this.selected_categories.join('&category=') : ''}&ordering=${this.selected_sort}&min_price=${this.price_range[0]}&max_price=${this.price_range[1]}`, {
                     headers: {
                         "Content-type": "application/json",
                         Accept: "application/json",
@@ -171,7 +171,7 @@ export default {
         },
         getCategories() {
             this.loading = true
-            axios.get(`https://pharmedi.ir/api/shop/list-categories/?search=${this.text_search_categories}&is_main_page=${this.text_search_categories == null ? true : ''}`, {
+            axios.get(`http://127.0.0.1:8000/api/shop/list-categories/?search=${this.text_search_categories}&is_main_page=${this.text_search_categories == null ? true : ''}`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",

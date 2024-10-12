@@ -176,7 +176,7 @@ export default {
   },
   methods: {
     getCity() {
-      fetch("https://pharmedi.ir/api/account/City_list/", {
+      fetch("http://127.0.0.1:8000/api/account/City_list/", {
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -195,7 +195,7 @@ export default {
     async getData() {
       this.loading = true;
       await fetch(
-        `https://pharmedi.ir/api/account/User_settings/${this.$store.state.username}/`,
+        `http://127.0.0.1:8000/api/account/User_settings/${this.$store.state.username}/`,
         {
           method: "put",
           credentials: "same-origin",
@@ -239,7 +239,7 @@ export default {
 
       await axios
         .put(
-          `https://pharmedi.ir/api/account/User_settings/${this.$store.state.username}/`,
+          `http://127.0.0.1:8000/api/account/User_settings/${this.$store.state.username}/`,
           this.fd,
           {
             headers: {
