@@ -117,7 +117,7 @@
 export default {
     async asyncData({ route }) {
         const job = await fetch(
-            `http://127.0.0.1:8000/api/job/job-retrieve/${route.query.job}/`
+            `https://pharmedi.ir/api/job/job-retrieve/${route.query.job}/`
         ).then((response) => response.json());
 
         return {

@@ -144,7 +144,7 @@ export default {
       this.loading = true
       axios
         .put(
-          `http://127.0.0.1:8000/api/shop/update-address-order/${this.id}/`,
+          `https://pharmedi.ir/api/shop/update-address-order/${this.id}/`,
 
           {
             "first_name": this.first_name,

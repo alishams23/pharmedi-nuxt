@@ -224,7 +224,7 @@ export default {
       this.loading = true;
       await axios
         .post(
-          "http://127.0.0.1:8000/api/shift/create_request_shift/",
+          "https://pharmedi.ir/api/shift/create_request_shift/",
           {
             day: this.day,
             category_choices: this.category_choices,

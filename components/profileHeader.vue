@@ -215,14 +215,14 @@ export default {
       }
     },
     shareLink() {
-      this.copyToClipboard(`http://127.0.0.1:8000/${this.data.username}/`);
+      this.copyToClipboard(`https://pharmedi.ir/${this.data.username}/`);
       alert(` کپی شد.`);
     },
     async sendSpam() {
       this.loading = true;
       await axios
         .post(
-          `http://127.0.0.1:8000/api/account/Spam_create/`,
+          `https://pharmedi.ir/api/account/Spam_create/`,
           {
             text: this.text,
             user: this.data.id,

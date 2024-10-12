@@ -19,7 +19,7 @@ export default {
     getData() {
       this.loading = true;
       fetch(
-        `http://127.0.0.1:8000/api/account/Pharmacy_list_user/${this.username}`,
+        `https://pharmedi.ir/api/account/Pharmacy_list_user/${this.username}`,
         {
           headers: {
             "Content-type": "application/json",

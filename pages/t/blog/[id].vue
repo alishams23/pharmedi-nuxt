@@ -130,7 +130,7 @@ export default {
       { hid: 'og:type', property: 'og:type', content: "article" },
       { hid: 'og:description', property: 'og:description', content: this.data.body.substring(0, 150) },
       { hid: 'og:image', property: 'og:image', content: this.data.imageBlog ? this.data.imageBlog.photo : 'default-image-url' },
-      { hid: 'og:url', property: 'og:url', content: `http://127.0.0.1:8000/t/blog/${this.data.id}` },
+      { hid: 'og:url', property: 'og:url', content: `https://pharmedi.ir/t/blog/${this.data.id}` },
     ],
   };
 },
@@ -142,7 +142,7 @@ export default {
     async asyncData() {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/blog/blog_retrieve/${this.$route.params.id}/`,
+        `https://pharmedi.ir/api/blog/blog_retrieve/${this.$route.params.id}/`,
         {
           headers: {
             "Content-type": "application/json",
@@ -161,7 +161,7 @@ export default {
     async like(id) {
       try {
         await axios.post(
-          `http://127.0.0.1:8000/api/blog/AddLikeView/?id=${id}`,
+          `https://pharmedi.ir/api/blog/AddLikeView/?id=${id}`,
           {},
           {
             headers: {
@@ -179,7 +179,7 @@ export default {
     },
     async deletePicture(id) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/blog/BlogRemove/${id}/`, {
+        await axios.delete(`https://pharmedi.ir/api/blog/BlogRemove/${id}/`, {
           headers: {
             "Content-type": "application/json",
             Accept: "application/json",
@@ -195,7 +195,7 @@ export default {
       return this.$store.state.isAuthenticated;
     },
     shareLink() {
-      const link = `http://127.0.0.1:8000/api/blog/blog-preview/${this.data.id}/`;
+      const link = `https://pharmedi.ir/api/blog/blog-preview/${this.data.id}/`;
       this.copyToClipboard(link);
       alert(`کپی شد.`);
     },

@@ -56,7 +56,7 @@ export default {
         getData(){
             this.loading = true;
       fetch(
-        `http://127.0.0.1:8000/api/shop/list-categories/?is_main_page=true`,
+        `https://pharmedi.ir/api/shop/list-categories/?is_main_page=true`,
         {
           headers: {
             "Content-type": "application/json",

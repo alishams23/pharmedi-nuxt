@@ -27,7 +27,7 @@ export default{
     methods:{
         async getData(){
             this.loading = true;
-            await fetch(`http://127.0.0.1:8000/api/shift/shift-retrieve/${this.$route.params.id}/`, {
+            await fetch(`https://pharmedi.ir/api/shift/shift-retrieve/${this.$route.params.id}/`, {
                 headers: {
                     "Content-type": "application/json",
                     Accept: "application/json",
