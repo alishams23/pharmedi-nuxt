@@ -19,40 +19,65 @@
           </div>
         </div>
 
-       <div>
-        <nuxt-link v-if="data.is_pharmacy_name == true && data.pharmacy != null" :to="'/t/pharmacy/' + data.pharmacy.id"
-          class="d-flex justify-content-end">
-          <div class="text-sm rounded-13 px-4 mb-3 text-treaget fw-bold">
-            <span class="ml-1">داروخانه </span>
-            <span>
-              {{ data.pharmacy.name }}
-            </span>
-          </div>
-        </nuxt-link>
-        <div class="drop -color-lighter drop--down">
-              <button>
-                <a href="#"
-                  class="ms-3 h-10 w-10 rounded-18 shadow-2 bg-white d-flex justify-content-center align-items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                    <path
-                      d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                  </svg>
-                </a>
-              </button>
-              <div class="drop__content -transition-slide-in" style="z-index: 9999">
-                <div class="drop-list -size-large -position-right -border-rounded">
-                  <button class="drop-list__btn py-2">
-                    <div @click="shareLink()" class="d-flex mx-3 justify-content-between align-items-center">
-                      <i class="fa fa-share"></i>
-                      <div class="text-sm">اشتراک گذاری</div>
-                    </div>
-                  </button>
-                 
+        <div>
+          <nuxt-link v-if="data.is_pharmacy_name == true && data.pharmacy != null"
+            :to="'/t/pharmacy/' + data.pharmacy.id" class="d-flex justify-content-end">
+            <div class="text-sm rounded-13 px-4 mb-3 text-treaget fw-bold">
+              <span class="ml-1">داروخانه </span>
+              <span>
+                {{ data.pharmacy.name }}
+              </span>
+            </div>
+          </nuxt-link>
+
+          <Menu as="div" class="relative inline-block text-right">
+            <div>
+              <MenuButton class="flex items-center rounded-full bg-white shadow-2 p-2 text-gray-600 ">
+                <span class="sr-only">Open options</span>
+                <EllipsisVerticalIcon class="h-5 w-5" aria-hidden="true" />
+              </MenuButton>
+            </div>
+
+            <transition enter-active-class="transition ease-out duration-100"
+              enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+              leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
+              leave-to-class="transform opacity-0 scale-95">
+              <MenuItems
+                class="absolute left-0 z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div class="py-1">
+                  <MenuItem>
+                  <a @click="shareLink()" class="text-gray-700  block px-4 py-2 text-sm">اشتراک گذاری</a>
+                  </MenuItem>
+
                 </div>
+              </MenuItems>
+            </transition>
+          </Menu>
+
+          <!-- <div class="drop -color-lighter drop--down">
+            <button>
+              <a href="#"
+                class="ms-3 h-10 w-10 rounded-18 shadow-2 bg-white d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                  class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                  <path
+                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                </svg>
+              </a>
+            </button>
+            <div class="drop__content -transition-slide-in" style="z-index: 9999">
+              <div class="drop-list -size-large -position-right -border-rounded">
+                <button class="drop-list__btn py-2">
+                  <div @click="shareLink()" class="d-flex mx-3 justify-content-between align-items-center">
+                    <i class="fa fa-share"></i>
+                    <div class="text-sm">اشتراک گذاری</div>
+                  </div>
+                </button>
+
               </div>
             </div>
-       </div>
+          </div> -->
+        </div>
       </div>
       <div class="d-flex">
         <div v-if="data.is_expire" class="text-sm px-5 border fs-7 px-2 rounded-13 text-danger mb-2 py-1 text-center">
@@ -65,20 +90,20 @@
             class="text-sm col-11 d-flex align-self-stretch align-items-center justify-content-center flex-wrap border fs-7 px-2 rounded-13 hover:bg-gray-100 mb-2 py-1 text-center">
             <span class="px-2 fw-bold">نوع مسئولیت:</span>
             {{
-            data.category_choices == "H"
-              ? "مؤسس داروخانه"
-              : data.user_type == "N"
-                ? "کاربر عادی"
-                : data.category_choices == "S"
-                  ? "کارآموز"
-                  : data.category_choices == "P"
-                    ? "مسئول فنی داروساز"
-                    : data.category_choices == "V"
-                      ? "قائم مقام داروساز"
-                      : data.category_choices == "T"
-                        ? "تکنسین"
-                        : ""
-          }}
+              data.category_choices == "H"
+                ? "مؤسس داروخانه"
+                : data.user_type == "N"
+                  ? "کاربر عادی"
+                  : data.category_choices == "S"
+                    ? "کارآموز"
+                    : data.category_choices == "P"
+                      ? "مسئول فنی داروساز"
+                      : data.category_choices == "V"
+                        ? "قائم مقام داروساز"
+                        : data.category_choices == "T"
+                          ? "تکنسین"
+                          : ""
+            }}
           </div>
         </div>
         <div v-if="data.jalali_time" class="col-6 d-flex align-items-center justify-content-center">
@@ -107,14 +132,14 @@
             class="text-sm col-11 d-flex align-self-stretch align-items-center justify-content-center flex-wrap border fs-7 px-2 rounded-13 hover:bg-gray-100 mb-2 py-1 text-center">
             <span class="px-2 fw-bold"> پرداختی :</span>
             {{
-            data.price_choices == "n"
-              ? price(data.payment)
-              : data.price_choices == "a"
-                ? "توافقی"
-                : data.price_choices == "s"
-                  ? "طبق تعرفه"
-                  : ""
-          }}
+              data.price_choices == "n"
+                ? price(data.payment)
+                : data.price_choices == "a"
+                  ? "توافقی"
+                  : data.price_choices == "s"
+                    ? "طبق تعرفه"
+                    : ""
+            }}
           </div>
         </div>
 
@@ -135,12 +160,13 @@
       </div>
     </div>
     <div class="d-flex  align-items-center flex-wrap flex-row-reverse mt-2">
-      <div v-if="data.with_card" class=" px-3 bg-green-50 text-green-800 text-xs  rounded-full mb-2 py-2 text-center flex items-center"
-       >
+      <div v-if="data.with_card"
+        class=" px-3 bg-green-50 text-green-800 text-xs  rounded-full mb-2 py-2 text-center flex items-center">
         فقط داروساز دارای کارت نظام
         <ExclamationTriangleIcon class=" w-5 h-5 ml-3 text-green-800" />
       </div>
-      <div v-if="data.immediate" class=" px-3 mr-3 bg-red-50 text-danger text-xs  rounded-full text-danger mb-2 py-2 text-center flex items-center">
+      <div v-if="data.immediate"
+        class=" px-3 mr-3 bg-red-50 text-danger text-xs  rounded-full text-danger mb-2 py-2 text-center flex items-center">
         فوری
         <ExclamationTriangleIcon class=" w-5 h-5  ml-3 text-danger" />
       </div>
@@ -164,14 +190,13 @@
           <div class="drop-list -size-large -position-left -border-rounded">
             <button class="drop-list__btn py-2">
               <a :href="`sms:+98${data.number != null ? data.number : data.author.phone_number
-            }`" class="d-flex mx-3 justify-content-between align-items-center">
+                }`" class="d-flex mx-3 justify-content-between align-items-center">
                 <i class="fa fa-sms" />
                 <div class="text-sm">ارسال پیامک</div>
               </a>
             </button>
             <button class="drop-list__btn py-2">
-              <nuxt-link 
-              :to="'/t/Chat/?usernameParams=' + data.author.username"
+              <nuxt-link :to="'/t/Chat/?usernameParams=' + data.author.username"
                 class="d-flex mx-3 justify-content-between align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-whatsapp" viewBox="0 0 24 24">
@@ -183,7 +208,7 @@
             </button>
             <button class="drop-list__btn py-2">
               <a :href="`https://wa.me/098${data.number != null ? data.number : data.author.phone_number
-            }`" class="d-flex mx-3 justify-content-between align-items-center">
+                }`" class="d-flex mx-3 justify-content-between align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                   class="bi bi-whatsapp" viewBox="0 0 16 16">
                   <path
@@ -193,7 +218,8 @@
               </a>
             </button>
             <button v-if="data.telegram_id" class="drop-list__btn py-2">
-              <a type="telegram" :imagine="data.telegram_id" target="_blank" :href="`tg://resolve?domain=${data.telegram_id}`"
+              <a type="telegram" :imagine="data.telegram_id" target="_blank"
+                :href="`tg://resolve?domain=${data.telegram_id}`"
                 class="d-flex mx-3 justify-content-between align-items-center">
                 <i class="fad fa-paper-plane" />
                 <div class="text-sm">تلگرام</div>
@@ -221,9 +247,9 @@
         </svg>
       </button>
       <button v-if="acceptAllow == true &&
-            loading == false &&
-            data.author.username != $store.state.username
-            " class="py-1 px-3 mt-3 text-xs btn-material btn-animation-shadow irsa bg-gradient-to-tl  from-[#13a847] to-[#02c6b9] rounded-full text-white"
+        loading == false &&
+        data.author.username != $store.state.username
+      " class="py-1 px-3 mt-3 text-xs btn-material btn-animation-shadow irsa bg-gradient-to-tl  from-[#13a847] to-[#02c6b9] rounded-full text-white"
         @click="acceptRequest()">
         قبول درخواست
       </button>
@@ -273,7 +299,7 @@
           </button>
           <a v-if="data.author.username == $store.state.username &&
             checkPhoneDevice()
-            " :href="'sms:+98' + data.author.phone_number"
+          " :href="'sms:+98' + data.author.phone_number"
             class="rounded-10 d-flex px-2 py-1 bg-treaget align-items-center">
             <p class="text-xs px-1 py-1">پیامک</p>
           </a>
@@ -302,11 +328,15 @@
 
 <script>
 
-import {  ExclamationTriangleIcon} from '@heroicons/vue/24/outline'
-
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { EllipsisVerticalIcon } from '@heroicons/vue/20/solid'
 export default {
   props: ["data"],
-  components:{ExclamationTriangleIcon},
+  components: {
+    ExclamationTriangleIcon,
+    Menu, MenuButton, MenuItems, MenuItem, EllipsisVerticalIcon
+  },
   data() {
     return {
       loading: false,
