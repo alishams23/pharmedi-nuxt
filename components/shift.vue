@@ -1,5 +1,6 @@
 <template>
   <div class="bg-white rounded-10 my-3 p-3">
+    <SharedSnackbar v-model="snackbarVisible" message="با موفقیت کپی شد" />
     <div class="rtl">
       <div class="flex justify-between items-center mb-4">
         <div class="d-flex flex-1 align-items-center space-x-4">
@@ -344,6 +345,7 @@ export default {
       modal: false,
       suggestion: false,
       showDetail: false,
+      snackbarVisible:false
     };
   },
   mounted() {
@@ -399,7 +401,7 @@ export default {
     shareLink() {
       const link = `https://pharmedi.ir/api/shift/shift-preview/${this.data.id}/`;
       this.copyToClipboard(link);
-      alert(`کپی شد.`);
+      this.snackbarVisible = true;
     },
     copyToClipboard(textToCopy) {
       if (navigator.clipboard && window.isSecureContext) {

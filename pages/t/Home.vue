@@ -119,7 +119,7 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
-        <input   @keyup.enter="getDataHome(postPage)"   class="block w-full p-4 pe-5 text-sm text-gray-900   rounded-full bg-white shadow-none  focus:ring-blue-500 focus:border-blue-500 " placeholder="جستجو بین شیفت ها ..." required />
+        <input   @keyup.enter="getDataHome(postPage)" v-model="text"  class="block w-full p-4 pe-5 text-sm text-gray-900   rounded-full bg-white shadow-none  focus:ring-blue-500 focus:border-blue-500 " placeholder="جستجو بین شیفت ها ..." required />
         <button  @click="modal = true" class="flex items-center text-white absolute end-2 bottom-2 shadow-2 bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-[7px] ">
           <i class="fa fa-filter text-xs ml-2" />
           فیلتر
@@ -490,7 +490,8 @@ export default {
       if (page == 1) {
         this.results = [];
       }
-
+      console.log(this.text);
+      
       await fetch(
         `https://pharmedi.ir/api/shift/post/?search=${this.text == null ? "" : this.text
         } ${this.city_text == null ? "" : this.city_text

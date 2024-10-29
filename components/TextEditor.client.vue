@@ -9,6 +9,7 @@
 <script setup lang="ts">
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { ref, defineEmits } from 'vue';
+
 const props = defineProps<{
   content: string,
 }>();
@@ -18,7 +19,7 @@ const emit = defineEmits(['update']);
 const editorContent = ref(null);
 let dialog = ref();
 let text = ref('');
-let editor = null
+let editor : any = null
 
 // ... (rest of your code)
 
@@ -27,10 +28,11 @@ const updateContent = () => {
   emit('update', editor.container.querySelector(".ql-editor").innerHTML);
   
 };
+
 const doPaste  = () => {
   
   if (editor) {
-    editor.pasteHTML(`${document.querySelector(".ql-editor").innerHTML} ${text.value}`);
+    editor.pasteHTML(`${document.querySelector(".ql-editor")!.innerHTML} ${text.value}`);
     dialog.value = false;
   } else {
     console.error('Quill editor is not ready yet. Wait for onEditorReady event.');
@@ -41,9 +43,9 @@ const doPaste  = () => {
 }
 
 
-const onEditorReady = (data) =>  {
+const onEditorReady = (data : any) =>  {
   editor = data
- 
+
     const rtlButton = editor.getModule('toolbar').container.querySelector('.ql-direction');
   if (rtlButton) {
     rtlButton.click();
@@ -51,7 +53,73 @@ const onEditorReady = (data) =>  {
     console.error('RTL button not found');
   }
 
+  const observer = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList) {
+    // Check if the mutation target is an <img> element
+    if (mutation.target.tagName === 'IMG') {
+      updateContent();  // Call updateContent only when an <img> element is modified
+    }
+  }
+});
+
+    // Observe changes in the editor's `.ql-editor` element for any blot mutations
+    observer.observe(editor.container.querySelector(".ql-editor")!, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ['style']
+    });
+
+
+    // const toolbar = document.querySelector('.ql-toolbar');
+    // const editor2 = document.querySelector('.ql-editor');
+
+    // if (toolbar && editor2) {
+    //     const toolbarOriginalTop = toolbar.getBoundingClientRect().top;
+
+
+    //     window.addEventListener('scroll', function() {
+    //   console.log("ddddjfbvk")
+
+    //         const editorTop = editor2.getBoundingClientRect().top;
+    //         if (editorTop < 0) {
+    //             toolbar.style.position = 'fixed';
+    //             toolbar.style.top = '0';
+    //         } else {
+    //             toolbar.style.position = 'sticky';
+    //             toolbar.style.top = `${toolbarOriginalTop}px`;
+    //         }
+    //     },true);
+    // }
+
 }
+
+const handleScroll = () => {
+  const toolbar = editor.getModule('toolbar').container  ;
+  const mainEditor = editor.container.querySelector(".ql-editor") ;
+
+  if (toolbar && mainEditor) {
+    const editorRect = mainEditor.getBoundingClientRect();
+    const toolbarRect = toolbar.getBoundingClientRect();
+
+
+    // Check if the toolbar is within the editor bounds
+    if (toolbarRect.top > editorRect.bottom) {
+      toolbar.classList.add('hidden-toolbar');
+    } else {
+      toolbar.classList.remove('hidden-toolbar');
+    }
+  }
+};
+
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll,true);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 
 let toolbar = [
   ["bold", "italic", "underline", "strike"],
@@ -64,12 +132,14 @@ let toolbar = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ direction: "rtl" }],
   ['image'],
-  [{ custom: 'insert custom' }],
+
   
 
 ]
 
-let modules: {}
+let modules: {
+  sticky_toolbar: true
+}
  
  
     const { QuillEditor, Quill } = await import('@vueup/vue-quill')
@@ -112,6 +182,7 @@ let modules: {}
       // }
     ]
 
+
  
 </script>
 
@@ -119,6 +190,7 @@ let modules: {}
 .ql-editor{
     min-height:200px;
 }
+
 .ql-custom {
   width: 32px;
   height: 32px;
@@ -133,4 +205,21 @@ let modules: {}
 .ql-header.ql-picker{
   direction: ltr;
 }
+.ql-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+ 
+}
+
+.hidden-toolbar {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+
 </style>

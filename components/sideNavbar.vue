@@ -356,7 +356,7 @@
               <div class="text-center  text-green-900  leading-6 text-xs pt-2">
                 با حمایت مالی خود به پیشرفت این پروژه کمک کنید
               </div>
-              <a href="https://idpay.ir/pharmedi" tag="button"
+              <a href="https://zarinp.al/pharmedi.ir" tag="button"
                 class=" py-2 rounded-full  d-flex align-items-center font-medium justify-content-center text-green-700 bg-green-400/20    fs-7 shadow-3 mt-3 mb-2 mx-3 col-10">
                 درگاه حمایت مالی
               </a>
@@ -493,7 +493,7 @@ const slideBarDeactivator = () => {
 
 onMounted(() => {
   userData();
-  getCartItems();
+  // getCartItems();
   // CountRead();
   // setInterval(() => CountRead(), 18000);
 });

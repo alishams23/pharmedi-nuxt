@@ -4,7 +4,7 @@
       <p class="text-right fw-bold my-3 fs-6">تغییر تیتر مقاله</p>
       <input v-model="title" required type="text" class="shadow-none rtl px-3 bg-white border" />
     </div>
-
+    <section-text-editor-chat-bot />
 
     <!-- <vue-editor class="bg-white" v-model="body" :editorOptions="editorOptions"></vue-editor> -->
     <text-editor :content="body" @update="(newText) => { body = newText}">

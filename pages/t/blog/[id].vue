@@ -4,7 +4,7 @@
     <div class="px-3" v-if="data">
       <div class="bg-white rounded-13 shadow-1">
         <div v-if="data.imageBlog" class="col-12 p-4">
-          <img :src="data.imageBlog.photo" class="rounded-13 cover w-full h-full" alt="" />
+          <img :src="data.imageBlog.photo" class="rounded-13 cover w-full h-[300px]" alt="" />
           <div class="d-flex" style="margin-top: -70px">
             <div class="drop -color-lighter drop--down">
               <button>
@@ -52,8 +52,9 @@
             <!-- <div v-html="data.body">
 
             </div> -->
-            <ShowTextEditor :content="data.body"></ShowTextEditor>
-           
+            <!-- <ShowTextEditor :content=""></ShowTextEditor> -->
+             <show-quill :data="data.body"/>
+            <!-- <div  v-html="data.body"></div> -->
           </div>
         </div>
         <div class="py-4">
@@ -160,9 +161,9 @@ export default {
    
     async like(id) {
       try {
-        await axios.post(
+        await axios.get(
           `https://pharmedi.ir/api/blog/AddLikeView/?id=${id}`,
-          {},
+        
           {
             headers: {
               "Content-type": "application/json",

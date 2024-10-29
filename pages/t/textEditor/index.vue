@@ -4,6 +4,7 @@
       <p class="text-right fw-bold my-3 fs-6">تیتر مقاله</p>
       <input v-model="title" required type="text" class="shadow-none rtl px-3 bg-white border" />
     </div>
+<section-text-editor-chat-bot />
     <text-editor :content="body" @update="(newText) => { body = newText}">
     </text-editor>
     <div class="my-4">
