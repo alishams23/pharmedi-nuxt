@@ -1,29 +1,24 @@
 <template>
     <div>
-        <div class="flex justify-center  flex-wrap ">
+        <div class=" ">
             <!-- Category 1 -->
-
-
             <swiper :modules="modules"
             :autoplay="{
-          delay: 2000,
+          delay: 1000,
           disableOnInteraction: false,
         }"
-         :pagination="{
-                clickable: true,
+        :slides-per-view="'auto'" :space-between="5" :loop="false" class="  flex justify-center">
 
-            }" :slides-per-view="'auto'" :space-between="5" :loop="true" class=" flex justify-center">
-
-                <swiper-slide v-for="item in categories" class="mb-9 w-auto text-center">
-                    <div>
+                <swiper-slide v-for="item in categories" class="mb-3 mx-3 w-auto  text-center">
+                   
                         <a class="pt-3 px-4  rounded-[20px]" href="#search" @click="$router.push('/t/blog/?category=' + item.id)">
                             <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">
                                 <!-- Insert discount SVG icon here -->
                                 <img class=" w-full h-full rounded-[25px] object-cover" :src="item.image" alt="">
                             </div>
                         </a>
-                        <span class="text-xs  mt-2">{{ item.title }}</span>
-                    </div>
+                        <span class="text-xs d-flex justify-center ">{{ item.title }}</span>
+                
                 </swiper-slide>
            
             </swiper>
@@ -44,6 +39,11 @@ export default {
 
 
     },
+    setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
     props: ['src', 'title'],
     data() {
         return {
@@ -60,10 +60,7 @@ export default {
                     headers: {
                         "Content-type": "application/json",
                         Accept: "application/json",
-                        Authorization:
-                            this.$store.state.token != ""
-                                ? `Token ${this.$store.state.token}`
-                                : "",
+                       
                     },
                 }
             )

@@ -1,6 +1,6 @@
 <template>
     <div class=" ">
-        <div class="flex mt-[10px] md:mb-4 items-center justify-end">
+        <div class="flex md:mb-4 items-center justify-end">
             <h2 class=" irsa  text-lg font-bold text-right my-3 mr-4  ">برترین ها </h2>
            <div class="hidden d-md-block">
              <div class="  h-12 w-12 bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2]  flex justify-center items-center  mr-5 rounded-2xl">
@@ -8,10 +8,7 @@
              </div>
            </div>
         </div>
-        <swiper :pagination="{
-        clickable: true,
-
-    }" :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
+        <swiper :modules="modules" :slides-per-view="'auto'" :space-between="5" :loop="false"
             class=" flex justify-center">
             <div v-if="loading" class='flex space-x-1 justify-center items-center  h-[378.8px]'>
                 <div class="loader"></div>
