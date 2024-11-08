@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     server: {
       hmr: {
         clientPort: 3000,
+        
       },
     },
   },
@@ -24,4 +25,8 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "nuxt-headlessui",
   ],
+  devServer: {
+    port: 3000,
+    host:"0"
+  },
 });

@@ -16,9 +16,9 @@ export default {
   beforeCreate() {
     this.$router.push({
       name: 't-Home',
-      query: {
-        loginQuery: true
-      }
+      // query: {
+      //   loginQuery: true
+      // }
     })
   },
   mounted() { },

@@ -42,7 +42,7 @@
   
                 <!-- iframe for chat.lmsys.org -->
                 <iframe
-                  src="https://lmarena.ai/"
+                  src="https://poe.com/"
                   width="100%"
                   height="600px"
                   class="mt-4 border rounded-lg"

@@ -29,9 +29,9 @@
           <div class="drop-list -size-large -position-left -border-rounded">
             <button class="drop-list__btn">
               <nuxt-link
-                :to="checkLogin() ? '/t/pharmacySearch' : '/'"
+                :to="checkLogin() ? '/t/pharmacySearch' : '/t/login/'"
                 class="d-flex mx-3 justify-content-between align-items-center"
-           
+          
               >
                 <div class="text-sm">
                   افزودن آگهی شیفت
@@ -49,7 +49,7 @@
           class="nav-item btn-material"
           :class="
             currentRouteName() == 't-Home'
-              ? 'active bg-treaget '
+              ? 'active bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] !text-white '
               : 'nav-color-inactive'
           "
         >
@@ -67,7 +67,7 @@
           class="nav-item btn-material"
           :class="
             currentRouteName() == 't-blog'
-              ? 'active bg-treaget '
+              ? 'active bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] !text-white '
               : 'nav-color-inactive'
           "
         >
@@ -86,7 +86,7 @@
           class="nav-item btn-material"
           :class="
             currentRouteName() == 't-shop'
-              ? 'active bg-treaget '
+              ? 'active bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] !text-white '
               : 'nav-color-inactive'
           "
         >
@@ -109,7 +109,7 @@
           class="nav-item btn-material"
           :class="
             currentRouteName() == 'user'
-              ? 'active bg-treaget '
+              ? 'active bg-gradient-to-tl  from-[#2741e7] to-[#2aa2f2] !text-white '
               : 'nav-color-inactive'
           "
         >
@@ -143,6 +143,7 @@ export default {
     currentRouteCheck (data) {
       return this.$route.name.split('-').includes(data)
     },
+
     currentRouteName () {
       return this.$route.name
     },

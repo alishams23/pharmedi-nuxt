@@ -413,7 +413,9 @@ export default {
     },
   },
   mounted() {
-    if (this.$route.query.loginQuery == true) {
+    
+    
+    if (this.$route.query.loginQuery == "true" && this.$store.state.token == "" ) {
       this.modalLogin = true;
     }
     this.getJobSeekers();

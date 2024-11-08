@@ -4,19 +4,22 @@
       <p class="text-right fw-bold my-3 fs-6">تیتر مقاله</p>
       <input v-model="title" required type="text" class="shadow-none rtl px-3 bg-white border" />
     </div>
-<section-text-editor-chat-bot />
-    <text-editor :content="body" @update="(newText) => { body = newText}">
+
+    <!-- <section-text-editor-chat-bot /> -->
+
+    <text-editor :content="body" @update="(newText) => { body = newText }">
     </text-editor>
+    <BlogSectionCategoryList :data="[]" @change="(data) => categories = data" class="my-5" />
     <div class="my-4">
       <div class="text-right fw-bold">انتخاب عکس مقاله</div>
     </div>
     <div class="d-flex">
       <vue-picture-input ref="pictureInput" width="1000" height="400" accept="image/jpeg,image/png"
         button-class="btn bg-treaget px-5 rounded-pill fw-bold" :custom-strings="{
-    upload: '<h1>انتخاب شد!</h1>',
-    change: 'تغییر عکس',
-    drag: '<p>عکس را در اینجا رها کن یا کلیک کن </p>',
-  }" @change="onChange">
+          upload: '<h1>انتخاب شد!</h1>',
+          change: 'تغییر عکس',
+          drag: '<p>عکس را در اینجا رها کن یا کلیک کن </p>',
+        }" @change="onChange">
       </vue-picture-input>
     </div>
     <p class="text-danger rtl pt-3">
@@ -24,12 +27,12 @@
     </p>
     <div class="d-flex rtl m-3 mt-5">
       <button type="submit" class="px-3 btn bg-treaget py-2 px-5 fw-bold rounded-pill">
-     <div v-if="loading==false">
-      افزودن
-     </div>
-     <div class="loader" v-else>
-      
-     </div>
+        <div v-if="loading == false">
+          افزودن
+        </div>
+        <div class="loader" v-else>
+
+        </div>
       </button>
     </div>
   </form>
@@ -40,8 +43,7 @@ import VuePictureInput from "vue-picture-input";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
-import axios from "axios";
-
+import axios from "axios"
 export default {
   components: {
     VuePictureInput,
@@ -50,27 +52,27 @@ export default {
     return {
       loading: false,
       photo: "",
-
+      categories:[],
       title: "",
       error: "",
       body: "",
       imageId: null,
       fd: null,
-      editorOptions: {
-        theme: "snow",
-        modules: {
-          toolbar: [
-            ["bold", "italic", "underline", "strike"],
-            ["link", "blockquote", "code-block"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            [{ script: "sub" }, { script: "super" }],
-            [{ indent: "-1" }, { indent: "+1" }],
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            [{ direction: "rtl" }],
-            // ['image']
-          ],
-        },
-      },
+      // editorOptions: {
+      //   theme: "snow",
+      //   modules: {
+      //     toolbar: [
+      //       ["bold", "italic", "underline", "strike"],
+      //       ["link", "blockquote", "code-block"],
+      //       [{ list: "ordered" }, { list: "bullet" }],
+      //       [{ script: "sub" }, { script: "super" }],
+      //       [{ indent: "-1" }, { indent: "+1" }],
+      //       [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      //       [{ direction: "rtl" }],
+      //       // ['image']
+      //     ],
+      //   },
+      // },
     };
   },
   methods: {
@@ -131,6 +133,7 @@ export default {
                 title: this.title,
                 body: this.body,
                 imageBlog: this.imageId,
+                category: this.categories.map(item => item.id),
               },
               {
                 headers: {

@@ -9,6 +9,9 @@
     <!-- <vue-editor class="bg-white" v-model="body" :editorOptions="editorOptions"></vue-editor> -->
     <text-editor :content="body" @update="(newText) => { body = newText}">
     </text-editor>
+    <BlogSectionCategoryList :data="categories" @change="(data) => categories = data" class="my-5" />
+
+
     <p class="text-danger rtl pt-3">
       {{ error }}
     </p>
@@ -41,23 +44,10 @@ export default {
       title: this.title,
       body: this.body,
       sendLoading: false,
+      categories:[],
       fd: null,
       loadingCategory: true,
-      editorOptions: {
-        theme: "snow",
-        modules: {
-          toolbar: [
-            ["bold", "italic", "underline", "strike"],
-            ["link", "blockquote", "code-block"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            [{ script: "sub" }, { script: "super" }],
-            [{ indent: "-1" }, { indent: "+1" }],
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            [{ direction: "rtl" }],
-            // ['image']
-          ],
-        },
-      },
+      
     };
   },
   mounted() {
@@ -83,19 +73,26 @@ export default {
         .then((response) => {
           this.title = response.data.title;
           this.body = response.data.body;
+          this.categories = response.data.category
         });
       this.loading = false;
     },
     async sendData() {
       this.loading = true;
-      this.fd = new FormData();
-      this.fd.append("title", this.title);
-      this.fd.append("body", this.body);
+      // this.fd = new FormData();
+      // this.fd.append("title", this.title);
+      // this.fd.append("body", this.body);
+      // this.fd.append("category",this.categories.map(item => item.id));
 
       await axios
         .put(
           `https://pharmedi.ir/api/blog/BlogUpdate/${this.$route.params.id}/`,
-          this.fd,
+          {
+            title: this.title,
+            body: this.body,
+            category: this.categories.map(item => item.id),
+
+          },
           {
             headers: {
               "Content-type": "application/json",
