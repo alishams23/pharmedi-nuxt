@@ -4,8 +4,8 @@
   <NuxtLoadingIndicator />
   <div>
     <Head>
-        <!-- <Title>فارمدی - pharmedi</Title> -->
-        <Title>۴۱۲۵۰۳۶</Title>
+        <Title>فارمدی - pharmedi</Title>
+        <!-- <Title>۴۱۲۵۰۳۶</Title> -->
      </Head>
 </div>
   
