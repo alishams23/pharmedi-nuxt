@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     "nuxt-headlessui",
   ],
   site: { 
-    url: 'http://127.0.0.1:8000', 
+    url: 'https://pharmedi.ir', 
     name: 'pharmedi - فارمدی' 
   }, 
   devServer: {
