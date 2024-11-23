@@ -61,14 +61,14 @@
 
                         <div class="mt-5">
                             <h2 class="sr-only text-[#CCA47C]">Product information</h2>
-                            <p class="text-3xl tracking-tight  text-right flex align-items-end justify-end">
+                            <div class="text-3xl tracking-tight  text-right flex align-items-end justify-end">
                             <div class="text-xs mb-1  text-gray-400 px-2 text-right">تومان</div>
                             <div>
                                 {{ product.price -
                                     (product.price *
                                 product.discount / 100) }}
                             </div>
-                            </p>
+                            </div>
                             <p dir="rtl" class="text-xs text-gray-500">
                                 قیمت با اعمال <span class="text-red-600  text-sm font-black">{{ product.discount }}
                                     %</span>
