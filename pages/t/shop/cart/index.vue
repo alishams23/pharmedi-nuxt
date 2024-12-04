@@ -389,6 +389,7 @@
                 v-model="address"
                 id="address"
                 type="text"
+                required
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 shadow-none"
               />
             </div>
